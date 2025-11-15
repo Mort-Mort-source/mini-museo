@@ -1,5 +1,6 @@
 (function () {
 
+  // Función para activar los submenús después de cargar el sidebar
   function activarSubmenus() {
     const padres = document.querySelectorAll(".menu-padre");
 
@@ -13,7 +14,7 @@
 
       toggle.addEventListener("click", () => {
 
-        // Cerrar todos los demás
+        // Cerrar los demás
         document.querySelectorAll(".submenu").forEach(s => {
           if (s !== submenu) {
             s.style.maxHeight = "0px";
@@ -21,7 +22,7 @@
           }
         });
 
-        // Alternar el actual
+        // Alternar este
         if (submenu.classList.contains("activo")) {
           submenu.classList.remove("activo");
           submenu.style.maxHeight = "0px";
@@ -33,18 +34,14 @@
     });
   }
 
-  // === Cargar el sidebar ===
-  const loaderPath = document.currentScript.src;
-  const base = loaderPath.substring(0, loaderPath.lastIndexOf("/") + 1);
-  const sidebarURL = base + "../componentes/sideBar.html";
-
-  fetch(sidebarURL)
+  // Cargar el HTML del sidebar
+  fetch("/componentes/sideBar.html")
     .then(res => res.text())
     .then(html => {
       const cont = document.getElementById("sidebar");
       if (!cont) return;
       cont.innerHTML = html;
-      activarSubmenus();   // <-- IMPORTANTÍSIMO
+      activarSubmenus();  
     })
     .catch(err => console.error("Error cargando sidebar:", err));
 
