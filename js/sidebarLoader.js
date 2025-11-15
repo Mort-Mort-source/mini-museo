@@ -39,32 +39,48 @@
     });
   }
 
-  // Cargar el HTML del sidebar
-  fetch("../componentes/sidebar.html")
-    .then(res => {
-      if (!res.ok) {
-        return fetch("./componentes/sidebar.html");
+  // Función para determinar la ruta correcta del sidebar
+  function cargarSidebar() {
+    const cont = document.getElementById("sidebar");
+    if (!cont) return;
+
+    // Intentar diferentes rutas según la ubicación
+    const rutasPosibles = [
+      'componentes/sidebar.html',
+      './componentes/sidebar.html',
+      '../componentes/sidebar.html',
+      '/MINI-MUSEO/componentes/sidebar.html' // Si tu repo se llama MINI-MUSEO
+    ];
+
+    const intentarCargar = (index) => {
+      if (index >= rutasPosibles.length) {
+        console.error("No se pudo cargar el sidebar desde ninguna ruta");
+        return;
       }
-      return res.text();
-    })
-    .then(html => {
-      const cont = document.getElementById("sidebar");
-      if (!cont) return;
-      cont.innerHTML = html;
-      activarSubmenus();  
-    })
-    .catch(err => {
-      console.error("Error cargando sidebar:", err);
-      fetch("./componentes/sidebar.html")
-        .then(res => res.text())
-        .then(html => {
-          const cont = document.getElementById("sidebar");
-          if (cont) {
-            cont.innerHTML = html;
-            activarSubmenus();
-          }
+
+      fetch(rutasPosibles[index])
+        .then(res => {
+          if (!res.ok) throw new Error('No se pudo cargar');
+          return res.text();
         })
-        .catch(err2 => console.error("Error definitivo:", err2));
-    });
+        .then(html => {
+          cont.innerHTML = html;
+          activarSubmenus();
+        })
+        .catch(err => {
+          console.warn(`Error con ruta ${rutasPosibles[index]}, intentando siguiente...`);
+          intentarCargar(index + 1);
+        });
+    };
+
+    intentarCargar(0);
+  }
+
+  // Cargar el sidebar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', cargarSidebar);
+  } else {
+    cargarSidebar();
+  }
 
 })();
