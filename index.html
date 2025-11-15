@@ -3,47 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Museo Narrativo Mexicano</title>
+  <title>Mini Museo • Inicio</title>
+
+  <!-- Estilos -->
   <link rel="stylesheet" href="css/estilos.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-  <aside class="sidebar">
-    <h2>Museo<br>Narrativo<br>Mexicano</h2>
-    <nav>
-      <ul>
-        <li><a href="index.html" class="activo">Inicio</a></li>
-        <li><a href="epoca-prehispanica.html">Época Prehispánica</a></li>
-        <li><a href="epoca-colonial.html">Época Colonial</a></li>
-        <li><a href="epoca-moderna.html">Época Moderna</a></li>
-      </ul>
-    </nav>
-  </aside>
+  <!-- SIDEBAR -->
+  <div id="sidebar"></div>
+  <script src="js/sidebarLoader.js"></script>
 
+  <!-- OVERLAY PARA ZOOM -->
+  <div id="overlay">
+    <img id="overlay-img" alt="">
+  </div>
+
+  <!-- CONTENIDO PRINCIPAL -->
   <main class="contenido">
-    <section class="presentacion">
-      <h1>Una narrativa de los objetos mexicanos a través del tiempo</h1>
-      <p>
-        Este museo virtual propone un recorrido por la historia material de México,
-        desde los objetos prehispánicos hasta las piezas contemporáneas.
-        Cada época presenta un estudio visual y narrativo de objetos que
-        reflejan las transformaciones culturales, sociales y simbólicas del país.
+
+    <section class="epoca">
+      <h1>Bienvenido al Mini Museo</h1>
+
+      <p class="intro">
+        Explora las diferentes colecciones del Contramuseo: ciencia, arte, diplomacia,
+        ingeniería, restos humanos, réplicas y más.
       </p>
 
-      <div class="texto-generico">
-        <p>
-          Aquí irá el texto explicativo general del concepto del museo,
-          su enfoque curatorial y la importancia de la narrativa material
-          como forma de entender la identidad mexicana.
-        </p>
-      </div>
+      <div class="video-container"></div>
 
-      <div class="imagen-principal">
-        <img src="img/portada.jpg" alt="Imagen representativa del museo">
-      </div>
-    </section>
+      <section class="texto-epoca">
+        <h2>Explora las colecciones</h2>
+        <p>
+          Selecciona una categoría desde el menú lateral para comenzar a descubrir
+          piezas únicas y su historia.
+        </p>
+      </section>
+
+      <!-- Galería con imágenes zoomables -->
+      <div class="contenedor-marco">
+        <h2>Galería</h2>
+        <div class="galeria">
+          <img src="/img/ejemplo.jpg" class="zoom-img" alt="Objeto 1">
+          <img src="/img/prehispanico2.jpg" class="zoom-img" alt="Objeto 2">
+          <img src="/img/prehispanico3.jpg" class="zoom-img" alt="Objeto 3">
+        </div>
+      </div> 
   </main>
+
+  <div id="lightbox" class="lightbox">
+    <img id="lightbox-img" src="" alt="Imagen ampliada" title="Imagen ampliada">
+  </div>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/lightbox.js"></script>
+
+  <!-- JS Principal -->
+  <script src="js/main.js"></script>
 
 </body>
 </html>
