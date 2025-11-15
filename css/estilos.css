@@ -78,8 +78,15 @@ body {
   color: #C8A165;
 }
 
-.submenu.activo {
-  max-height: 500px;
+/* =======================
+   ESTADOS DE ACORDEÓN
+   ======================= */
+.menu-padre.abierto .submenu {
+  max-height: 500px !important;
+}
+
+.menu-padre.abierto .toggle {
+  color: #C8A165;
 }
 
 /* =======================
@@ -182,27 +189,29 @@ body {
 }
 
 /* =======================
-   LIGHTBOX
+   LIGHTBOX MEJORADO
    ======================= */
 .lightbox {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.85);
   justify-content: center;
   align-items: center;
   z-index: 9999;
+  cursor: zoom-out;
 }
 
 .lightbox img {
   max-width: 90%;
   max-height: 90%;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  animation: fadeIn 0.25s ease;
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.7);
+  animation: fadeIn 0.3s ease;
+  cursor: default;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.92); }
+  from { opacity: 0; transform: scale(0.95); }
   to   { opacity: 1; transform: scale(1); }
 }

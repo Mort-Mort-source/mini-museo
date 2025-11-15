@@ -10,24 +10,29 @@
 
       if (!toggle || !submenu) return;
 
+      // Estado inicial cerrado
       submenu.style.maxHeight = "0px";
 
-      toggle.addEventListener("click", () => {
+      toggle.addEventListener("click", (e) => {
+        e.stopPropagation();
 
         // Cerrar los demás
-        document.querySelectorAll(".submenu").forEach(s => {
-          if (s !== submenu) {
-            s.style.maxHeight = "0px";
-            s.classList.remove("activo");
+        document.querySelectorAll(".menu-padre").forEach(p => {
+          if (p !== padre) {
+            const s = p.querySelector(".submenu");
+            if (s) {
+              s.style.maxHeight = "0px";
+              p.classList.remove("abierto");
+            }
           }
         });
 
         // Alternar este
-        if (submenu.classList.contains("activo")) {
-          submenu.classList.remove("activo");
+        if (padre.classList.contains("abierto")) {
+          padre.classList.remove("abierto");
           submenu.style.maxHeight = "0px";
         } else {
-          submenu.classList.add("activo");
+          padre.classList.add("abierto");
           submenu.style.maxHeight = submenu.scrollHeight + "px";
         }
       });
@@ -35,14 +40,31 @@
   }
 
   // Cargar el HTML del sidebar
-  fetch("/componentes/sideBar.html")
-    .then(res => res.text())
+  fetch("../componentes/sidebar.html")
+    .then(res => {
+      if (!res.ok) {
+        return fetch("./componentes/sidebar.html");
+      }
+      return res.text();
+    })
     .then(html => {
       const cont = document.getElementById("sidebar");
       if (!cont) return;
       cont.innerHTML = html;
       activarSubmenus();  
     })
-    .catch(err => console.error("Error cargando sidebar:", err));
+    .catch(err => {
+      console.error("Error cargando sidebar:", err);
+      fetch("./componentes/sidebar.html")
+        .then(res => res.text())
+        .then(html => {
+          const cont = document.getElementById("sidebar");
+          if (cont) {
+            cont.innerHTML = html;
+            activarSubmenus();
+          }
+        })
+        .catch(err2 => console.error("Error definitivo:", err2));
+    });
 
 })();
