@@ -39,41 +39,40 @@
     });
   }
 
-  // Función para determinar la ruta correcta del sidebar
+  // Función para cargar el sidebar
   function cargarSidebar() {
     const cont = document.getElementById("sidebar");
     if (!cont) return;
 
-    // Intentar diferentes rutas según la ubicación
-    const rutasPosibles = [
-      'componentes/sidebar.html',
-      './componentes/sidebar.html',
-      '../componentes/sidebar.html',
-      '/MINI-MUSEO/componentes/sidebar.html' // Si tu repo se llama MINI-MUSEO
-    ];
+    // Ruta simple - sidebar está en la raíz
+    const rutaSidebar = 'sidebar.html';
 
-    const intentarCargar = (index) => {
-      if (index >= rutasPosibles.length) {
-        console.error("No se pudo cargar el sidebar desde ninguna ruta");
-        return;
-      }
-
-      fetch(rutasPosibles[index])
-        .then(res => {
-          if (!res.ok) throw new Error('No se pudo cargar');
-          return res.text();
-        })
-        .then(html => {
-          cont.innerHTML = html;
-          activarSubmenus();
-        })
-        .catch(err => {
-          console.warn(`Error con ruta ${rutasPosibles[index]}, intentando siguiente...`);
-          intentarCargar(index + 1);
-        });
-    };
-
-    intentarCargar(0);
+    fetch(rutaSidebar)
+      .then(res => {
+        if (!res.ok) throw new Error('No se pudo cargar el sidebar');
+        return res.text();
+      })
+      .then(html => {
+        cont.innerHTML = html;
+        activarSubmenus();
+      })
+      .catch(err => {
+        console.error("Error cargando sidebar:", err);
+        // Fallback: mostrar menú básico
+        cont.innerHTML = `
+          <aside class="sidebar">
+            <h2>Contra<br>Museo</h2>
+            <nav>
+              <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="coleccionesOseas.html">Colecciones óseas</a></li>
+                <li><a href="omichicahuaztli.html">Omichicahuaztli</a></li>
+              </ul>
+            </nav>
+          </aside>
+        `;
+      });
   }
 
   // Cargar el sidebar cuando el DOM esté listo
