@@ -45,7 +45,7 @@
     if (!cont) return;
 
     // Ruta simple - sidebar está en la raíz
-    const rutaSidebar = 'sidebar.html';
+    const rutaSidebar = '/sidebar.html';
 
     fetch(rutaSidebar)
       .then(res => {
