@@ -5,43 +5,43 @@ const mosaicItems = [
         title: "Omichicahuaztli",
         description: "Colecciones óseas y Omichicahuaztli",
         images: [
-            "/img/Omichicahuaztli Foto 1.jpeg",
-            "/img/Omichicahuaztli Foto 2.jpeg",
-            "/img/Omichicahuaztli Foto 3.jpeg"
+            "img/Omichicahuaztli Foto 1.jpeg",
+            "img/Omichicahuaztli Foto 2.jpeg",
+            "img/Omichicahuaztli Foto 3.jpeg"
         ],
-        link: "/content/Omichicahuaztli.html",
+        link: "content/Omichicahuaztli.html",
         size: "large",
-        carousel: true  // ESTE ELEMENTO SÍ TIENE CARRUSEL
+        carousel: true
     },
     {
         id: 2,
         title: "Falsos y Réplicas",
         description: "Tumba de Pakal y otros falsos",
-        image: "https://source.unsplash.com/random/800x400/?fake,replica", // Imagen única
-        link: "falsos_tumba_pakal.html",
+        image: "https://source.unsplash.com/random/800x400/?fake,replica",
+        link: "content/falsos_tumba_pakal.html",
         size: "wide",
-        carousel: false  // ESTE ELEMENTO NO TIENE CARRUSEL
+        carousel: false
     },
     {
         id: 3,
         title: "Saqueos / Diplomacia",
         description: "Tonalámatl y más",
         images: [
-            "/img/tonalamatl.jpg",
+            "img/tonalamatl.jpg",
             "https://source.unsplash.com/random/1200x400/?treasure,history"
         ],
-        link: "saqueos_tonalamatl.html",
+        link: "content/saqueos_tonalamatl.html",
         size: "large",
-        carousel: true  // SÍ TIENE CARRUSEL
+        carousel: true
     },
     {
         id: 4,
         title: "Archivos Vivos",
         description: "Xochipilli, Códice y Cuauhtémoc",
         image: "https://source.unsplash.com/random/400x800/?archive,codex",
-        link: "archivos_xochipilli.html",
+        link: "content/archivos_xochipilli.html",
         size: "tall",
-        carousel: false  // NO TIENE CARRUSEL
+        carousel: false
     },
     {
         id: 5,
@@ -50,18 +50,18 @@ const mosaicItems = [
         images: [
             "https://source.unsplash.com/random/400x400/?engineering,monument"
         ],
-        link: "ingenierias_mural_dr.html",
+        link: "content/ingenierias_mural_dr.html",
         size: "wide",
-        carousel: true  // SÍ TIENE CARRUSEL
+        carousel: true
     },
     {
         id: 6,
         title: "Sobre Ruedas",
         description: "Carroza de Carlota y juguetes",
         image: "https://source.unsplash.com/random/800x400/?wheels,carriage",
-        link: "ruedas_carlota.html",
+        link: "content/ruedas_carlota.html",
         size: "medium",
-        carousel: false  // NO TIENE CARRUSEL
+        carousel: false
     },
     {
         id: 7,
@@ -71,9 +71,9 @@ const mosaicItems = [
             "https://source.unsplash.com/random/400x400/?science,art",
             "https://source.unsplash.com/random/400x400/?painting,history"
         ],
-        link: "ciencia_pulque.html",
+        link: "content/ciencia_pulque.html",
         size: "small",
-        carousel: true  // SÍ TIENE CARRUSEL
+        carousel: true
     },
     {
         id: 8,
@@ -82,7 +82,7 @@ const mosaicItems = [
         image: "https://source.unsplash.com/random/400x800/?contact,location",
         link: "contacto.html",
         size: "tall",
-        carousel: false  // NO TIENE CARRUSEL
+        carousel: false
     },
     {
         id: 9,
@@ -92,27 +92,27 @@ const mosaicItems = [
             "https://source.unsplash.com/random/1200x400/?forgery,artifact",
             "https://source.unsplash.com/random/1200x400/?fake,sculpture"
         ],
-        link: "falsos_generales.html",
+        link: "content/falsos_generales.html",
         size: "wide",
-        carousel: true  // SÍ TIENE CARRUSEL
+        carousel: true
     },
     {
         id: 10,
         title: "Códice",
         description: "Documentos antiguos",
         image: "https://source.unsplash.com/random/400x400/?manuscript,codex",
-        link: "archivos_codice.html",
+        link: "content/archivos_codice.html",
         size: "small",
-        carousel: false  // NO TIENE CARRUSEL
+        carousel: false
     },
     {
         id: 11,
         title: "Cuauhtémoc",
         description: "Archivos históricos",
         image: "https://source.unsplash.com/random/800x400/?emperor,history",
-        link: "archivos_cuauhtemoc.html",
+        link: "content/archivos_cuauhtemoc.html",
         size: "medium",
-        carousel: false  // NO TIENE CARRUSEL
+        carousel: false
     },
     {
         id: 12,
@@ -123,9 +123,9 @@ const mosaicItems = [
             "https://source.unsplash.com/random/1200x800/?stone,carving",
             "https://source.unsplash.com/random/1200x800/?monument,ancient"
         ],
-        link: "ingenierias_tlaltecuhtli.html",
+        link: "content/ingenierias_tlaltecuhtli.html",
         size: "wide",
-        carousel: true  // SÍ TIENE CARRUSEL
+        carousel: true
     }
 ];
 
@@ -203,7 +203,7 @@ class CarouselManager {
             if (!this.isPaused) {
                 this.next();
             }
-        }, 2000); // Cambiar cada 1 segundo
+        }, 2000);
     }
     
     pause() {
@@ -342,6 +342,11 @@ const carouselManagers = [];
 function generateMosaic() {
     const mosaicContainer = document.getElementById('mosaicPackery');
     
+    if (!mosaicContainer) {
+        console.log('Contenedor del mosaico no encontrado');
+        return;
+    }
+    
     // Limpiar mosaico existente y detener carruseles
     carouselManagers.forEach(manager => manager.destroy());
     carouselManagers.length = 0;
@@ -411,6 +416,8 @@ function generateMosaic() {
     
     // Establecer altura del contenedor
     mosaicContainer.style.height = `${packer.currentY}px`;
+    
+    console.log('Mosaico generado correctamente con ' + packedItems.length + ' elementos');
 }
 
 // Inicializar el mosaico cuando se carga la página
@@ -427,3 +434,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // También reorganizar cuando todas las imágenes estén cargadas
 window.addEventListener('load', generateMosaic);
+
+// Manejo de errores de imágenes
+document.addEventListener('error', (e) => {
+    if (e.target.tagName === 'IMG') {
+        console.log('Error cargando imagen:', e.target.src);
+        // Reemplazar imagen rota por placeholder
+        e.target.src = 'https://source.unsplash.com/random/400x400/?museum,artifact';
+    }
+}, true);

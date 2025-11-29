@@ -42,19 +42,26 @@
   // Función para cargar el sidebar
   function cargarSidebar() {
     const cont = document.getElementById("sidebar");
-    if (!cont) return;
+    if (!cont) {
+      console.log("Contenedor del sidebar no encontrado");
+      return;
+    }
 
-    // Ruta simple - sidebar está en la raíz
-    const rutaSidebar = '/sidebar.html';
+    // Determinar la ruta base según la ubicación actual
+    const basePath = window.location.pathname.includes('/content/') ? '..' : '.';
+    const rutaSidebar = `${basePath}/sidebar.html`;
+
+    console.log("Cargando sidebar desde:", rutaSidebar);
 
     fetch(rutaSidebar)
       .then(res => {
-        if (!res.ok) throw new Error('No se pudo cargar el sidebar');
+        if (!res.ok) throw new Error('No se pudo cargar el sidebar: ' + res.status);
         return res.text();
       })
       .then(html => {
         cont.innerHTML = html;
         activarSubmenus();
+        console.log("Sidebar cargado correctamente");
       })
       .catch(err => {
         console.error("Error cargando sidebar:", err);
@@ -64,14 +71,15 @@
             <h2>Contra<br>Museo</h2>
             <nav>
               <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="coleccionesOseas.html">Colecciones óseas</a></li>
-                <li><a href="omichicahuaztli.html">Omichicahuaztli</a></li>
+                <li><a href="${basePath}/index.html">Inicio</a></li>
+                <li><a href="${basePath}/contacto.html">Contacto</a></li>
+                <li><a href="${basePath}/content/coleccionesOseas.html">Colecciones óseas</a></li>
+                <li><a href="${basePath}/content/Omichicahuaztli.html">Omichicahuaztli</a></li>
               </ul>
             </nav>
           </aside>
         `;
+        console.log("Usando sidebar de fallback");
       });
   }
 
