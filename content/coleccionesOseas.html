@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Colecciones óseas</title>
 
-  <link rel="stylesheet" href="/css/estilos.css">
+  <link rel="stylesheet" href="../css/estilos.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -14,12 +14,13 @@
 
   <!-- SIDEBAR -->
   <div id="sidebar"></div>
-  <script src="/js/sidebarLoader.js"></script>
+  <script src="../js/sidebarLoader.js"></script>
 
   <main class="contenido">
     <section class="epoca">
 
       <h1>Colecciones óseas</h1>
+      <p class="autor">Por [Nombre del autor]</p>
       <p class="intro">Descripción general...</p>
 
       <h2>El objeto</h2>
@@ -28,9 +29,9 @@
       <div class="contenedor-marco">
         <h2>Galería de objetos</h2>
         <div class="galeria">
-          <img src="/img/tonalamatl.jpg" class="zoom-img" alt="Objeto 1">
-          <img src="/img/prehispanico2.jpg" class="zoom-img" alt="Objeto 2">
-          <img src="/img/prehispanico3.jpg" class="zoom-img" alt="Objeto 3">
+          <img src="../img/tonalamatl.jpg" class="zoom-img" alt="Objeto 1">
+          <img src="../img/prehispanico2.jpg" class="zoom-img" alt="Objeto 2">
+          <img src="../img/prehispanico3.jpg" class="zoom-img" alt="Objeto 3">
         </div>
       </div>
 
@@ -75,7 +76,6 @@
                 </svg>
               </button>
 
-              <!-- Control de volumen mejorado -->
               <div class="volume-slider-container">
                 <div class="volume-slider">
                   <div class="volume-level"></div>
@@ -86,8 +86,7 @@
           </div>
 
           <audio id="audio-player">
-            <source src="/audio/colecciones_oseas.mp3" type="audio/mpeg">
-            <source src="/audio/colecciones_oseas.ogg" type="audio/ogg">
+            <source src="../audio/colecciones_oseas.mp3" type="audio/mpeg">
             Tu navegador no soporta el elemento de audio.
           </audio>
         </div>
@@ -105,8 +104,8 @@
     <img id="lightbox-img" src="" alt="Imagen ampliada">
   </div>
 
-  <script src="/js/lightbox.js"></script>
-  <script src="/js/audioPlayer.js"></script>
+  <script src="../js/lightbox.js"></script>
+  <script src="../js/audioPlayer.js"></script>
 
 </body>
 
