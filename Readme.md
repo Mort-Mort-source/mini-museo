@@ -57,3 +57,7 @@
 ├── sidebar.html                    # Plantilla del sidebar
 └── README.md                       # Este archivo
 ```
+## Anotaciones 
+
+individuo 150 las fotos estan el documento
+tlaque tiene fotos en docuemento solo 2 en drive
