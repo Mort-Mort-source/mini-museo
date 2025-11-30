@@ -59,5 +59,18 @@
 ```
 ## Anotaciones 
 
+Barbie no tiene imagenes
+
 individuo 150 las fotos estan el documento
+
 tlaque tiene fotos en docuemento solo 2 en drive
+
+hay archivos corruptos en carlota pakal y fuente
+
+no entendi si colecciones oseas cambio
+
+pinturas solo tiene una foto
+
+pulque solo tiene una foto
+
+

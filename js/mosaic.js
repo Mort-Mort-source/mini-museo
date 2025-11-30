@@ -2,130 +2,198 @@
 const mosaicItems = [
     {
         id: 1,
-        title: "Omichicahuaztli",
-        description: "Colecciones óseas y Omichicahuaztli",
+        title: "Colecciones óseas",
+        description: "Restos humanos y análisis óseo",
         images: [
-            "img/Omichicahuaztli Foto 1.jpeg",
-            "img/Omichicahuaztli Foto 2.jpeg",
-            "img/Omichicahuaztli Foto 3.jpeg"
+            "img/colecciones_oseas_1.jpg",
+            "img/colecciones_oseas_2.jpg",
+            "img/colecciones_oseas_3.jpg"  //REVISAR
         ],
-        link: "content/Omichicahuaztli.html",
+        link: "content/coleccionesOseas.html",
         size: "large",
         carousel: true
     },
     {
         id: 2,
-        title: "Falsos y Réplicas",
-        description: "Tumba de Pakal y otros falsos",
-        image: "https://source.unsplash.com/random/800x400/?fake,replica",
-        link: "content/falsos_tumba_pakal.html",
-        size: "wide",
-        carousel: false
-    },
-    {
-        id: 3,
-        title: "Saqueos / Diplomacia",
-        description: "Tonalámatl y más",
+        title: "Omichicahuaztli",
+        description: "Instrumento musical prehispánico",
         images: [
-            "img/tonalamatl.jpg",
-            "https://source.unsplash.com/random/1200x400/?treasure,history"
+            "img/Omichicahuaztli Foto 1.jpeg",
+            "img/Omichicahuaztli Foto 2.jpeg",  //ya
+            "img/Omichicahuaztli Foto 3.jpeg"
         ],
-        link: "content/saqueos_tonalamatl.html",
-        size: "large",
+        link: "content/Omichicahuaztli.html",
+        size: "wide",
         carousel: true
     },
     {
+        id: 3,
+        title: "Individuo 150",
+        description: "Memoria en resistencia bajo la ciudad",
+        image: "img/individuo_150.jpg",                         //SIN IMAGEN
+        link: "content/individuo150.html",
+        size: "medium",
+        carousel: false
+    },
+    {
         id: 4,
-        title: "Archivos Vivos",
-        description: "Xochipilli, Códice y Cuauhtémoc",
-        image: "https://source.unsplash.com/random/400x800/?archive,codex",
-        link: "content/archivos_xochipilli.html",
-        size: "tall",
+        title: "Tumba de Pakal",
+        description: "Falsos y réplicas arqueológicas",
+        image: "img/Tumba_de_Pakal.jpeg",                 //YA
+        link: "content/tumba_pakal.html",
+        size: "large",
         carousel: false
     },
     {
         id: 5,
-        title: "Ingenierías",
-        description: "Mural DR y Tlaltecuhtli",
+        title: "Falsos",
+        description: "Colección de falsificaciones",
         images: [
-            "https://source.unsplash.com/random/400x400/?engineering,monument"
+            "img/Falsos_foto 1.jpg",                         
+            "img/Falso_foto 2.jpg", 
+            "img/Falsos_ foto 3.gif"                       //ya
         ],
-        link: "content/ingenierias_mural_dr.html",
+        link: "content/falsos.html",
         size: "wide",
         carousel: true
     },
     {
         id: 6,
-        title: "Sobre Ruedas",
-        description: "Carroza de Carlota y juguetes",
-        image: "https://source.unsplash.com/random/800x400/?wheels,carriage",
-        link: "content/ruedas_carlota.html",
-        size: "medium",
-        carousel: false
-    },
-    {
-        id: 7,
-        title: "Ciencia y Arte",
-        description: "Pulque y pinturas de casta",
-        images: [
-            "https://source.unsplash.com/random/400x400/?science,art",
-            "https://source.unsplash.com/random/400x400/?painting,history"
-        ],
-        link: "content/ciencia_pulque.html",
-        size: "small",
-        carousel: true
-    },
-    {
-        id: 8,
-        title: "Contacto",
-        description: "Información de contacto",
-        image: "https://source.unsplash.com/random/400x800/?contact,location",
-        link: "contacto.html",
+        title: "Maqueta Templo Mayor",
+        description: "Réplica arquitectónica",
+        image: "img/Templo Mayor-imagen1.jpg",                    //YA
+        link: "content/maqueta_templo_mayor.html",
         size: "tall",
         carousel: false
     },
     {
-        id: 9,
-        title: "Falsos Generales",
-        description: "Colección de falsificaciones",
+        id: 7,
+        title: "Tonalámatl",
+        description: "Códice y saqueos históricos",
         images: [
-            "https://source.unsplash.com/random/1200x400/?forgery,artifact",
-            "https://source.unsplash.com/random/1200x400/?fake,sculpture"
+            "img/tonalamatl.jpg",
+            "img/tonalamatl_2.jpg"            //Ya
         ],
-        link: "content/falsos_generales.html",
-        size: "wide",
+        link: "content/tonalamatl.html",
+        size: "large",
         carousel: true
     },
     {
+        id: 8,
+        title: "Crâneo Mixteco",
+        description: "Devoluciones y diplomacia",
+        image: "img/cráneo mixteco - foto 1.jpg", //Ya
+        link: "content/craneo_mixteco.html",
+        size: "medium",
+        carousel: false
+    },
+    {
+        id: 9,
+        title: "Xochipilli",
+        description: "Archivos vivos y cultura",
+        image: "img/Xochipilli Fuente.DanielaJuarez.foto1.jpg",
+        link: "content/xochipilli.html",   //ya
+        size: "tall",
+        carousel: false
+    },
+    {
         id: 10,
-        title: "Códice",
-        description: "Documentos antiguos",
-        image: "https://source.unsplash.com/random/400x400/?manuscript,codex",
-        link: "content/archivos_codice.html",
+        title: "Códice Nunaha",
+        description: "Documentos históricos",
+        image: "img/Codice nunaha-Foto 1.jpg", //Ya
+        link: "content/codice_nunaha.html",
         size: "small",
         carousel: false
     },
     {
         id: 11,
         title: "Cuauhtémoc",
-        description: "Archivos históricos",
-        image: "https://source.unsplash.com/random/800x400/?emperor,history",
-        link: "content/archivos_cuauhtemoc.html",
+        description: "Aquí le quemaron las patas",
+        image: "img/Cuauhtémoc. foto 1..jpg",                  //YA
+        link: "content/cuauhtemoc.html",
         size: "medium",
         carousel: false
     },
     {
         id: 12,
         title: "Tlaltecuhtli",
-        description: "Escultura e ingeniería",
+        description: "Ingeniería y movimiento",
         images: [
-            "https://source.unsplash.com/random/1200x800/?sculpture,monolith",
-            "https://source.unsplash.com/random/1200x800/?stone,carving",
-            "https://source.unsplash.com/random/1200x800/?monument,ancient"
+            "img/la_tlaltecuhtli_1.png",
+            "img/la_tlaltecuhtli_2.png"  //ya
         ],
-        link: "content/ingenierias_tlaltecuhtli.html",
-        size: "wide",
+        link: "content/tlaltecuhtli.html",
+        size: "xlarge",
         carousel: true
+    },
+    {
+        id: 13,
+        title: "Carroza de Carlota",
+        description: "Transporte histórico sobre ruedas",
+        image: "img/La carroza de Carlota- foto 1_.jpg",             //ya                         
+        link: "content/carroza_carlota.html",
+        size: "wide",
+        carousel: false
+    },
+    {
+        id: 14,
+        title: "Descubrimiento del Pulque",
+        description: "Ciencia y arte ancestral",
+        image: "img/eldescubrimientodelpulque--foto1.png",                          //YA
+        link: "content/pulque.html",
+        size: "medium",
+        carousel: false
+    },
+    {
+        id: 15,
+        title: "Pinturas de Casta",
+        description: "Arte y clasificación social",
+        images: [
+            "img/Pintura de castas foto 1.jpg", //ya
+        ],
+        link: "content/pinturas_casta.html",
+        size: "large",
+        carousel: true
+    },
+    {
+        id: 16,
+        title: "Cabina Telefónica",
+        description: "Cotidianeidades y comunicación",
+        image: "img/Telefono TELMEX - imagen 1.jpg",  //ya
+        link: "content/cabina_telefonica.html",
+        size: "small",
+        carousel: false
+    },
+    {
+        id: 17,
+        title: "Muñecos Luchadores",
+        description: "Caleidoscopio cultural",
+        images: [
+            "img/Caleidoscopio de munecos luchadores--foto3.jpg",
+            "img/Caleidoscopio de munecos luchadores--foto1.jpg",  //ya
+             "img/Caleidoscopio de munecos luchadores--foto2.jpg"
+        ],
+        link: "content/munecos_luchadores.html",
+        size: "medium",
+        carousel: true
+    },
+    {
+        id: 18,
+        title: "Barbie",
+        description: "Icono cultural y cotidianeidad",
+        image: "img/barbie.jpg",
+        link: "content/barbie.html",               //sin fotos
+        size: "small",
+        carousel: false
+    },
+    {
+        id: 19,
+        title: "Contacto",
+        description: "Información y ubicación",
+        image: "img/contacto.jpg",                //YA
+        link: "contacto.html",
+        size: "tall",
+        carousel: false
     }
 ];
 
@@ -153,6 +221,10 @@ class CarouselManager {
             img.alt = '';
             img.className = `carousel-slide ${index === 0 ? 'active' : ''}`;
             img.loading = 'lazy';
+            // Manejar errores de imagen
+            img.onerror = function() {
+                this.src = 'https://source.unsplash.com/random/400x400/?museum,artifact,history';
+            };
             carouselContainer.appendChild(img);
         });
         
@@ -203,7 +275,7 @@ class CarouselManager {
             if (!this.isPaused) {
                 this.next();
             }
-        }, 2000);
+        }, 3000);
     }
     
     pause() {
@@ -405,6 +477,10 @@ function generateMosaic() {
             staticImage.alt = item.title;
             staticImage.className = 'static-image';
             staticImage.loading = 'lazy';
+            // Manejar errores de imagen
+            staticImage.onerror = function() {
+                this.src = 'https://source.unsplash.com/random/400x400/?museum,artifact,history';
+            };
             
             // Insertar la imagen antes del overlay
             mosaicItem.insertBefore(staticImage, overlay);
@@ -434,12 +510,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // También reorganizar cuando todas las imágenes estén cargadas
 window.addEventListener('load', generateMosaic);
-
-// Manejo de errores de imágenes
-document.addEventListener('error', (e) => {
-    if (e.target.tagName === 'IMG') {
-        console.log('Error cargando imagen:', e.target.src);
-        // Reemplazar imagen rota por placeholder
-        e.target.src = 'https://source.unsplash.com/random/400x400/?museum,artifact';
-    }
-}, true);
