@@ -59,7 +59,7 @@
 ```
 ## Anotaciones 
 
-Barbie no tiene imagenes
+Barbie no tiene imagenes /b ya tiene
 
 individuo 150 las fotos estan el documento
 
@@ -72,5 +72,23 @@ no entendi si colecciones oseas cambio
 pinturas solo tiene una foto
 
 pulque solo tiene una foto
+
+
+## Correciones 
+
+quitar seccion y se remplaza por nombre del objeto
+
+se quitan marcos y texto descriptivo 
+
+se sube el audio se quita descriptivo del audio se deja para saber mas
+
+la seccion se llama colecciones oseas
+
+todo el mosaico mismo tamaño para cada imagen
+
+todas se mueven
+
+## 
+
 
 
