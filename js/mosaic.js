@@ -10,7 +10,7 @@ const mosaicItems = [
             "img/colecciones_oseas_3.jpg"  //REVISAR
         ],
         link: "content/coleccionesOseas.html",
-        size: "large",
+        size: "small",
         carousel: true
     },
     {
@@ -23,7 +23,7 @@ const mosaicItems = [
             "img/Omichicahuaztli Foto 3.jpeg"
         ],
         link: "content/Omichicahuaztli.html",
-        size: "wide",
+        size: "small",
         carousel: true
     },
     {
@@ -32,7 +32,7 @@ const mosaicItems = [
         description: "Memoria en resistencia bajo la ciudad",
         image: "img/individuo_150.jpg",                         //SIN IMAGEN
         link: "content/individuo150.html",
-        size: "medium",
+        size: "small",
         carousel: false
     },
     {
@@ -41,7 +41,7 @@ const mosaicItems = [
         description: "Falsos y réplicas arqueológicas",
         image: "img/Tumba_de_Pakal.jpeg",                 //YA
         link: "content/tumba_pakal.html",
-        size: "large",
+        size: "small",
         carousel: false
     },
     {
@@ -54,7 +54,7 @@ const mosaicItems = [
             "img/Falsos_ foto 3.gif"                       //ya
         ],
         link: "content/falsos.html",
-        size: "wide",
+        size: "small",
         carousel: true
     },
     {
@@ -63,7 +63,7 @@ const mosaicItems = [
         description: "Réplica arquitectónica",
         image: "img/Templo Mayor-imagen1.jpg",                    //YA
         link: "content/maqueta_templo_mayor.html",
-        size: "tall",
+        size: "small",
         carousel: false
     },
     {
@@ -75,7 +75,7 @@ const mosaicItems = [
             "img/tonalamatl_2.jpg"            //Ya
         ],
         link: "content/tonalamatl.html",
-        size: "large",
+        size: "small",
         carousel: true
     },
     {
@@ -84,7 +84,7 @@ const mosaicItems = [
         description: "Devoluciones y diplomacia",
         image: "img/cráneo mixteco - foto 1.jpg", //Ya
         link: "content/craneo_mixteco.html",
-        size: "medium",
+        size: "small",
         carousel: false
     },
     {
@@ -93,7 +93,7 @@ const mosaicItems = [
         description: "Archivos vivos y cultura",
         image: "img/Xochipilli Fuente.DanielaJuarez.foto1.jpg",
         link: "content/xochipilli.html",   //ya
-        size: "tall",
+        size: "small",
         carousel: false
     },
     {
@@ -111,7 +111,7 @@ const mosaicItems = [
         description: "Aquí le quemaron las patas",
         image: "img/Cuauhtémoc. foto 1..jpg",                  //YA
         link: "content/cuauhtemoc.html",
-        size: "medium",
+        size: "small",
         carousel: false
     },
     {
@@ -123,7 +123,7 @@ const mosaicItems = [
             "img/la_tlaltecuhtli_2.png"  //ya
         ],
         link: "content/tlaltecuhtli.html",
-        size: "xlarge",
+        size: "xsmall",
         carousel: true
     },
     {
@@ -132,7 +132,7 @@ const mosaicItems = [
         description: "Transporte histórico sobre ruedas",
         image: "img/La carroza de Carlota- foto 1_.jpg",             //ya                         
         link: "content/carroza_carlota.html",
-        size: "wide",
+        size: "small",
         carousel: false
     },
     {
@@ -141,7 +141,7 @@ const mosaicItems = [
         description: "Ciencia y arte ancestral",
         image: "img/eldescubrimientodelpulque--foto1.png",                          //YA
         link: "content/pulque.html",
-        size: "medium",
+        size: "small",
         carousel: false
     },
     {
@@ -152,7 +152,7 @@ const mosaicItems = [
             "img/Pintura de castas foto 1.jpg", //ya
         ],
         link: "content/pinturas_casta.html",
-        size: "large",
+        size: "small",
         carousel: true
     },
     {
@@ -174,7 +174,7 @@ const mosaicItems = [
              "img/Caleidoscopio de munecos luchadores--foto2.jpg"
         ],
         link: "content/munecos_luchadores.html",
-        size: "medium",
+        size: "small",
         carousel: true
     },
     {
@@ -192,7 +192,7 @@ const mosaicItems = [
         description: "Información y ubicación",
         image: "img/contacto.jpg",                //YA
         link: "contacto.html",
-        size: "tall",
+        size: "small",
         carousel: false
     }
 ];
@@ -392,11 +392,11 @@ class MosaicPacker {
     getItemDimensions(size) {
         const dimensions = {
             'small': { width: 200, height: 200 },
-            'medium': { width: 400, height: 200 },
-            'large': { width: 400, height: 400 },
-            'wide': { width: 600, height: 200 },
-            'tall': { width: 200, height: 400 },
-            'xlarge': { width: 600, height: 400 }
+            'small': { width: 400, height: 200 },
+            'small': { width: 400, height: 400 },
+            'small': { width: 600, height: 200 },
+            'small': { width: 200, height: 400 },
+            'xsmall': { width: 600, height: 400 }
         };
         return dimensions[size] || dimensions.small;
     }
