@@ -57,7 +57,7 @@
 ├── sidebar.html                    # Plantilla del sidebar
 └── README.md                       # Este archivo
 ```
-## Anotaciones 
+## Anotaciones secciones de Aaron
 
 
 
