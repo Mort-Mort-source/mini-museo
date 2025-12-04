@@ -111,7 +111,7 @@ const mosaicItems = [
         id: 13,
         title: "Carroza de Carlota",
         description: "Transporte histórico (Andrea)",
-        images: ["img/La carroza de Carlota- foto 1_.jpg", "img/La carroza de Carlota- foto 2.jpg", "https://source.unsplash.com/random/400x400/?carriage"],
+        images: ["img/La carroza de Carlota- foto 1_.jpg", "img/La_carroza_de_carlota.jpg", "img/La_carroza_de_carlota(2).jpg"],
         link: "content/carroza_carlota.html",
         category: "Sobre ruedas"
     },
