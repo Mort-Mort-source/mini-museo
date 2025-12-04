@@ -392,7 +392,7 @@ class MosaicPacker {
     getItemDimensions(size) {
         const dimensions = {
             'small': { width: 200, height: 200 },
-            'medium': { width: 400, height: 200 },
+            'medium': { width: 300, height: 305 },
             'large': { width: 400, height: 400 },
             'wide': { width: 600, height: 200 },
             'tall': { width: 200, height: 400 },
