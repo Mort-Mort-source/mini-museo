@@ -1,170 +1,105 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Omichicahuaztli</title>
-
-  <link rel="stylesheet" href="../css/estilos.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Título del Objeto • Contramuseo</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome para el reproductor -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
+    <!-- SIDEBAR -->
+    <div id="sidebar"></div>
 
-  <!-- SIDEBAR -->
-  <div id="sidebar"></div>
-  <script src="../js/sidebarLoader.js"></script>
+    <!-- CONTENIDO -->
+    <main class="contenido">
+        <section class="epoca">
+            <!-- ENCABEZADO -->
+            <h1>Título del Objeto</h1>
+            <p class="autor">Nombre del Autor</p>
+            <p class="intro">Una breve introducción al podcast que describe el objeto, su contexto histórico y su importancia cultural.</p>
 
-  <main class="contenido">
-    <section class="epoca">
-
-      <h1>Archivos Vivos</h1>
-      <p class="autor">Miranda</p>
-      <p class="intro">pendiente</p>
-
-      <h2>Codice Ñunahua </h2>
-      <p>pendiente</p>
-
-      <div class="contenedor-marco">
-        <h2>Galería de objetos</h2>
-        
-        <!-- CARRUSEL -->
-        <div class="carousel-fixed">
-          <h3>Vistas del Omichicahuaztli</h3>
-          <div class="carousel-wrapper">
-            <div class="carousel-track-fixed">
-              <div class="carousel-slide-fixed">
-                <img src="../img/Codice nunaha-Foto 1.jpg" 
-                     alt="Omichicahuaztli - Vista frontal">
-              </div>
-              <div class="carousel-slide-fixed">
-                <img src="../img/Codice ñunaha-Foto 2.jpg" 
-                     alt="Omichicahuaztli - Vista lateral">
-              </div>
-              <div class="carousel-slide-fixed">
-                <img src="../img/Codice ñunaha-Foto 3.jpg" 
-                     alt="Omichicahuaztli - Detalle">
-              </div>
-              <div class="carousel-slide-fixed">
-                <img src="../img/Codice ñunaha-Foto 4.jpg" 
-                     alt="Omichicahuaztli - Detalle 2">
-              </div>
-              <div class="carousel-slide-fixed">
-                <img src="../img/Codice ñunaha-Foto 5.jpg" 
-                     alt="Omichicahuaztli - Detalle 3">
-              </div>
-              <div class="carousel-slide-fixed">
-                <img src="../img/Codice ñunaha-Foto 6.jpg" 
-                     alt="Omichicahuaztli - Detalle 4">
-              </div>
-              <div class="carousel-slide-fixed">
-                <img src="../img/Codice ñunaha-Foto 7.jpg" 
-                     alt="Omichicahuaztli - Detalle 5">
-              </div>
-              <div class="carousel-slide-fixed">
-                <img src="../img/Codice ñunaha-Foto 8.jpg" 
-                     alt="Omichicahuaztli - Detalle 6">
-              </div>
-              <div class="carousel-slide-fixed">
-                <img src="../img/Codice ñunaha-Foto 9.jpg" 
-                     alt="Omichicahuaztli - Detalle 7">
-              </div>
-            
+            <!-- REPRODUCTOR DE AUDIO -->
+            <div class="audio-container" style="margin-top: 2rem;">
+                <h2>Para saber más</h2>
+                <p class="text-muted" style="margin-bottom: 1.5rem;">Escucha el análisis completo en este audio descriptivo.</p>
+                
+                <div class="audio-player">
+                    <div class="audio-info">
+                        <div class="audio-title">Descripción completa del objeto</div>
+                        <div class="audio-time">
+                            <span class="current-time">0:00</span> / <span class="duration">0:00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="audio-controls">
+                        <button class="control-btn play-pause" aria-label="Reproducir o pausar audio">
+                            <i class="fas fa-play play-icon"></i>
+                            <i class="fas fa-pause pause-icon" style="display: none;"></i>
+                        </button>
                         
-            
-            </div>
-            
-            <div class="carousel-controls-fixed">
-              <button class="carousel-btn-fixed prev-btn">‹</button>
-              <button class="carousel-btn-fixed next-btn">›</button>
-            </div>
-            
-            <div class="carousel-indicators-fixed">
-              <button class="carousel-dot-fixed active" data-index="0"></button>
-              <button class="carousel-dot-fixed" data-index="1"></button>
-              <button class="carousel-dot-fixed" data-index="2"></button>
-            </div>
-            
-            <div class="carousel-counter-fixed">
-              <span class="current-slide">1</span>/<span class="total-slides">3</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <h2 style="margin-top: 3rem;">Para saber más</h2>
-
-      <!-- Reproductor de Audio Personalizado -->
-      <div class="audio-container">
-        <div class="audio-player">
-          <div class="audio-info">
-            <div class="audio-title">Audio descriptivo - Omichicahuaztli</div>
-            <div class="audio-time">
-              <span class="current-time">0:00</span> / <span class="duration">0:00</span>
-            </div>
-          </div>
-
-          <div class="audio-controls">
-            <button class="control-btn play-pause" aria-label="Reproducir/Pausar">
-              <svg class="play-icon" viewBox="0 0 24 24" width="24" height="24">
-                <path fill="currentColor" d="M8 5v14l11-7z" />
-              </svg>
-              <svg class="pause-icon" viewBox="0 0 24 24" width="24" height="24" style="display: none;">
-                <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-              </svg>
-            </button>
-
-            <div class="progress-container">
-              <div class="progress-bar">
-                <div class="progress"></div>
-                <div class="progress-handle"></div>
-              </div>
-            </div>
-
-            <div class="volume-controls">
-              <button class="control-btn volume-btn" aria-label="Silenciar/Activar sonido">
-                <svg class="volume-high" viewBox="0 0 24 24" width="20" height="20">
-                  <path fill="currentColor"
-                    d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
-                </svg>
-                <svg class="volume-mute" viewBox="0 0 24 24" width="20" height="20" style="display: none;">
-                  <path fill="currentColor"
-                    d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
-                </svg>
-              </button>
-
-              <div class="volume-slider-container">
-                <div class="volume-slider">
-                  <div class="volume-level"></div>
-                  <div class="volume-handle"></div>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress"></div>
+                                <div class="progress-handle"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="volume-controls">
+                            <button class="control-btn volume-btn" aria-label="Control de volumen">
+                                <i class="fas fa-volume-up volume-high"></i>
+                                <i class="fas fa-volume-mute volume-mute" style="display: none;"></i>
+                            </button>
+                            
+                            <div class="volume-slider-container">
+                                <div class="volume-slider">
+                                    <div class="volume-level"></div>
+                                    <div class="volume-handle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <audio id="audio-player">
+                        <source src="../audio/nombre-del-audio.mp3" type="audio/mpeg">
+                        <source src="../audio/nombre-del-audio.ogg" type="audio/ogg">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
                 </div>
-              </div>
             </div>
-          </div>
 
-          <audio id="audio-player">
-            <source src="../audio/omichicahuaztli.mp3" type="audio/mpeg">
-            Tu navegador no soporta el elemento de audio.
-          </audio>
-        </div>
+            <!-- GALERÍA CON LIGHTBOX -->
+            <div class="contenedor-marco" style="margin-top: 3rem;">
+                <h2>Galería del objeto</h2>
+                <div class="galeria">
+                    <a href="../img/foto-1.jpg" title="Título descriptivo de la imagen 1">
+                        <img src="../img/foto-1.jpg" alt="Descripción accesible de la imagen 1" class="zoom-img">
+                    </a>
+                    <a href="../img/foto-2.jpg" title="Título descriptivo de la imagen 2">
+                        <img src="../img/foto-2.jpg" alt="Descripción accesible de la imagen 2" class="zoom-img">
+                    </a>
+                    <a href="../img/foto-3.jpg" title="Título descriptivo de la imagen 3">
+                        <img src="../img/foto-3.jpg" alt="Descripción accesible de la imagen 3" class="zoom-img">
+                    </a>
+                    <a href="../img/foto-4.jpg" title="Título descriptivo de la imagen 4">
+                        <img src="../img/foto-4.jpg" alt="Descripción accesible de la imagen 4" class="zoom-img">
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
 
-        <div class="audio-description">
-          <p>Escucha la descripción detallada del Omichicahuaztli.</p>
-        </div>
-      </div>
+    <!-- LIGHTBOX -->
+    <div id="lightbox" class="lightbox">
+        <img id="lightbox-img" src="" alt="Imagen ampliada">
+    </div>
 
-    </section>
-  </main>
-
-  <!-- LIGHTBOX -->
-  <div id="lightbox" class="lightbox">
-    <img id="lightbox-img" src="" alt="Imagen ampliada">
-  </div>
-
-  <script src="../js/lightbox.js"></script>
-  <script src="../js/audioPlayer.js"></script>
-  <script src="../js/carousel.js"></script>
-
+    <!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/sidebarLoader.js"></script>
+    <script src="../js/audioPlayer.js"></script>
+    <script src="../js/lightbox.js"></script>
 </body>
 </html>
