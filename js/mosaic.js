@@ -7,7 +7,6 @@ const mosaicItems = [
         description: "Estudios osteológicos y antropológicos",
         images: ["img/colecciones_oseas_1.jpg", "img/colecciones_oseas_2.jpg", "img/colecciones_oseas_3.jpg"],
         link: "content/coleccionesOseas.html",
-<<<<<<< HEAD
         category: "Colecciones Oseas"
     },
     {
@@ -17,23 +16,6 @@ const mosaicItems = [
         images: ["img/individuo_150.jpg", "https://source.unsplash.com/random/400x400/?subway", "https://source.unsplash.com/random/400x400/?archaeology"],
         link: "content/individuo150.html",
         category: "Colecciones Oseas"
-=======
-        size: "medium",
-        carousel: true
-    },
-    {
-        id: 2,
-        title: "Omichicahuaztli",
-        description: "Instrumento musical prehispánico",
-        images: [
-            "img/Omichicahuaztli Foto 1.jpeg",
-            "img/Omichicahuaztli Foto 2.jpeg",  //ya
-            "img/Omichicahuaztli Foto 3.jpeg"
-        ],
-        link: "content/Omichicahuaztli.html",
-        size: "medium",
-        carousel: true
->>>>>>> f2c1a810703a617f3323cf42ab36f3b415ef0bbd
     },
     {
         id: 3,
@@ -51,32 +33,15 @@ const mosaicItems = [
         description: "Réplica arqueológica (Valeria)",
         images: ["img/Tumba_de_Pakal.jpeg", "https://source.unsplash.com/random/400x400/?mayan", "https://source.unsplash.com/random/400x400/?tomb"],
         link: "content/tumba_pakal.html",
-<<<<<<< HEAD
         category: "Falsos y réplicas/restauraciones"
-=======
-        size: "medium",
-        carousel: false
->>>>>>> f2c1a810703a617f3323cf42ab36f3b415ef0bbd
     },
     {
         id: 5,
         title: "Falsos",
-<<<<<<< HEAD
         description: "Colección de falsificaciones (Isabela)",
         images: ["img/Falsos_foto 1.jpg", "img/Falso_foto 2.jpg", "img/Falsos_ foto 3.gif"],
         link: "content/falsos.html",
         category: "Falsos y réplicas/restauraciones"
-=======
-        description: "Colección de falsificaciones",
-        images: [
-            "img/Falsos_foto 1.jpg",
-            "img/Falso_foto 2.jpg",
-            "img/Falsos_ foto 3.gif"                       //ya
-        ],
-        link: "content/falsos.html",
-        size: "medium",
-        carousel: true
->>>>>>> f2c1a810703a617f3323cf42ab36f3b415ef0bbd
     },
     {
         id: 6,
@@ -84,12 +49,7 @@ const mosaicItems = [
         description: "Réplica arquitectónica (Samanta)",
         images: ["img/Templo Mayor-imagen1.jpg", "https://source.unsplash.com/random/400x400/?temple", "https://source.unsplash.com/random/400x400/?model"],
         link: "content/maqueta_templo_mayor.html",
-<<<<<<< HEAD
         category: "Falsos y réplicas/restauraciones"
-=======
-        size: "medium",
-        carousel: false
->>>>>>> f2c1a810703a617f3323cf42ab36f3b415ef0bbd
     },
     
     // Cultura en disputa
@@ -99,7 +59,6 @@ const mosaicItems = [
         description: "Códice y saqueos históricos (Aaron)",
         images: ["img/tonalamatl.jpg", "img/tonalamatl_2.jpg", "https://source.unsplash.com/random/400x400/?codex"],
         link: "content/tonalamatl.html",
-<<<<<<< HEAD
         category: "Cultura en disputa"
     },
     {
@@ -107,16 +66,6 @@ const mosaicItems = [
         title: "Crâneo Mixteco",
         description: "Devoluciones y diplomacia (Ana)",
         images: ["img/cráneo mixteco - foto 1.jpg", "https://source.unsplash.com/random/400x400/?skull", "https://source.unsplash.com/random/400x400/?artifact"],
-=======
-        size: "medium",
-        carousel: true
-    },
-    {
-        id: 8,
-        title: "Cráneo Mixteco",
-        description: "Devoluciones y diplomacia",
-        image: "img/cráneo mixteco - foto 1.jpg", //Ya
->>>>>>> f2c1a810703a617f3323cf42ab36f3b415ef0bbd
         link: "content/craneo_mixteco.html",
         category: "Cultura en disputa"
     },
@@ -125,18 +74,10 @@ const mosaicItems = [
     {
         id: 9,
         title: "Xochipilli",
-<<<<<<< HEAD
         description: "Archivos vivos y cultura (Daniela)",
         images: ["img/Xochipilli Fuente.DanielaJuarez.foto1.jpg", "https://source.unsplash.com/random/400x400/?statue", "https://source.unsplash.com/random/400x400/?aztec"],
         link: "content/xochipilli.html",
         category: "Archivos vivos"
-=======
-        description: "Archivos vivos y cultura",
-        image: "img/Xochipilli Fuente.DanielaJuarez.foto1.jpg",
-        link: "content/xochipilli.html",   //ya
-        size: "medium",
-        carousel: false
->>>>>>> f2c1a810703a617f3323cf42ab36f3b415ef0bbd
     },
     {
         id: 10,
@@ -144,12 +85,7 @@ const mosaicItems = [
         description: "Documentos históricos (Miranda)",
         images: ["img/Codice nunaha-Foto 1.jpg", "https://source.unsplash.com/random/400x400/?document", "https://source.unsplash.com/random/400x400/?manuscript"],
         link: "content/codice_nunaha.html",
-<<<<<<< HEAD
         category: "Archivos vivos"
-=======
-        size: "medium",
-        carousel: false
->>>>>>> f2c1a810703a617f3323cf42ab36f3b415ef0bbd
     },
     {
         id: 11,
@@ -167,12 +103,7 @@ const mosaicItems = [
         description: "Mover la Tlaltecuhtli (Angel)",
         images: ["img/la_tlaltecuhtli_1.png", "img/la_tlaltecuhtli_2.png", "https://source.unsplash.com/random/400x400/?stone"],
         link: "content/tlaltecuhtli.html",
-<<<<<<< HEAD
         category: "Ingenierías"
-=======
-        size: "medium",
-        carousel: true
->>>>>>> f2c1a810703a617f3323cf42ab36f3b415ef0bbd
     },
     
     // Sobre ruedas
@@ -182,12 +113,7 @@ const mosaicItems = [
         description: "Transporte histórico (Andrea)",
         images: ["img/La carroza de Carlota- foto 1_.jpg", "img/La carroza de Carlota- foto 2.jpg", "https://source.unsplash.com/random/400x400/?carriage"],
         link: "content/carroza_carlota.html",
-<<<<<<< HEAD
         category: "Sobre ruedas"
-=======
-        size: "medium",
-        carousel: false
->>>>>>> f2c1a810703a617f3323cf42ab36f3b415ef0bbd
     },
     
     // Ciencia y arte
@@ -205,12 +131,7 @@ const mosaicItems = [
         description: "Arte y clasificación social (Mauricio)",
         images: ["img/Pintura de castas foto 1.jpg", "https://source.unsplash.com/random/400x400/?painting", "https://source.unsplash.com/random/400x400/?colonial"],
         link: "content/pinturas_casta.html",
-<<<<<<< HEAD
         category: "Ciencia y arte"
-=======
-        size: "medium",
-        carousel: true
->>>>>>> f2c1a810703a617f3323cf42ab36f3b415ef0bbd
     },
     
     // Cotidianeidades
@@ -220,36 +141,21 @@ const mosaicItems = [
         description: "Cotidianeidad y comunicación (Aranza)",
         images: ["img/Telefono TELMEX - imagen 1.jpg", "https://source.unsplash.com/random/400x400/?telephone", "https://source.unsplash.com/random/400x400/?vintage"],
         link: "content/cabina_telefonica.html",
-<<<<<<< HEAD
         category: "Cotidianeidades"
-=======
-        size: "medium",
-        carousel: false
->>>>>>> f2c1a810703a617f3323cf42ab36f3b415ef0bbd
     },
     {
         id: 17,
         title: "Muñecos Luchadores",
-<<<<<<< HEAD
         description: "Caleidoscopio cultural (Diego)",
         images: ["img/Caleidoscopio de munecos luchadores--foto3.jpg", "img/Caleidoscopio de munecos luchadores--foto1.jpg", "img/Caleidoscopio de munecos luchadores--foto2.jpg"],
-=======
-        description: "Caleidoscopio cultural",
-        images: [
-            "img/Caleidoscopio de munecos luchadores--foto3.jpg",
-            "img/Caleidoscopio de munecos luchadores--foto1.jpg",  //ya
-            "img/Caleidoscopio de munecos luchadores--foto2.jpg"
-        ],
->>>>>>> f2c1a810703a617f3323cf42ab36f3b415ef0bbd
         link: "content/munecos_luchadores.html",
         category: "Cotidianeidades"
     },
     {
         id: 18,
         title: "Barbie",
-<<<<<<< HEAD
         description: "Icono cultural (Nicole)",
-        images: ["img/barbie.jpg", "https://source.unsplash.com/random/400x400/?doll", "https://source.unsplash.com/random/400x400/?toy"],
+        images: ["img/barbie_imagen1.jpg", "img/barbie_imagen 2.jpg", "img/barbie_imagen3.jpg"],
         link: "content/barbie.html",
         category: "Cotidianeidades"
     }
@@ -262,247 +168,10 @@ const swiperInstances = [];
 function generateMosaic() {
     const mosaicContainer = document.querySelector('.mosaic-grid');
     
-=======
-        description: "Icono cultural y cotidianeidad",
-        image: "img/barbie.jpg",
-        link: "content/barbie.html",               //sin fotos
-        size: "medium",
-        carousel: false
-    },
-    {
-        id: 19,
-        title: "Contacto",
-        description: "Información y ubicación",
-        image: "img/contacto.jpg",                //YA
-        link: "contacto.html",
-        size: "medium",
-        carousel: false
-    }
-];
-
-// Clase para gestionar el carrusel de cada elemento
-class CarouselManager {
-    constructor(element, images) {
-        this.element = element;
-        this.images = images;
-        this.currentIndex = 0;
-        this.interval = null;
-        this.isPaused = false;
-
-        this.init();
-    }
-
-    init() {
-        // Crear contenedor del carrusel
-        const carouselContainer = document.createElement('div');
-        carouselContainer.className = 'mosaic-carousel';
-
-        // Añadir imágenes al carrusel
-        this.images.forEach((imageUrl, index) => {
-            const img = document.createElement('img');
-            img.src = imageUrl;
-            img.alt = '';
-            img.className = `carousel-slide ${index === 0 ? 'active' : ''}`;
-            img.loading = 'lazy';
-            // Manejar errores de imagen
-            img.onerror = function () {
-                this.src = 'https://source.unsplash.com/random/400x400/?museum,artifact,history';
-            };
-            carouselContainer.appendChild(img);
-        });
-
-        // Crear indicadores solo si hay más de 1 imagen
-        if (this.images.length > 1) {
-            const indicators = document.createElement('div');
-            indicators.className = 'carousel-indicators';
-
-            this.images.forEach((_, index) => {
-                const dot = document.createElement('div');
-                dot.className = `carousel-dot ${index === 0 ? 'active' : ''}`;
-                dot.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    this.goToSlide(index);
-                });
-                indicators.appendChild(dot);
-            });
-
-            carouselContainer.appendChild(indicators);
-        }
-
-        // Reemplazar contenido del elemento
-        const overlay = this.element.querySelector('.mosaic-overlay') ||
-            this.element.querySelector('.mosaic-overlay-placeholder');
-        this.element.innerHTML = '';
-        this.element.appendChild(carouselContainer);
-        if (overlay) {
-            this.element.appendChild(overlay);
-        }
-
-        // Iniciar carrusel automático solo si hay más de 1 imagen
-        if (this.images.length > 1) {
-            this.startAutoPlay();
-
-            // Pausar al hacer hover
-            this.element.addEventListener('mouseenter', () => {
-                this.pause();
-            });
-
-            this.element.addEventListener('mouseleave', () => {
-                this.resume();
-            });
-        }
-    }
-
-    startAutoPlay() {
-        this.interval = setInterval(() => {
-            if (!this.isPaused) {
-                this.next();
-            }
-        }, 3000);
-    }
-
-    pause() {
-        this.isPaused = true;
-    }
-
-    resume() {
-        this.isPaused = false;
-    }
-
-    next() {
-        this.goToSlide((this.currentIndex + 1) % this.images.length);
-    }
-
-    goToSlide(index) {
-        // Obtener elementos actuales
-        const slides = this.element.querySelectorAll('.carousel-slide');
-        const dots = this.element.querySelectorAll('.carousel-dot');
-
-        // Remover clase activa actual
-        if (slides[this.currentIndex]) {
-            slides[this.currentIndex].classList.remove('active');
-        }
-        if (dots[this.currentIndex]) {
-            dots[this.currentIndex].classList.remove('active');
-        }
-
-        // Añadir clase activa nueva
-        this.currentIndex = index;
-        if (slides[this.currentIndex]) {
-            slides[this.currentIndex].classList.add('active');
-        }
-        if (dots[this.currentIndex]) {
-            dots[this.currentIndex].classList.add('active');
-        }
-    }
-
-    destroy() {
-        if (this.interval) {
-            clearInterval(this.interval);
-        }
-    }
-}
-
-// Algoritmo de empaquetamiento para organizar elementos sin espacios
-class MosaicPacker {
-    constructor(containerWidth) {
-        this.containerWidth = containerWidth;
-        this.rows = [];
-        this.currentY = 0;
-    }
-
-    findBestPosition(width, height) {
-        let bestPosition = { x: 0, y: this.currentY };
-        let bestFit = Infinity;
-
-        for (let i = 0; i < this.rows.length; i++) {
-            const row = this.rows[i];
-            const availableSpace = this.containerWidth - row.currentX;
-
-            if (width <= availableSpace && row.height >= height) {
-                const fit = availableSpace - width;
-                if (fit < bestFit) {
-                    bestFit = fit;
-                    bestPosition = { x: row.currentX, y: row.y };
-                }
-            }
-        }
-
-        if (bestFit === Infinity) {
-            bestPosition = { x: 0, y: this.currentY };
-            this.rows.push({
-                y: this.currentY,
-                height: height,
-                currentX: width
-            });
-            this.currentY += height;
-        } else {
-            const rowIndex = this.rows.findIndex(row =>
-                row.y === bestPosition.y && row.height >= height
-            );
-            if (rowIndex !== -1) {
-                this.rows[rowIndex].currentX += width;
-            }
-        }
-
-        return bestPosition;
-    }
-
-    packItems(items) {
-        const sortedItems = [...items].sort((a, b) => {
-            const areaA = this.getItemArea(a);
-            const areaB = this.getItemArea(b);
-            return areaB - areaA;
-        });
-
-        const positions = [];
-
-        sortedItems.forEach(item => {
-            const { width, height } = this.getItemDimensions(item.size);
-            const position = this.findBestPosition(width, height);
-            positions.push({
-                item: item,
-                x: position.x,
-                y: position.y,
-                width: width,
-                height: height
-            });
-        });
-
-        return positions;
-    }
-
-    getItemDimensions(size) {
-        const dimensions = {
-            'small': { width: 200, height: 200 },
-            'medium': { width: 300, height: 305 },
-            'large': { width: 400, height: 400 },
-            'wide': { width: 600, height: 200 },
-            'tall': { width: 200, height: 400 },
-            'xlarge': { width: 600, height: 400 }
-        };
-        return dimensions[size] || dimensions.wide;
-    }
-
-    getItemArea(item) {
-        const dim = this.getItemDimensions(item.size);
-        return dim.width * dim.height;
-    }
-}
-
-// Array para almacenar los gestores de carrusel
-const carouselManagers = [];
-
-// Función para generar el mosaico sin espacios
-function generateMosaic() {
-    const mosaicContainer = document.getElementById('mosaicPackery');
-
->>>>>>> f2c1a810703a617f3323cf42ab36f3b415ef0bbd
     if (!mosaicContainer) {
         console.error('Contenedor del mosaico no encontrado');
         return;
     }
-<<<<<<< HEAD
     
     // Limpiar contenedor y detener Swipers anteriores
     swiperInstances.forEach(swiper => {
@@ -591,30 +260,6 @@ function generateMosaic() {
         swiperContainer.appendChild(prevBtn);
         
         // Overlay con título y categoría
-=======
-
-    // Limpiar mosaico existente y detener carruseles
-    carouselManagers.forEach(manager => manager.destroy());
-    carouselManagers.length = 0;
-    mosaicContainer.innerHTML = '';
-
-    // Obtener ancho del contenedor
-    const containerWidth = mosaicContainer.offsetWidth;
-
-    // Crear empaquetador
-    const packer = new MosaicPacker(containerWidth);
-
-    // Organizar elementos
-    const packedItems = packer.packItems(mosaicItems);
-
-    // Crear y posicionar elementos
-    packedItems.forEach(({ item, x, y, width, height }) => {
-        const mosaicItem = document.createElement('div');
-        mosaicItem.className = `mosaic-item mosaic-item--${item.size}`;
-        mosaicItem.setAttribute('data-id', item.id);
-
-        // Crear overlay
->>>>>>> f2c1a810703a617f3323cf42ab36f3b415ef0bbd
         const overlay = document.createElement('div');
         overlay.className = 'mosaic-overlay';
         overlay.innerHTML = `
@@ -624,7 +269,6 @@ function generateMosaic() {
                 ${item.category}
             </div>
         `;
-<<<<<<< HEAD
         
         mosaicContent.appendChild(swiperContainer);
         mosaicContent.appendChild(overlay);
@@ -639,65 +283,15 @@ function generateMosaic() {
             if (!isControl) {
                 window.location.href = item.link;
             }
-=======
-
-        mosaicItem.appendChild(overlay);
-
-        // Posicionar elemento
-        mosaicItem.style.position = 'absolute';
-        mosaicItem.style.left = `${x}px`;
-        mosaicItem.style.top = `${y}px`;
-        mosaicItem.style.width = `${width}px`;
-        mosaicItem.style.height = `${height}px`;
-
-        // Añadir evento de clic para redireccionar
-        mosaicItem.addEventListener('click', () => {
-            window.location.href = item.link;
->>>>>>> f2c1a810703a617f3323cf42ab36f3b415ef0bbd
         });
-
+        
         mosaicContainer.appendChild(mosaicItem);
-<<<<<<< HEAD
     });
     
     console.log(`Mosaico renderizado: ${mosaicItems.length} elementos`);
     
     // Inicializar Swipers después de un breve delay
     setTimeout(initializeSwipers, 100);
-=======
-
-        // Inicializar carrusel solo si el elemento lo requiere
-        if (item.carousel && item.images && item.images.length > 0) {
-            const carouselManager = new CarouselManager(mosaicItem, item.images);
-            carouselManagers.push(carouselManager);
-
-            // Añadir clase para indicar que tiene carrusel
-            mosaicItem.classList.add('has-carousel');
-        } else {
-            // Para elementos sin carrusel, mostrar imagen estática
-            const staticImage = document.createElement('img');
-            staticImage.src = item.image || (item.images && item.images[0]) || 'https://source.unsplash.com/random/400x400/?museum';
-            staticImage.alt = item.title;
-            staticImage.className = 'static-image';
-            staticImage.loading = 'lazy';
-            // Manejar errores de imagen
-            staticImage.onerror = function () {
-                this.src = 'https://source.unsplash.com/random/400x400/?museum,artifact,history';
-            };
-
-            // Insertar la imagen antes del overlay
-            mosaicItem.insertBefore(staticImage, overlay);
-
-            // Añadir clase para indicar que no tiene carrusel
-            mosaicItem.classList.add('no-carousel');
-        }
-    });
-
-    // Establecer altura del contenedor
-    mosaicContainer.style.height = `${packer.currentY}px`;
-
-    console.log('Mosaico generado correctamente con ' + packedItems.length + ' elementos');
->>>>>>> f2c1a810703a617f3323cf42ab36f3b415ef0bbd
 }
 
 // Función para inicializar todos los Swipers
@@ -767,15 +361,10 @@ function adjustMosaicItemsHeight() {
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
     generateMosaic();
-<<<<<<< HEAD
     
     setTimeout(adjustMosaicItemsHeight, 100);
     
     // Ajustar al redimensionar
-=======
-
-    // Reorganizar cuando se redimensiona la ventana
->>>>>>> f2c1a810703a617f3323cf42ab36f3b415ef0bbd
     let resizeTimeout;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);

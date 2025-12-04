@@ -6,140 +6,59 @@
     <title>Contramuseo • Archivo Digital</title>
     
     <!-- METADATOS -->
-    <meta name="description" content="Archivo digital de colecciones históricas y culturales organizadas por categorías temáticas">
-    <meta name="keywords" content="museo, archivo, historia, cultura, colecciones, arqueología, antropología">
+    <meta name="description" content="Archivo digital de colecciones históricas y culturales organizadas por categorías temáticas.">
     <meta name="author" content="Contramuseo">
-    
-    <!-- ESTILOS -->
+
+    <!-- ESTILOS GENERALES -->
     <link rel="stylesheet" href="css/estilos.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- SWIPER -->
+
+    <!-- SWIPER (para carruseles dentro del mosaico) -->
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
-    
-    <!-- FONTAWESOME -->
+
+    <!-- ICONOS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- OPEN GRAPH -->
-    <meta property="og:title" content="Contramuseo • Archivo Digital">
-    <meta property="og:description" content="Explora colecciones históricas organizadas por categorías temáticas">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://contramuseo.example.com">
 </head>
+
 <body>
     <!-- SIDEBAR -->
-    <div id="sidebar" role="complementary" aria-label="Menú de navegación principal"></div>
+    <div id="sidebar" role="complementary" aria-label="Menú lateral"></div>
     
     <!-- CONTENIDO PRINCIPAL -->
     <main class="contenido" role="main">
-        <!-- ENCABEZADO -->
-        <section class="epoca" aria-labelledby="titulo-principal">
-            <h1 id="titulo-principal">Contramuseo</h1>
+
+        <!-- ENCABEZADO DEL INDEX -->
+        <section class="epoca">
+            <h1>Contramuseo</h1>
+
             <p class="autor">Archivo digital de colecciones temáticas</p>
-            
+
             <p class="intro">
-                Un espacio para la documentación y análisis de objetos históricos y culturales 
-                organizados en categorías temáticas. Cada colección presenta múltiples perspectivas 
-                a través de documentos, imágenes y análisis especializados.
+                Archivo dedicado a la documentación y análisis de objetos históricos y culturales, 
+                organizados en colecciones temáticas accesibles desde el mosaico inferior.
             </p>
-            
-            <div class="border-bottom">
-                <p class="text-muted">
-                    Seleccione cualquier elemento para acceder a su documentación completa. 
-                    Use el menú lateral para navegar por categorías temáticas.
-                </p>
-            </div>
         </section>
-        
-        <!-- MOSAICO 3x6 -->
-        <div class="mosaic-container" aria-labelledby="titulo-colecciones">
-            <h2 id="titulo-colecciones" class="visually-hidden">Colecciones disponibles</h2>
-            <div class="mosaic-grid" id="mosaicGrid" role="grid" aria-label="Grid de colecciones">
-                <!-- Los elementos se generan automáticamente con JavaScript -->
-            </div>
-        </div>
-        
-       
+
+        <!-- MOSAICO PRINCIPAL -->
+        <section class="mosaic-container">
+            <div class="mosaic-grid" id="mosaicPackery"></div>
+        </section>
+
     </main>
-    
-    <!-- SCRIPTS -->
+
+    <!-- LIBRERÍAS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+    <!-- CARGA DEL SIDEBAR -->
     <script src="js/sidebarLoader.js"></script>
+
+    <!-- MOSAICO DINÁMICO -->
+    <!-- generateMosaic(), MosaicPacker y CarouselManager -->
     <script src="js/mosaic.js"></script>
+
+    <!-- SCRIPTS GENERALES DEL SITIO -->
     <script src="js/main.js"></script>
-    <script src="js/audioPlayer.js"></script>
-    
-    <!-- INICIALIZACIÓN Y VERIFICACIÓN -->
-    <script>
-        // Verificar carga de dependencias
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('CONTRAMUSEO TEMÁTICO');
-            console.log('Paleta con degradados minimalistas activa');
-            
-            // Verificar jQuery
-            if (typeof jQuery === 'undefined') {
-                console.error('jQuery no está cargado');
-            } else {
-                console.log('jQuery cargado correctamente');
-            }
-            
-            // Verificar Swiper
-            if (typeof Swiper === 'undefined') {
-                console.error('Swiper no está cargado');
-            } else {
-                console.log('Swiper cargado correctamente');
-            }
-            
-            // Verificar elementos del DOM
-            setTimeout(() => {
-                const mosaicItems = document.querySelectorAll('.mosaic-item');
-                console.log(`Grid 3x6: ${mosaicItems.length} elementos cargados`);
-                
-                if (mosaicItems.length === 18) {
-                    console.log('Grid 3x6 completo (3 columnas × 6 filas)');
-                    console.log('Todas las funcionalidades activas');
-                    
-                    // Mostrar distribución por categorías
-                    const categories = {};
-                    mosaicItems.forEach(item => {
-                        const category = item.getAttribute('data-category');
-                        categories[category] = (categories[category] || 0) + 1;
-                    });
-                    
-                    console.log('Distribución por categorías:');
-                    Object.entries(categories).forEach(([category, count]) => {
-                        console.log(`   ${category}: ${count} elementos`);
-                    });
-                } else {
-                    console.warn(`Se esperaban 18 elementos pero hay ${mosaicItems.length}`);
-                }
-                
-                // Verificar sidebar
-                const sidebar = document.getElementById('sidebar');
-                if (sidebar && sidebar.querySelectorAll('.menu-padre').length > 0) {
-                    console.log('Sidebar cargado con estructura jerárquica');
-                    console.log(`Secciones principales: ${sidebar.querySelectorAll('.menu-padre').length}`);
-                }
-            }, 2000);
-        });
-        
-        // Clase para ocultar elementos visualmente pero mantener accesibilidad
-        const style = document.createElement('style');
-        style.textContent = `
-            .visually-hidden {
-                position: absolute;
-                width: 1px;
-                height: 1px;
-                padding: 0;
-                margin: -1px;
-                overflow: hidden;
-                clip: rect(0, 0, 0, 0);
-                white-space: nowrap;
-                border: 0;
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
+
 </body>
 </html>
