@@ -61,6 +61,18 @@
 
 
 
-cabina no tiene intro ni audio
+
+craneo no tiene ni audio ni intro
+cuahutemoc  no tiene intro
+individuo no tiene audio ni intro
+
+barbie ya esta al 100%
+carroza ya esta al 100%
+codice ya esta al 100%
+cabina ya esta al 100%
+falsos ya esta al 100%
+templo mayor esta al 100%
+
+
 
 

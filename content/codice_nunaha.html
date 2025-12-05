@@ -3,12 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Título del Objeto • Contramuseo</title>
+    <title>Condice Nunaha</title>
+
+    <!-- ESTILOS PRINCIPALES -->
     <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- FUENTES -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-    <!-- FontAwesome para el reproductor -->
+
+    <!-- ICONOS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- SWIPER CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- GLIGHTBOX CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 </head>
+
 <body>
     <!-- SIDEBAR -->
     <div id="sidebar"></div>
@@ -16,43 +28,57 @@
     <!-- CONTENIDO -->
     <main class="contenido">
         <section class="epoca">
-            <!-- ENCABEZADO -->
-            <h1>Título del Objeto</h1>
-            <p class="autor">Nombre del Autor</p>
-            <p class="intro">Una breve introducción al podcast que describe el objeto, su contexto histórico y su importancia cultural.</p>
 
-            <!-- REPRODUCTOR DE AUDIO -->
+            <!-- ENCABEZADO -->
+            <h1>Codice Nunaha</h1>
+            <p class="autor">Nicole</p>
+            <p class="intro">
+                El mal nombrado Códice Muro es un manuscrito mixteco del linaje genealógico del
+                señorío de San Pedro Coxcaltepec Cántaros (Oaxaca), que hoy se encuentra en
+                la Biblioteca del Museo Nacional de Antropología. Más que un objeto inerte del
+                pasado, el códice es un objeto vivo, al centro de relaciones afectivas con los 
+                habitantes de Coxcaltepec, su historia y materialidad nos atraviesa a cada
+                cantareño de calceta roja y sombrero pinto. Abogo por renombrar el códice como
+                Códice Ñunaha o Códice de Coxcaltepec. Esto nos dignifica y no reduce nuestra
+                historia al apellido del saqueador, traficante y coleccionista Félix Muro. En este
+                podcast, invito a repensar los nombres de las cosas y los espacios que ocupan
+                desde lógicas de descolonización. Tal vez un día podamos incluso pensar en un
+                proceso de restitución del códice a su comunidad de origen.
+            </p>
+
+            <!-- AUDIO DESCRIPTIVO -->
             <div class="audio-container" style="margin-top: 2rem;">
                 <h2>Para saber más</h2>
-                <p class="text-muted" style="margin-bottom: 1.5rem;">Escucha el análisis completo en este audio descriptivo.</p>
-                
+               
+
                 <div class="audio-player">
                     <div class="audio-info">
-                        <div class="audio-title">Descripción completa del objeto</div>
+                        
                         <div class="audio-time">
-                            <span class="current-time">0:00</span> / <span class="duration">0:00</span>
+                            <span class="current-time">0:00</span> /
+                            <span class="duration">0:00</span>
                         </div>
                     </div>
-                    
+
                     <div class="audio-controls">
                         <button class="control-btn play-pause" aria-label="Reproducir o pausar audio">
                             <i class="fas fa-play play-icon"></i>
                             <i class="fas fa-pause pause-icon" style="display: none;"></i>
                         </button>
-                        
+
                         <div class="progress-container">
                             <div class="progress-bar">
                                 <div class="progress"></div>
                                 <div class="progress-handle"></div>
                             </div>
                         </div>
-                        
+
                         <div class="volume-controls">
                             <button class="control-btn volume-btn" aria-label="Control de volumen">
                                 <i class="fas fa-volume-up volume-high"></i>
                                 <i class="fas fa-volume-mute volume-mute" style="display: none;"></i>
                             </button>
-                            
+
                             <div class="volume-slider-container">
                                 <div class="volume-slider">
                                     <div class="volume-level"></div>
@@ -61,45 +87,134 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <audio id="audio-player">
-                        <source src="../audio/nombre-del-audio.mp3" type="audio/mpeg">
-                        <source src="../audio/nombre-del-audio.ogg" type="audio/ogg">
+                        <source src="../audio/Codice_nunaha.mp3" type="audio/mpeg">
+                        <source src="../audio/Codice_nunaha.mp3" type="audio/ogg">
                         Tu navegador no soporta el elemento de audio.
                     </audio>
                 </div>
             </div>
 
-            <!-- GALERÍA CON LIGHTBOX -->
+            <!-- GALERÍA SWIPER -->
             <div class="contenedor-marco" style="margin-top: 3rem;">
-                <h2>Galería del objeto</h2>
-                <div class="galeria">
-                    <a href="../img/foto-1.jpg" title="Título descriptivo de la imagen 1">
-                        <img src="../img/foto-1.jpg" alt="Descripción accesible de la imagen 1" class="zoom-img">
-                    </a>
-                    <a href="../img/foto-2.jpg" title="Título descriptivo de la imagen 2">
-                        <img src="../img/foto-2.jpg" alt="Descripción accesible de la imagen 2" class="zoom-img">
-                    </a>
-                    <a href="../img/foto-3.jpg" title="Título descriptivo de la imagen 3">
-                        <img src="../img/foto-3.jpg" alt="Descripción accesible de la imagen 3" class="zoom-img">
-                    </a>
-                    <a href="../img/foto-4.jpg" title="Título descriptivo de la imagen 4">
-                        <img src="../img/foto-4.jpg" alt="Descripción accesible de la imagen 4" class="zoom-img">
-                    </a>
+                <h2>Vistas del objeto</h2>
+
+                <!-- SWIPER: Imagen principal -->
+                <div class="swiper gallery-top">
+                    <div class="swiper-wrapper">
+
+                        <div class="swiper-slide">
+                            <a href="../img/Codice nunaha-Foto 1.jpg" class="glightbox">
+                                <img src="../img/Codice nunaha-Foto 2.jpg" alt="Codice">
+                            </a>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <a href="../img/Codice nunaha-Foto 2.jpg" class="glightbox">
+                                <img src="../img/Codice nunaha-Foto 2.jpg" alt="Codice">
+                            </a>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <a href="../img/Codice nunaha-Foto 3.jpg" class="glightbox">
+                                <img src="../img/Codice nunaha-Foto 3.jpg" alt="Codice">
+                            </a>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <a href="../img/Codice nunaha-Foto 4.jpg" class="glightbox">
+                                <img src="../img/Codice nunaha-Foto 4.jpg" alt="Codice">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/Codice nunaha-Foto 5.jpg" class="glightbox">
+                                <img src="../img/Codice nunaha-Foto 5.jpg" alt="Codice">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/Codice nunaha-Foto 6.jpg" class="glightbox">
+                                <img src="../img/Codice nunaha-Foto 6.jpg" alt="Codice">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/Codice nunaha-Foto 7.jpg" class="glightbox">
+                                <img src="../img/Codice nunaha-Foto 7.jpg" alt="Codice">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/Codice nunaha-Foto 8.jpg" class="glightbox">
+                                <img src="../img/Codice nunaha-Foto 8.jpg" alt="Codice">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/Codice nunaha-Foto 9.jpg" class="glightbox">
+                                <img src="../img/Codice nunaha-Foto 9.jpg" alt="Codice">
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <!-- Navegación -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+
+                <!-- SWIPER: Miniaturas -->
+                <div class="swiper gallery-thumbs">
+                    <div class="swiper-wrapper">
+
+                        <div class="swiper-slide">
+                            <img src="../img/Codice nunaha-Foto 1.jpg" alt="Miniatura 1">
+                        </div>
+
+                        <div class="swiper-slide">
+                            <img src="../img/Codice nunaha-Foto 2.jpg" alt="Miniatura 2">
+                        </div>
+
+                        <div class="swiper-slide">
+                            <img src="../img/Codice nunaha-Foto 3.jpg" alt="Miniatura 3">
+                        </div>
+
+                        <div class="swiper-slide">
+                            <img src="../img/Codice nunaha-Foto 4.jpg" alt="Miniatura 4">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/Codice nunaha-Foto 5.jpg" alt="Miniatura 5">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/Codice nunaha-Foto 6.jpg" alt="Miniatura 6">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/Codice nunaha-Foto 7.jpg" alt="Miniatura 7">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/Codice nunaha-Foto 8.jpg" alt="Miniatura 8">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/Codice nunaha-Foto 9.jpg" alt="Miniatura 9">
+                        </div>
+
+                    </div>
                 </div>
             </div>
+
         </section>
     </main>
-
-    <!-- LIGHTBOX -->
-    <div id="lightbox" class="lightbox">
-        <img id="lightbox-img" src="" alt="Imagen ampliada">
-    </div>
 
     <!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../js/sidebarLoader.js"></script>
     <script src="../js/audioPlayer.js"></script>
-    <script src="../js/lightbox.js"></script>
+
+    <!-- SWIPER JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- GLIGHTBOX JS -->
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+    <!-- Inicialización del carrusel Swiper -->
+    <script src="../js/carousel-swiper.js"></script>
+
 </body>
 </html>

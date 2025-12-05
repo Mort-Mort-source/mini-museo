@@ -13,7 +13,7 @@ const mosaicItems = [
         id: 2,
         title: "Individuo 150",
         description: "Memoria en resistencia bajo la ciudad (Vanessa)",
-        images: ["img/individuo_150.jpg", "https://source.unsplash.com/random/400x400/?subway", "https://source.unsplash.com/random/400x400/?archaeology"],
+        images: ["img/Individuo 150_imagen_1.jpg", "img/Individuo_150_Imagen_3.png", "img/individuo 150_Imagen_4.jpg"],
         link: "content/individuo150.html",
         category: "Colecciones Oseas"
     },
@@ -47,7 +47,7 @@ const mosaicItems = [
         id: 6,
         title: "Maqueta Templo Mayor",
         description: "Réplica arquitectónica (Samanta)",
-        images: ["img/Templo Mayor-imagen1.jpg", "https://source.unsplash.com/random/400x400/?temple", "https://source.unsplash.com/random/400x400/?model"],
+        images: ["img/templo_mayor1.jpg", "img/templo_mayor2.jpg", "templo_mayor3.jpg"],
         link: "content/maqueta_templo_mayor.html",
         category: "Falsos y réplicas/restauraciones"
     },
@@ -65,7 +65,7 @@ const mosaicItems = [
         id: 8,
         title: "Crâneo Mixteco",
         description: "Devoluciones y diplomacia (Ana)",
-        images: ["img/cráneo mixteco - foto 1.jpg", "https://source.unsplash.com/random/400x400/?skull", "https://source.unsplash.com/random/400x400/?artifact"],
+        images: ["img/cráneo mixteco - foto 1.jpg", "img/cráneo mixteco - foto 2.jpg", "img/cráneo mixteco - foto 3.jpg"],
         link: "content/craneo_mixteco.html",
         category: "Cultura en disputa"
     },
@@ -83,7 +83,7 @@ const mosaicItems = [
         id: 10,
         title: "Códice Nunaha",
         description: "Documentos históricos (Miranda)",
-        images: ["img/Codice nunaha-Foto 1.jpg", "https://source.unsplash.com/random/400x400/?document", "https://source.unsplash.com/random/400x400/?manuscript"],
+        images: ["img/Codice nunaha-foto 1.jpg", "img/Codice nunaha-foto 2.jpg", "img/Codice nunaha-foto 3.jpg"],
         link: "content/codice_nunaha.html",
         category: "Archivos vivos"
     },
@@ -91,7 +91,7 @@ const mosaicItems = [
         id: 11,
         title: "Cuauhtémoc",
         description: "Aquí le quemaron las patas (Raziel)",
-        images: ["img/Cuauhtémoc. foto 1..jpg", "https://source.unsplash.com/random/400x400/?portrait", "https://source.unsplash.com/random/400x400/?history"],
+        images: ["img/cuauhtemoc_foto1.jgp", "img/cuauhtemoc_foto2.jpg", "cuauhtemoc_foto3.jpg"],
         link: "content/cuauhtemoc.html",
         category: "Archivos vivos"
     },
@@ -139,7 +139,7 @@ const mosaicItems = [
         id: 16,
         title: "Cabina Telefónica",
         description: "Cotidianeidad y comunicación (Aranza)",
-        images: ["img/Telefono TELMEX - imagen 1.jpg", "https://source.unsplash.com/random/400x400/?telephone", "https://source.unsplash.com/random/400x400/?vintage"],
+        images: ["img/cabina_telefonica2.jpg", "img/cabina_telefonica.jpg", "img/cabina_telefonica2.jpg"],
         link: "content/cabina_telefonica.html",
         category: "Cotidianeidades"
     },
