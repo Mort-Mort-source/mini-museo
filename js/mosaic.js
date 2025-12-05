@@ -40,7 +40,7 @@ const mosaicItems = [
         title: "Falsos",
         description: "Colección de falsificaciones (Isabela)",
         images: ["img/Falsos_foto 1.jpg", "img/Falso_foto 2.jpg", "img/Falsos_ foto 3.gif"],
-        link: "content/falsos.html",
+        link: "content/Falsos.html",
         category: "Falsos y réplicas/restauraciones"
     },
     {
