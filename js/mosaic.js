@@ -47,7 +47,7 @@ const mosaicItems = [
         id: 6,
         title: "Maqueta Templo Mayor",
         description: "Réplica arquitectónica (Samanta)",
-        images: ["img/templo_mayor1.jpg", "img/templo_mayor2.jpg", "templo_mayor3.jpg"],
+        images: ["img/templo_mayor1.jpg", "img/templo_mayor2.jpg", "img/templo_mayor3.jpg"],
         link: "content/maqueta_templo_mayor.html",
         category: "Falsos y réplicas/restauraciones"
     },
@@ -83,7 +83,7 @@ const mosaicItems = [
         id: 10,
         title: "Códice Ñunaha",
         description: "Documentos históricos (Miranda)",
-        images: ["img/Codice nunaha_foto 1.jpg", "img/Codice nunaha_foto 2.jpg", "img/Codice nunaha_foto 3.jpg"],
+        images: ["img/Codice nunaha_foto 1.jpg", "img/barbie_imagen1.jpg", "img/Codice nunaha_foto 3.jpg"],
         link: "content/codice_nunaha.html",
         category: "Archivos vivos"
     },
