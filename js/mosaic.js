@@ -83,7 +83,7 @@ const mosaicItems = [
         id: 10,
         title: "Códice Ñunaha",
         description: "Documentos históricos (Miranda)",
-        images: ["img/codice_nuna1.jpg", "img/Codice nunaha_foto 2.jpg", "img/Codice nunaha_foto 3.jpg"],
+        images: ["img/codice_nuna1.jpg", "img/codice_nuna1.jpg", "img/codice_nuna3.jpg"],
         link: "content/codice_nunaha.html",
         category: "Archivos vivos"
     },
