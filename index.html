@@ -106,5 +106,86 @@
     <!-- SCRIPTS GENERALES DEL SITIO -->
     <script src="js/main.js"></script>
     
+    <!-- INLINE SCRIPT PARA MEJORAR EXPERIENCIA -->
+    <script>
+        // Mostrar indicador de carga mientras se carga el mosaico
+        document.addEventListener('DOMContentLoaded', function() {
+            const mosaicContainer = document.querySelector('.mosaic-container');
+            const loadingIndicator = document.getElementById('mosaic-loading');
+            
+            if (loadingIndicator && mosaicContainer) {
+                // Mostrar loading
+                loadingIndicator.style.display = 'block';
+                
+                // Ocultar después de 3 segundos (o cuando se cargue el mosaico)
+                setTimeout(function() {
+                    loadingIndicator.style.display = 'none';
+                }, 3000);
+            }
+            
+            // Verificar que Swiper se cargó correctamente
+            window.addEventListener('load', function() {
+                if (typeof Swiper === 'undefined') {
+                    console.error('Swiper no se cargó correctamente. Verifica la conexión a internet.');
+                    // Mostrar mensaje al usuario
+                    const mosaicGrid = document.querySelector('.mosaic-grid');
+                    if (mosaicGrid) {
+                        const errorMsg = document.createElement('div');
+                        errorMsg.className = 'error-message';
+                        errorMsg.innerHTML = `
+                            <div style="padding: 2rem; text-align: center; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 8px; margin: 1rem 0;">
+                                <h4 style="color: #856404;">⚠️ Advertencia</h4>
+                                <p>Algunas funciones pueden no estar disponibles temporalmente.</p>
+                            </div>
+                        `;
+                        mosaicGrid.parentNode.insertBefore(errorMsg, mosaicGrid.nextSibling);
+                    }
+                }
+            });
+        });
+    </script>
+    
+    <!-- ESTILOS INLINE PARA LOADING -->
+    <style>
+        .mosaic-loading {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            margin: 2rem 0;
+            border: 1px solid #e9ecef;
+        }
+        
+        .loading-spinner {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .loading-spinner i {
+            font-size: 1.5rem;
+            color: #4a6fa5;
+        }
+        
+        .loading-spinner span {
+            color: #5a2a27;
+            font-weight: 500;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .mosaic-item {
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+    </style>
+
 </body>
 </html>
