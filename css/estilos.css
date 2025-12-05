@@ -1298,3 +1298,103 @@ body {
 .galeria a { display:block; }
 .galeria img { cursor: zoom-in; }
 
+/* ========================
+   SWIPER MOSAICO - ESTILOS FALTANTES
+   ======================== */
+
+/* Contenedor Swiper dentro del mosaico */
+.mosaic-content .mosaic-swiper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.mosaic-content .mosaic-swiper .swiper-wrapper {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  transition-timing-function: ease-out;
+}
+
+.mosaic-content .mosaic-swiper .swiper-slide {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fade effect para transiciones */
+.mosaic-swiper .swiper-slide {
+  opacity: 0 !important;
+  transition: opacity 0.5s ease !important;
+}
+
+.mosaic-swiper .swiper-slide-active,
+.mosaic-swiper .swiper-slide-duplicate-active {
+  opacity: 1 !important;
+}
+
+/* Asegurar que las imágenes llenen el slide */
+.mosaic-swiper .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Paginación para mosaico */
+.mosaic-swiper .swiper-pagination {
+  bottom: 10px !important;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.mosaic-swiper .swiper-pagination-bullet {
+  background: white;
+  opacity: 0.5;
+  width: 6px;
+  height: 6px;
+  margin: 0 3px !important;
+}
+
+.mosaic-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: var(--primary);
+}
+
+/* Navegación para mosaico - solo mostrar al hover */
+.mosaic-swiper .swiper-button-next,
+.mosaic-swiper .swiper-button-prev {
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: none;
+  transition: all 0.3s ease;
+}
+
+.mosaic-swiper .swiper-button-next:after,
+.mosaic-swiper .swiper-button-prev:after {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.mosaic-swiper:hover .swiper-button-next,
+.mosaic-swiper:hover .swiper-button-prev {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mosaic-swiper .swiper-button-next:hover,
+.mosaic-swiper .swiper-button-prev:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.1);
+}
+

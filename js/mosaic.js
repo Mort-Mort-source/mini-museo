@@ -83,7 +83,7 @@ const mosaicItems = [
         id: 10,
         title: "Códice Ñunaha",
         description: "Documentos históricos (Miranda)",
-        images: ["img/codice_nuna1.jpg", "img/barbie_imagen1.jpg", "img/Codice nunaha_foto 3.jpg"],
+        images: ["img/codice_nuna1.jpg", "img/Codice nunaha_foto 2.jpg", "img/Codice nunaha_foto 3.jpg"],
         link: "content/codice_nunaha.html",
         category: "Archivos vivos"
     },
@@ -91,7 +91,7 @@ const mosaicItems = [
         id: 11,
         title: "Cuauhtémoc",
         description: "Aquí le quemaron las patas (Raziel)",
-        images: ["img/cuauhtemoc_foto1.jpg", "img/cuauhtemoc_foto2.jpg", "cuauhtemoc_foto3.jpg"],
+        images: ["img/cuauhtemoc_foto1.jpg", "img/cuauhtemoc_foto2.jpg", "img/cuauhtemoc_foto3.jpg"],
         link: "content/cuauhtemoc.html",
         category: "Archivos vivos"
     },
@@ -164,12 +164,25 @@ const mosaicItems = [
 // Array para almacenar instancias de Swiper
 const swiperInstances = [];
 
+// Verificar si Swiper está disponible
+function isSwiperAvailable() {
+    if (typeof Swiper === 'undefined') {
+        console.error('❌ Swiper no está disponible. Verifica que esté cargado antes de mosaic.js');
+        console.log('💡 Solución: Asegúrate de cargar Swiper en index.html:');
+        console.log('<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>');
+        return false;
+    }
+    return true;
+}
+
 // Función para generar el mosaico 3x6
 function generateMosaic() {
+    console.log('🚀 Generando mosaico...');
+    
     const mosaicContainer = document.querySelector('.mosaic-grid');
     
     if (!mosaicContainer) {
-        console.error('Contenedor del mosaico no encontrado');
+        console.error('❌ Contenedor del mosaico (.mosaic-grid) no encontrado');
         return;
     }
     
@@ -185,7 +198,12 @@ function generateMosaic() {
     
     // Verificar que tenemos exactamente 18 elementos
     if (mosaicItems.length !== 18) {
-        console.warn(`Se esperaban 18 elementos pero hay ${mosaicItems.length}`);
+        console.warn(`⚠️ Se esperaban 18 elementos pero hay ${mosaicItems.length}`);
+    }
+    
+    // Verificar que Swiper esté disponible
+    if (!isSwiperAvailable()) {
+        console.warn('⚠️ Renderizando mosaico sin Swiper (fallback)');
     }
     
     // Crear elementos del mosaico
@@ -229,7 +247,9 @@ function generateMosaic() {
             img.loading = 'lazy';
             img.decoding = 'async';
             
+            // Fallback para imágenes rotas
             img.onerror = function() {
+                console.warn(`⚠️ Imagen no encontrada: ${imageUrl}`);
                 this.src = `https://source.unsplash.com/random/400x300/?museum,${encodeURIComponent(item.category)}`;
                 this.alt = `${item.title} - Imagen de ejemplo`;
             };
@@ -241,23 +261,25 @@ function generateMosaic() {
         swiperContainer.appendChild(swiperWrapper);
         
         // Paginación (solo si hay más de 1 imagen)
-        if (item.images.length > 1) {
+        if (item.images.length > 1 && isSwiperAvailable()) {
             const pagination = document.createElement('div');
             pagination.className = 'swiper-pagination';
             swiperContainer.appendChild(pagination);
         }
         
-        // Controles de navegación
-        const nextBtn = document.createElement('div');
-        nextBtn.className = 'swiper-button-next';
-        nextBtn.setAttribute('aria-label', 'Siguiente imagen');
-        
-        const prevBtn = document.createElement('div');
-        prevBtn.className = 'swiper-button-prev';
-        prevBtn.setAttribute('aria-label', 'Imagen anterior');
-        
-        swiperContainer.appendChild(nextBtn);
-        swiperContainer.appendChild(prevBtn);
+        // Controles de navegación (solo si hay más de 1 imagen)
+        if (item.images.length > 1 && isSwiperAvailable()) {
+            const nextBtn = document.createElement('div');
+            nextBtn.className = 'swiper-button-next';
+            nextBtn.setAttribute('aria-label', 'Siguiente imagen');
+            
+            const prevBtn = document.createElement('div');
+            prevBtn.className = 'swiper-button-prev';
+            prevBtn.setAttribute('aria-label', 'Imagen anterior');
+            
+            swiperContainer.appendChild(nextBtn);
+            swiperContainer.appendChild(prevBtn);
+        }
         
         // Overlay con título y categoría
         const overlay = document.createElement('div');
@@ -276,71 +298,187 @@ function generateMosaic() {
         
         // Evento de clic para redireccionar
         mosaicItem.addEventListener('click', (e) => {
+            // Prevenir clics en controles Swiper
             const isControl = e.target.closest('.swiper-button-next') || 
                              e.target.closest('.swiper-button-prev') ||
-                             e.target.closest('.swiper-pagination');
+                             e.target.closest('.swiper-pagination') ||
+                             e.target.closest('.swiper-pagination-bullet');
             
             if (!isControl) {
                 window.location.href = item.link;
             }
         });
         
+        // Añadir hover effects
+        mosaicItem.addEventListener('mouseenter', () => {
+            // Activar autoplay si existe
+            const instance = swiperInstances[index];
+            if (instance && instance.autoplay && instance.autoplay.running === false) {
+                instance.autoplay.start();
+            }
+        });
+        
+        mosaicItem.addEventListener('mouseleave', () => {
+            // Pausar autoplay si existe
+            const instance = swiperInstances[index];
+            if (instance && instance.autoplay && instance.autoplay.running) {
+                instance.autoplay.stop();
+            }
+        });
+        
         mosaicContainer.appendChild(mosaicItem);
     });
     
-    console.log(`Mosaico renderizado: ${mosaicItems.length} elementos`);
+    console.log(`✅ Mosaico renderizado: ${mosaicItems.length} elementos`);
     
-    // Inicializar Swipers después de un breve delay
-    setTimeout(initializeSwipers, 100);
+    // Inicializar Swipers después de que el DOM esté listo
+    if (isSwiperAvailable()) {
+        setTimeout(initializeSwipers, 300);
+    } else {
+        // Fallback: mostrar solo primera imagen
+        setupImageFallback();
+    }
 }
 
 // Función para inicializar todos los Swipers
 function initializeSwipers() {
+    console.log('🔄 Inicializando Swipers...');
+    
     const mosaicItems = document.querySelectorAll('.mosaic-item');
+    let initializedCount = 0;
     
     mosaicItems.forEach((item, index) => {
         const swiperEl = item.querySelector('.mosaic-swiper');
-        if (!swiperEl) return;
+        if (!swiperEl) {
+            console.warn(`⚠️ No se encontró swiper en item ${index + 1}`);
+            return;
+        }
         
         const images = item.querySelectorAll('.swiper-slide img');
         const hasMultipleImages = images.length > 1;
         
+        console.log(`📸 Item ${index + 1}: ${images.length} imágenes`);
+        
+        // Configuración básica
         const swiperConfig = {
             direction: 'horizontal',
             loop: hasMultipleImages,
-            speed: 500,
+            speed: 800,
             effect: 'fade',
             fadeEffect: {
                 crossFade: true
             },
-            autoplay: hasMultipleImages ? {
+            grabCursor: true,
+            watchSlidesProgress: true,
+            observer: true, // Observar cambios en el DOM
+            observeParents: true, // Observar cambios en padres
+            init: false, // Inicializar manualmente
+            on: {
+                init: function() {
+                    console.log(`✅ Swiper ${index + 1} inicializado`);
+                    initializedCount++;
+                },
+                error: function(e) {
+                    console.error(`❌ Error en Swiper ${index + 1}:`, e);
+                }
+            }
+        };
+        
+        // Autoplay solo para múltiples imágenes
+        if (hasMultipleImages) {
+            swiperConfig.autoplay = {
                 delay: 4000,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true
-            } : false,
-            grabCursor: true,
-            watchSlidesProgress: true
-        };
+            };
+        }
         
-        if (hasMultipleImages) {
+        // Paginación
+        const paginationEl = item.querySelector('.swiper-pagination');
+        if (paginationEl && hasMultipleImages) {
             swiperConfig.pagination = {
-                el: item.querySelector('.swiper-pagination'),
+                el: paginationEl,
                 clickable: true,
                 dynamicBullets: true,
                 dynamicMainBullets: 3
             };
         }
         
-        swiperConfig.navigation = {
-            nextEl: item.querySelector('.swiper-button-next'),
-            prevEl: item.querySelector('.swiper-button-prev'),
-        };
+        // Navegación
+        const nextBtn = item.querySelector('.swiper-button-next');
+        const prevBtn = item.querySelector('.swiper-button-prev');
         
-        const swiperInstance = new Swiper(swiperEl, swiperConfig);
-        swiperInstances.push(swiperInstance);
+        if (nextBtn && prevBtn && hasMultipleImages) {
+            swiperConfig.navigation = {
+                nextEl: nextBtn,
+                prevEl: prevBtn,
+            };
+        }
+        
+        try {
+            // Crear instancia
+            const swiperInstance = new Swiper(swiperEl, swiperConfig);
+            
+            // Inicializar después de un breve delay para asegurar renderizado
+            setTimeout(() => {
+                try {
+                    swiperInstance.init();
+                    swiperInstances[index] = swiperInstance;
+                    
+                    // Actualizar después de la inicialización
+                    swiperInstance.update();
+                } catch (initError) {
+                    console.error(`❌ Error al inicializar Swiper ${index + 1}:`, initError);
+                    setupSingleImageFallback(item, images[0]);
+                }
+            }, 100);
+            
+        } catch (error) {
+            console.error(`❌ Error creando Swiper ${index + 1}:`, error);
+            setupSingleImageFallback(item, images[0]);
+        }
     });
     
-    console.log(`${swiperInstances.length} carruseles Swiper inicializados`);
+    console.log(`✅ ${initializedCount} Swipers inicializados de ${mosaicItems.length} items`);
+}
+
+// Fallback para imágenes individuales
+function setupSingleImageFallback(item, image) {
+    if (image) {
+        const swiperEl = item.querySelector('.mosaic-swiper');
+        if (swiperEl) {
+            swiperEl.style.overflow = 'hidden';
+            swiperEl.style.position = 'relative';
+            
+            // Ocultar controles
+            const nextBtn = item.querySelector('.swiper-button-next');
+            const prevBtn = item.querySelector('.swiper-button-prev');
+            const pagination = item.querySelector('.swiper-pagination');
+            
+            if (nextBtn) nextBtn.style.display = 'none';
+            if (prevBtn) prevBtn.style.display = 'none';
+            if (pagination) pagination.style.display = 'none';
+            
+            // Asegurar que la imagen se vea bien
+            image.style.width = '100%';
+            image.style.height = '100%';
+            image.style.objectFit = 'cover';
+            image.style.display = 'block';
+        }
+    }
+}
+
+// Fallback completo si Swiper no está disponible
+function setupImageFallback() {
+    console.log('🔄 Configurando fallback de imágenes...');
+    
+    const mosaicItems = document.querySelectorAll('.mosaic-item');
+    mosaicItems.forEach((item, index) => {
+        const images = item.querySelectorAll('img');
+        if (images.length > 0) {
+            setupSingleImageFallback(item, images[0]);
+        }
+    });
 }
 
 // Función para ajustar altura de los items
@@ -350,7 +488,9 @@ function adjustMosaicItemsHeight() {
     if (mosaicItems.length > 0) {
         const firstItem = mosaicItems[0];
         const width = firstItem.offsetWidth;
-        const height = width * (2/3);
+        const height = width * (2/3); // Ratio 3:2
+        
+        console.log(`📐 Ajustando altura: ${width}px → ${height}px`);
         
         mosaicItems.forEach(item => {
             item.style.height = `${height}px`;
@@ -358,11 +498,41 @@ function adjustMosaicItemsHeight() {
     }
 }
 
+// Debug helper
+function debugMosaic() {
+    console.log('=== 🐛 DEBUG MOSAICO ===');
+    console.log('Swiper disponible:', typeof Swiper !== 'undefined' ? '✅ SÍ' : '❌ NO');
+    console.log('Items mosaico:', document.querySelectorAll('.mosaic-item').length);
+    console.log('Swipers containers:', document.querySelectorAll('.mosaic-swiper').length);
+    console.log('Instancias Swiper:', swiperInstances.length);
+    
+    // Verificar CSS
+    const firstSwiper = document.querySelector('.mosaic-swiper');
+    if (firstSwiper) {
+        const computedStyle = window.getComputedStyle(firstSwiper);
+        console.log('CSS Swiper:', {
+            display: computedStyle.display,
+            overflow: computedStyle.overflow,
+            position: computedStyle.position
+        });
+    }
+}
+
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
-    generateMosaic();
+    console.log('🚀 DOM listo, generando mosaico...');
     
-    setTimeout(adjustMosaicItemsHeight, 100);
+    // Esperar a que jQuery esté listo si es necesario
+    if (typeof jQuery !== 'undefined') {
+        $(document).ready(() => {
+            generateMosaic();
+        });
+    } else {
+        generateMosaic();
+    }
+    
+    // Ajustar altura después de generar
+    setTimeout(adjustMosaicItemsHeight, 500);
     
     // Ajustar al redimensionar
     let resizeTimeout;
@@ -371,9 +541,16 @@ document.addEventListener('DOMContentLoaded', () => {
         resizeTimeout = setTimeout(() => {
             adjustMosaicItemsHeight();
             
-            swiperInstances.forEach(swiper => {
+            // Actualizar Swipers
+            swiperInstances.forEach((swiper, index) => {
                 if (swiper && typeof swiper.update === 'function') {
-                    swiper.update();
+                    try {
+                        swiper.update();
+                        swiper.updateSlides();
+                        console.log(`🔄 Swiper ${index + 1} actualizado por resize`);
+                    } catch (error) {
+                        console.error(`❌ Error actualizando Swiper ${index + 1}:`, error);
+                    }
                 }
             });
         }, 250);
@@ -382,23 +559,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Inicializar después de cargar todas las imágenes
 window.addEventListener('load', () => {
-    adjustMosaicItemsHeight();
+    console.log('🎉 Página completamente cargada');
     
     setTimeout(() => {
+        adjustMosaicItemsHeight();
+        debugMosaic();
+        
         const items = document.querySelectorAll('.mosaic-item');
-        console.log(`Grid 3x6 final: ${items.length} elementos`);
+        console.log(`📊 Grid final: ${items.length} elementos`);
         
         if (items.length === 18) {
-            console.log('Perfecto: 3 columnas × 6 filas = 18 elementos');
-            
-            // Mostrar distribución por categorías
-            const categories = {};
-            items.forEach(item => {
-                const category = item.getAttribute('data-category');
-                categories[category] = (categories[category] || 0) + 1;
-            });
-            
-            console.log('Distribución por categorías:', categories);
+            console.log('🎯 Perfecto: 3 columnas × 6 filas = 18 elementos');
         }
-    }, 500);
+    }, 1000);
+});
+
+// Manejar errores no capturados
+window.addEventListener('error', function(e) {
+    if (e.message.includes('Swiper') || e.filename && e.filename.includes('mosaic')) {
+        console.error('❌ Error crítico en mosaico:', e);
+        setupImageFallback();
+    }
 });

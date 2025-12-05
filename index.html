@@ -18,11 +18,18 @@
 
     <!-- ICONOS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- PRELOAD PARA MEJOR PERFORMANCE -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
 </head>
 
 <body>
     <!-- SIDEBAR -->
     <div id="sidebar" role="complementary" aria-label="Menú lateral"></div>
+    
+    <!-- TOGGLE BUTTON (se creará dinámicamente) -->
     
     <!-- CONTENIDO PRINCIPAL -->
     <main class="contenido" role="main">
@@ -37,11 +44,51 @@
                 Archivo dedicado a la documentación y análisis de objetos históricos y culturales, 
                 organizados en colecciones temáticas accesibles desde el mosaico inferior.
             </p>
+            
+            <!-- INDICADOR DE CARGA PARA MOSAICO -->
+            <div id="mosaic-loading" class="mosaic-loading" style="display: none;">
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span>Cargando colecciones...</span>
+                </div>
+            </div>
         </section>
 
         <!-- MOSAICO PRINCIPAL -->
         <section class="mosaic-container">
-            <div class="mosaic-grid" id="mosaicPackery"></div>
+            <div class="mosaic-grid" id="mosaicPackery">
+                <!-- El contenido se generará dinámicamente con mosaic.js -->
+            </div>
+            
+            <!-- FALLBACK SI JAVASCRIPT NO FUNCIONA -->
+            <noscript>
+                <div class="noscript-message" style="padding: 2rem; text-align: center; background: #f8f9fa; border-radius: 8px; margin: 2rem 0;">
+                    <h3 style="color: #dc3545;">JavaScript requerido</h3>
+                    <p>Para ver las colecciones del Contramuseo, necesitas habilitar JavaScript en tu navegador.</p>
+                    <p>Las colecciones incluyen: Colecciones Oseas, Falsos y réplicas, Cultura en disputa, Archivos vivos, y más.</p>
+                </div>
+            </noscript>
+        </section>
+        
+        <!-- INFORMACIÓN ADICIONAL -->
+        <section class="info-adicional" style="margin-top: 3rem;">
+            <h3>Acerca del archivo</h3>
+            <p>Este archivo digital presenta 18 objetos organizados en 9 categorías temáticas que exploran diferentes aspectos del patrimonio cultural mexicano. Cada objeto incluye análisis, imágenes y contenido audiovisual.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                <div class="gradient-card">
+                    <h4 style="margin-bottom: 0.5rem; color: #4a6fa5;">9 categorías</h4>
+                    <p style="font-size: 0.9rem; color: #555;">Organización temática especializada</p>
+                </div>
+                <div class="gradient-card">
+                    <h4 style="margin-bottom: 0.5rem; color: #4a6fa5;">18 objetos</h4>
+                    <p style="font-size: 0.9rem; color: #555;">Documentación completa de cada pieza</p>
+                </div>
+                <div class="gradient-card">
+                    <h4 style="margin-bottom: 0.5rem; color: #4a6fa5;">Contenido multimedia</h4>
+                    <p style="font-size: 0.9rem; color: #555;">Imágenes, audio y descripciones detalladas</p>
+                </div>
+            </div>
         </section>
 
     </main>
@@ -54,11 +101,10 @@
     <script src="js/sidebarLoader.js"></script>
 
     <!-- MOSAICO DINÁMICO -->
-    <!-- generateMosaic(), MosaicPacker y CarouselManager -->
     <script src="js/mosaic.js"></script>
 
     <!-- SCRIPTS GENERALES DEL SITIO -->
     <script src="js/main.js"></script>
-
+    
 </body>
 </html>
