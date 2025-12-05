@@ -65,6 +65,11 @@
 craneo no tiene ni audio ni intro
 cuahutemoc  no tiene intro
 individuo no tiene audio ni intro
+luchadores no tiene audio ni intro
+omichi no tiene audio ni intro
+pintura de castas no tiene audio ni intro
+xochipili no tiene intro ni audio
+señor del veneno falta intro 
 
 barbie ya esta al 100%
 carroza ya esta al 100%
@@ -72,6 +77,11 @@ codice ya esta al 100%
 cabina ya esta al 100%
 falsos ya esta al 100%
 templo mayor esta al 100%
+pulque ya esta al 100%
+tlaltecuhtli ya esta al 100%
+tona es mio 
+tumba ya esta al 100%
+
 
 
 

@@ -3,11 +3,11 @@ const mosaicItems = [
     // Colecciones Oseas
     {
         id: 1,
-        title: "Colecciones Oseas",
-        description: "Estudios osteológicos y antropológicos",
-        images: ["img/colecciones_oseas_1.jpg", "img/colecciones_oseas_2.jpg", "img/colecciones_oseas_3.jpg"],
-        link: "content/coleccionesOseas.html",
-        category: "Colecciones Oseas"
+        title: "Señor del Veneno",
+        description: "Iglesia",
+        images: ["img/senor_veneno.jpg", "img/senor_veneno2.jpg", "img/senor_veneno.jpg"],
+        link: "content/señor_del_veneno.html",
+        category: "falsos y réplicas/restauraciones"
     },
     {
         id: 2,
@@ -31,7 +31,7 @@ const mosaicItems = [
         id: 4,
         title: "Tumba de Pakal",
         description: "Réplica arqueológica (Valeria)",
-        images: ["img/Tumba_de_Pakal.jpeg", "https://source.unsplash.com/random/400x400/?mayan", "https://source.unsplash.com/random/400x400/?tomb"],
+        images: ["img/tumba_de_pakal.jpg", "img/tumba_de_pakal_2.jpg", "img/tumba_de_pakal_3.jpg"],
         link: "content/tumba_pakal.html",
         category: "Falsos y réplicas/restauraciones"
     },
@@ -75,7 +75,7 @@ const mosaicItems = [
         id: 9,
         title: "Xochipilli",
         description: "Archivos vivos y cultura (Daniela)",
-        images: ["img/Xochipilli Fuente.DanielaJuarez.foto1.jpg", "https://source.unsplash.com/random/400x400/?statue", "https://source.unsplash.com/random/400x400/?aztec"],
+        images: ["img/Xochipilli_foto1.jpg", "img/Xochipilli_foto2.jpg", "img/Xochipilli_foto3.jpg"],
         link: "content/xochipilli.html",
         category: "Archivos vivos"
     },
@@ -101,7 +101,7 @@ const mosaicItems = [
         id: 12,
         title: "Tlaltecuhtli",
         description: "Mover la Tlaltecuhtli (Angel)",
-        images: ["img/la_tlaltecuhtli_1.png", "img/la_tlaltecuhtli_2.png", "https://source.unsplash.com/random/400x400/?stone"],
+        images: ["img/la_tlaltecuhtli_foto1.png", "img/la_tlaltecuhtli_foto2.png", "img/la_tlaltecuhtli_foto3.jpg"],
         link: "content/tlaltecuhtli.html",
         category: "Ingenierías"
     },
@@ -121,7 +121,7 @@ const mosaicItems = [
         id: 14,
         title: "Descubrimiento del Pulque",
         description: "Ciencia y arte ancestral (Erik)",
-        images: ["img/eldescubrimientodelpulque--foto1.png", "https://source.unsplash.com/random/400x400/?drink", "https://source.unsplash.com/random/400x400/?ancient"],
+        images: ["img/pulque1.jpg", "img/pulque2.webp", "img/pulque3.png"],
         link: "content/pulque.html",
         category: "Ciencia y arte"
     },
@@ -129,7 +129,7 @@ const mosaicItems = [
         id: 15,
         title: "Pinturas de Casta",
         description: "Arte y clasificación social (Mauricio)",
-        images: ["img/Pintura de castas foto 1.jpg", "https://source.unsplash.com/random/400x400/?painting", "https://source.unsplash.com/random/400x400/?colonial"],
+        images: ["img/pintura1.jpeg", "img/pintura1.jpeg", "img/pintura1.jpeg"],
         link: "content/pinturas_casta.html",
         category: "Ciencia y arte"
     },
@@ -147,7 +147,7 @@ const mosaicItems = [
         id: 17,
         title: "Muñecos Luchadores",
         description: "Caleidoscopio cultural (Diego)",
-        images: ["img/Caleidoscopio de munecos luchadores--foto3.jpg", "img/Caleidoscopio de munecos luchadores--foto1.jpg", "img/Caleidoscopio de munecos luchadores--foto2.jpg"],
+        images: ["img/munecos_luchadores.jpeg", "img/munecos_luchadores2.jpg", "img/munecos_luchadores3.jpg"],
         link: "content/munecos_luchadores.html",
         category: "Cotidianeidades"
     },
