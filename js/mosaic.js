@@ -13,7 +13,7 @@ const mosaicItems = [
         id: 2,
         title: "Individuo 150",
         description: "Memoria en resistencia bajo la ciudad (Vanessa)",
-        images: ["img/Individuo 150_imagen_1.jpg", "img/Individuo_150_Imagen_3.png", "img/individuo 150_Imagen_4.jpg"],
+        images: ["img/individuo150_imagen1.jpg", "img/individuo150_imagen2.png", "img/individuo150_imagen3.jpg"],
         link: "content/individuo150.html",
         category: "Colecciones Oseas"
     },
