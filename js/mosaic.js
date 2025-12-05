@@ -81,9 +81,9 @@ const mosaicItems = [
     },
     {
         id: 10,
-        title: "Códice Nunaha",
+        title: "Códice Ñunaha",
         description: "Documentos históricos (Miranda)",
-        images: ["img/Codice nunaha-foto 1.jpg", "img/Codice nunaha-foto 2.jpg", "img/Codice nunaha-foto 3.jpg"],
+        images: ["img/Codice nunaha_foto 1.jpg", "img/Codice nunaha_foto 2.jpg", "img/Codice nunaha_foto 3.jpg"],
         link: "content/codice_nunaha.html",
         category: "Archivos vivos"
     },
@@ -91,7 +91,7 @@ const mosaicItems = [
         id: 11,
         title: "Cuauhtémoc",
         description: "Aquí le quemaron las patas (Raziel)",
-        images: ["img/cuauhtemoc_foto1.jgp", "img/cuauhtemoc_foto2.jpg", "cuauhtemoc_foto3.jpg"],
+        images: ["img/cuauhtemoc_foto1.jpg", "img/cuauhtemoc_foto2.jpg", "cuauhtemoc_foto3.jpg"],
         link: "content/cuauhtemoc.html",
         category: "Archivos vivos"
     },
