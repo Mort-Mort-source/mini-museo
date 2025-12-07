@@ -64,7 +64,6 @@
 
 craneo no tiene ni audio ni intro
 individuo no tiene audio ni intro
-omichi no tiene audio ni intro
 pintura de castas no tiene audio ni intro
 xochipili no tiene intro ni audio
 
