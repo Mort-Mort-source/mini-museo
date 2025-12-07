@@ -238,7 +238,7 @@ body {
   margin-left: 320px;
   padding: 2.5rem;
   flex: 1;
-  max-width: 1200px;
+  max-width: 1400px; /* Aumentado para más flexibilidad */
   margin: 0 auto;
   padding-left: 340px;
   transition: margin-left 0.3s ease;
@@ -251,7 +251,7 @@ body {
 }
 
 /* ========================
-   MOSAICO 3x6 EXACTO - MINIMALISTA BLANCO/NEGRO
+   MOSAICO FLEXIBLE - AHORA ADMITE CUALQUIER NÚMERO DE ELEMENTOS
    ======================== */
 .mosaic-container {
   width: 100%;
@@ -260,24 +260,26 @@ body {
 
 .mosaic-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Flexible */
   grid-auto-rows: 1fr;
-  gap: 20px;
+  gap: 24px;
   padding: 0;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
+  transition: grid-template-columns 0.3s ease;
 }
 
 .mosaic-item {
   position: relative;
   width: 100%;
-  aspect-ratio: 3/2;
+  aspect-ratio: 3/2; /* Mantiene ratio fijo */
   overflow: hidden;
   cursor: pointer;
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
   transition: all 0.3s ease;
   border: 1px solid var(--border);
   border-radius: 12px;
+  min-height: 220px; /* Altura mínima */
 }
 
 .mosaic-item::before {
@@ -306,8 +308,8 @@ body {
 }
 
 .mosaic-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 20px var(--shadow);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   border-color: var(--accent);
 }
 
@@ -333,7 +335,7 @@ body {
 }
 
 .mosaic-item:hover .mosaic-swiper img {
-  transform: scale(1.02);
+  transform: scale(1.03);
 }
 
 /* Overlay minimalista */
@@ -342,80 +344,103 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
   color: white;
-  padding: 15px;
+  padding: 20px 15px 15px;
   transition: all 0.3s ease;
   opacity: 0;
+  transform: translateY(10px);
 }
 
 .mosaic-item:hover .mosaic-overlay {
   opacity: 1;
+  transform: translateY(0);
 }
 
 .mosaic-title {
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 600;
-  margin-bottom: 3px;
+  margin-bottom: 5px;
   color: white;
 }
 
 .mosaic-description {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   opacity: 0.9;
   color: #eee;
+  line-height: 1.4;
 }
 
 /* Controles del carrusel - solo mostrar al hover */
 .mosaic-swiper .swiper-button-next,
 .mosaic-swiper .swiper-button-prev {
   color: white;
-  background: rgba(0,0,0,0.5);
-  width: 25px;
-  height: 25px;
+  background: rgba(0,0,0,0.6);
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: none;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.mosaic-swiper .swiper-button-next:after,
+.mosaic-swiper .swiper-button-prev:after {
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .mosaic-item:hover .swiper-button-next,
 .mosaic-item:hover .swiper-button-prev {
   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mosaic-swiper .swiper-button-next:hover,
+.mosaic-swiper .swiper-button-prev:hover {
+  background: rgba(0, 0, 0, 0.9);
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 .mosaic-swiper .swiper-pagination-bullet {
   background: white;
   opacity: 0.5;
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
 }
 
 .mosaic-swiper .swiper-pagination-bullet-active {
   opacity: 1;
-  background: var(--primary);
+  background: var(--accent);
+  transform: scale(1.2);
 }
 
 /* Badge de categoría (minimalista) */
 .mosaic-counter {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 12px;
+  right: 12px;
   background: var(--gradient-accent);
   color: white;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   font-weight: 600;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
   z-index: 2;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 }
 
 .mosaic-item:hover .mosaic-counter {
-  opacity: 0.8;
+  opacity: 0.9;
+  transform: scale(1.1);
 }
 
 /* ========================
@@ -884,236 +909,11 @@ body {
   opacity: 0;
 }
 
-/* Animación escalonada para los items del mosaico */
-.mosaic-item:nth-child(1) { animation-delay: 0.05s; }
-.mosaic-item:nth-child(2) { animation-delay: 0.1s; }
-.mosaic-item:nth-child(3) { animation-delay: 0.15s; }
-.mosaic-item:nth-child(4) { animation-delay: 0.2s; }
-.mosaic-item:nth-child(5) { animation-delay: 0.25s; }
-.mosaic-item:nth-child(6) { animation-delay: 0.3s; }
-.mosaic-item:nth-child(7) { animation-delay: 0.35s; }
-.mosaic-item:nth-child(8) { animation-delay: 0.4s; }
-.mosaic-item:nth-child(9) { animation-delay: 0.45s; }
-.mosaic-item:nth-child(10) { animation-delay: 0.5s; }
-.mosaic-item:nth-child(11) { animation-delay: 0.55s; }
-.mosaic-item:nth-child(12) { animation-delay: 0.6s; }
-.mosaic-item:nth-child(13) { animation-delay: 0.65s; }
-.mosaic-item:nth-child(14) { animation-delay: 0.7s; }
-.mosaic-item:nth-child(15) { animation-delay: 0.75s; }
-.mosaic-item:nth-child(16) { animation-delay: 0.8s; }
-.mosaic-item:nth-child(17) { animation-delay: 0.85s; }
-.mosaic-item:nth-child(18) { animation-delay: 0.9s; }
-
-/* ========================
-   RESPONSIVE DESIGN
-   ======================== */
-@media (max-width: 1400px) {
-  .sidebar {
-    width: 300px;
-  }
-  
-  .contenido {
-    margin-left: 300px;
-    padding-left: 320px;
-  }
+/* Animación escalonada para los items del mosaico (ahora dinámica) */
+.mosaic-item {
+  animation-delay: calc(var(--item-index, 0) * 0.05s);
 }
 
-@media (max-width: 1200px) {
-  .mosaic-grid {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 900px;
-  }
-  
-  .mosaic-item {
-    aspect-ratio: 3/2;
-  }
-  
-  .sidebar h2 {
-    font-size: 1.6rem;
-  }
-}
-
-@media (max-width: 1024px) {
-  .mosaic-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-  }
-  
-  .contenido {
-    padding-left: 300px;
-    padding-right: 2rem;
-  }
-}
-
-@media (max-width: 900px) {
-  .mosaic-grid {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 600px;
-  }
-  
-  .mosaic-item {
-    aspect-ratio: 3/2;
-  }
-}
-
-@media (max-width: 768px) {
-  .sidebar {
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    width: 280px;
-    border-right: none;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .sidebar.mostrado {
-    transform: translateX(0);
-  }
-  
-  .sidebar-toggle {
-    display: block;
-  }
-  
-  .contenido {
-    margin-left: 0;
-    padding: 1.5rem;
-    padding-top: 80px;
-    padding-left: 1.5rem;
-  }
-  
-  .mosaic-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-  }
-  
-  .mosaic-item {
-    aspect-ratio: 3/2;
-  }
-  
-  .epoca {
-    padding: 0;
-  }
-  
-  .epoca h1 {
-    font-size: 2.2rem;
-  }
-  
-  .epoca h2 {
-    font-size: 1.5rem;
-  }
-  
-  .section-highlight {
-    padding: 1.5rem;
-  }
-  
-  .gradient-card {
-    padding: 1.5rem;
-  }
-  
-  .galeria {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .mosaic-grid {
-    grid-template-columns: 1fr;
-    max-width: 400px;
-  }
-  
-  .mosaic-item {
-    aspect-ratio: 3/2;
-  }
-  
-  .galeria {
-    grid-template-columns: 1fr;
-  }
-  
-  .audio-container {
-    padding: 1.5rem;
-  }
-  
-  .audio-info {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-  
-  .audio-time {
-    align-self: flex-end;
-  }
-  
-  .epoca h1 {
-    font-size: 1.8rem;
-  }
-  
-  .progress-container {
-    margin: 0 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .mosaic-grid {
-    gap: 12px;
-  }
-  
-  .mosaic-title {
-    font-size: 0.9rem;
-  }
-  
-  .mosaic-description {
-    font-size: 0.75rem;
-  }
-  
-  .control-btn {
-    width: 45px;
-    height: 45px;
-  }
-  
-  .volume-btn {
-    width: 35px;
-    height: 35px;
-  }
-}
-
-/* ========================
-   ACCESIBILIDAD
-   ======================== */
-@media (prefers-reduced-motion: reduce) {
-  .mosaic-item,
-  .control-btn,
-  .sidebar nav ul li,
-  .toggle-icon,
-  .gradient-card {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-  }
-  
-  .audio-player.playing .control-btn.play-pause {
-    animation: none;
-  }
-}
-
-.mosaic-item:focus,
-.galeria a:focus,
-.control-btn:focus,
-.sidebar nav ul li a:focus,
-.btn-gradient:focus {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-/* Clase para ocultar visualmente pero mantener accesibilidad */
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
 /* ========================
    SWIPER GALERÍA (principal + thumbs)
    Integrado con tu paleta de variables
@@ -1398,14 +1198,17 @@ body {
   transform: scale(1.1);
 }
 
+/* ========================
+   ESTILOS ESPECÍFICOS PARA INTRO Y CORREOS
+   ======================== */
 .intro-principal {
-  font-size: 0.9rem;        /* Más pequeño pero legible */
-  line-height: 1.45;        /* Compacto sin sentirse apretado */
+  font-size: 0.9rem;
+  line-height: 1.45;
   color: #444;
-  max-width: 850px;         /* Evita líneas demasiado largas */
-  margin: 0 auto 2rem auto; /* Centrado y con buen espaciado */
-  text-align: justify;      /* Apariencia más profesional */
-  padding: 0 10px;          /* Un pequeño margen lateral */
+  max-width: 850px;
+  margin: 0 auto 2rem auto;
+  text-align: justify;
+  padding: 0 10px;
 }
 
 .intro-principal h3 {
@@ -1414,17 +1217,363 @@ body {
 }
 
 .intro-principal p {
-  margin-bottom: 1rem;      /* Espaciado entre párrafos */
+  margin-bottom: 1rem;
 }
+
 .correo {
-  color: inherit;       /* Usa el mismo color del texto */
-  text-decoration: none; /* Quita el subrayado */
-  font-style: inherit;   /* Respeta la cursiva del <em> */
+  color: inherit;
+  text-decoration: none;
+  font-style: inherit;
 }
 
 .correo:hover {
-  text-decoration: underline; /* Opcional: subrayado al pasar el mouse */
+  text-decoration: underline;
+  color: var(--accent);
 }
 
+/* ========================
+   RESPONSIVE DESIGN FLEXIBLE
+   ======================== */
+@media (max-width: 1600px) {
+  .mosaic-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    max-width: 1300px;
+  }
+}
 
+@media (max-width: 1400px) {
+  .sidebar {
+    width: 300px;
+  }
+  
+  .contenido {
+    margin-left: 300px;
+    padding-left: 320px;
+    max-width: 1200px;
+  }
+  
+  .mosaic-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    max-width: 1100px;
+  }
+}
 
+@media (max-width: 1200px) {
+  .mosaic-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    max-width: 1000px;
+  }
+  
+  .mosaic-item {
+    min-height: 200px;
+  }
+  
+  .sidebar h2 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .mosaic-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+  }
+  
+  .contenido {
+    padding-left: 300px;
+    padding-right: 2rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .mosaic-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    max-width: 700px;
+  }
+  
+  .mosaic-item {
+    min-height: 180px;
+  }
+  
+  .mosaic-overlay {
+    padding: 15px 12px 12px;
+  }
+  
+  .mosaic-title {
+    font-size: 1rem;
+  }
+  
+  .mosaic-description {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    width: 280px;
+    border-right: none;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidebar.mostrado {
+    transform: translateX(0);
+  }
+  
+  .sidebar-toggle {
+    display: block;
+  }
+  
+  .contenido {
+    margin-left: 0;
+    padding: 1.5rem;
+    padding-top: 80px;
+    padding-left: 1.5rem;
+    max-width: 100%;
+  }
+  
+  .mosaic-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    max-width: 100%;
+  }
+  
+  .mosaic-item {
+    aspect-ratio: 3/2;
+    min-height: 160px;
+  }
+  
+  .epoca {
+    padding: 0;
+  }
+  
+  .epoca h1 {
+    font-size: 2.2rem;
+  }
+  
+  .epoca h2 {
+    font-size: 1.5rem;
+  }
+  
+  .section-highlight {
+    padding: 1.5rem;
+  }
+  
+  .gradient-card {
+    padding: 1.5rem;
+  }
+  
+  .galeria {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* Ajustes específicos para móvil */
+  .mosaic-counter {
+    width: 24px;
+    height: 24px;
+    font-size: 0.7rem;
+    top: 8px;
+    right: 8px;
+  }
+  
+  .mosaic-overlay {
+    padding: 12px 10px 10px;
+    opacity: 0.9; /* Más visible en móvil */
+  }
+  
+  .mosaic-title {
+    font-size: 0.95rem;
+  }
+  
+  .mosaic-description {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .mosaic-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+  }
+  
+  .mosaic-item {
+    min-height: 140px;
+  }
+  
+  .audio-container {
+    padding: 1.5rem;
+  }
+  
+  .audio-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .audio-time {
+    align-self: flex-end;
+  }
+  
+  .epoca h1 {
+    font-size: 1.8rem;
+  }
+  
+  .progress-container {
+    margin: 0 1rem;
+  }
+  
+  .galeria {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .mosaic-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .mosaic-item {
+    min-height: 200px; /* Más alto en móvil para mejor visibilidad */
+    max-width: 100%;
+  }
+  
+  .mosaic-title {
+    font-size: 1rem;
+  }
+  
+  .mosaic-description {
+    font-size: 0.85rem;
+  }
+  
+  .control-btn {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .volume-btn {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .intro-principal {
+    text-align: left; /* Mejor lectura en móvil */
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .mosaic-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .mosaic-item {
+    min-height: 180px;
+  }
+  
+  .contenido {
+    padding: 1rem;
+    padding-top: 70px;
+  }
+}
+
+/* ========================
+   AJUSTES PARA NÚMEROS IMPARES DE ELEMENTOS
+   ======================== */
+.mosaic-grid:has(.mosaic-item:only-child) {
+  grid-template-columns: 1fr;
+  max-width: 500px;
+}
+
+.mosaic-grid:has(.mosaic-item:nth-child(2):last-child) {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 700px;
+}
+
+/* ========================
+   MEJORAS DE ACCESIBILIDAD
+   ======================== */
+@media (prefers-reduced-motion: reduce) {
+  .mosaic-item,
+  .control-btn,
+  .sidebar nav ul li,
+  .toggle-icon,
+  .gradient-card,
+  .mosaic-swiper img {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+  
+  .audio-player.playing .control-btn.play-pause {
+    animation: none;
+  }
+}
+
+/* Focus states para accesibilidad */
+.mosaic-item:focus,
+.galeria a:focus,
+.control-btn:focus,
+.sidebar nav ul li a:focus,
+.btn-gradient:focus,
+.swiper-button-next:focus,
+.swiper-button-prev:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.3);
+}
+
+/* Mejor contraste para texto */
+.mosaic-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.6), transparent);
+}
+
+/* Clase para ocultar visualmente pero mantener accesibilidad */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ========================
+   MEJORAS DE RENDIMIENTO
+   ======================== */
+.mosaic-swiper img {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* ========================
+   ESTADOS DE CARGA
+   ======================== */
+.mosaic-item.loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ========================
+   ESTILOS PARA CATEGORÍA EN OVERLAY
+   ======================== */
+.mosaic-category {
+  font-size: 0.7rem !important;
+  margin-top: 5px !important;
+  opacity: 0.8 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}

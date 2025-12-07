@@ -1,4 +1,4 @@
-// MOSAICO 3x6 - EXACTAMENTE 18 ELEMENTOS (nueva estructura)
+// MOSAICO FLEXIBLE - AHORA PUEDE MANEJAR CUALQUIER NÚMERO DE ELEMENTOS
 const mosaicItems = [
     // Colecciones Oseas
     {
@@ -133,10 +133,19 @@ const mosaicItems = [
         link: "content/pinturas_casta.html",
         category: "Ciencia y arte"
     },
+    // NUEVO: Teporingo
+    {
+        id: 16,
+        title: "Teporingo",
+        description: "Especie endémica mexicana",
+        images: ["img/teporingo1.jpg", "img/teporingo2.jpg", "img/teporingo1.jpg"],
+        link: "content/teporingo.html",
+        category: "Ciencia y arte"
+    },
     
     // Cotidianeidades
     {
-        id: 16,
+        id: 17,
         title: "Cabina Telefónica",
         description: "Cotidianeidad y comunicación (Aranza)",
         images: ["img/cabina_telefonica2.jpg", "img/cabina_telefonica.jpg", "img/cabina_telefonica2.jpg"],
@@ -144,7 +153,7 @@ const mosaicItems = [
         category: "Cotidianeidades"
     },
     {
-        id: 17,
+        id: 18,
         title: "Muñecos Luchadores",
         description: "Caleidoscopio cultural (Diego)",
         images: ["img/munecos_luchadores.jpeg", "img/munecos_luchadores2.jpg", "img/munecos_luchadores3.jpg"],
@@ -152,7 +161,7 @@ const mosaicItems = [
         category: "Cotidianeidades"
     },
     {
-        id: 18,
+        id: 19,
         title: "Barbie",
         description: "Icono cultural (Nicole)",
         images: ["img/barbie_imagen1.jpg", "img/barbie_imagen 2.jpg", "img/barbie_imagen3.jpg"],
@@ -175,9 +184,25 @@ function isSwiperAvailable() {
     return true;
 }
 
-// Función para generar el mosaico 3x6
+// Función para calcular el diseño de columnas dinámico
+function calculateGridLayout(itemCount) {
+    // Por defecto, 3 columnas en escritorio
+    let columns = 3;
+    
+    // Para menos de 3 items, ajustar columnas
+    if (itemCount === 1) {
+        columns = 1;
+    } else if (itemCount === 2) {
+        columns = 2;
+    }
+    
+    // Para números impares, mantener 3 columnas (CSS grid se encarga del layout)
+    return columns;
+}
+
+// Función para generar el mosaico flexible
 function generateMosaic() {
-    console.log('🚀 Generando mosaico...');
+    console.log('🚀 Generando mosaico flexible...');
     
     const mosaicContainer = document.querySelector('.mosaic-grid');
     
@@ -196,10 +221,14 @@ function generateMosaic() {
     
     mosaicContainer.innerHTML = '';
     
-    // Verificar que tenemos exactamente 18 elementos
-    if (mosaicItems.length !== 18) {
-        console.warn(`⚠️ Se esperaban 18 elementos pero hay ${mosaicItems.length}`);
-    }
+    // Calcular diseño flexible
+    const itemCount = mosaicItems.length;
+    const columns = calculateGridLayout(itemCount);
+    
+    console.log(`📊 Diseño calculado: ${itemCount} elementos, ${columns} columnas`);
+    
+    // Actualizar grid CSS dinámicamente
+    mosaicContainer.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
     
     // Verificar que Swiper esté disponible
     if (!isSwiperAvailable()) {
@@ -208,24 +237,26 @@ function generateMosaic() {
     
     // Crear elementos del mosaico
     mosaicItems.forEach((item, index) => {
-        const row = Math.floor(index / 3) + 1;
-        const col = (index % 3) + 1;
+        const row = Math.floor(index / columns) + 1;
+        const col = (index % columns) + 1;
         
         const mosaicItem = document.createElement('div');
         mosaicItem.className = `mosaic-item`;
         mosaicItem.setAttribute('data-id', item.id);
         mosaicItem.setAttribute('data-category', item.category);
         mosaicItem.setAttribute('data-position', `${row}-${col}`);
+        mosaicItem.style.animationDelay = `${index * 0.05}s`; // Animación escalonada
         
         // Contenedor interno
         const mosaicContent = document.createElement('div');
         mosaicContent.className = 'mosaic-content';
         
-        // Badge de categoría
+        // Badge de categoría con número
         const categoryBadge = document.createElement('div');
         categoryBadge.className = 'mosaic-counter';
         categoryBadge.textContent = index + 1;
         categoryBadge.title = item.category;
+        categoryBadge.setAttribute('aria-label', `Elemento ${index + 1}: ${item.category}`);
         mosaicContent.appendChild(categoryBadge);
         
         // Contenedor Swiper
@@ -240,18 +271,22 @@ function generateMosaic() {
         item.images.forEach((imageUrl, imgIndex) => {
             const slide = document.createElement('div');
             slide.className = 'swiper-slide';
+            slide.setAttribute('role', 'group');
+            slide.setAttribute('aria-label', `${item.title} - Imagen ${imgIndex + 1}`);
             
             const img = document.createElement('img');
             img.src = imageUrl;
             img.alt = `${item.title} - Imagen ${imgIndex + 1}`;
             img.loading = 'lazy';
             img.decoding = 'async';
+            img.setAttribute('draggable', 'false');
             
             // Fallback para imágenes rotas
             img.onerror = function() {
                 console.warn(`⚠️ Imagen no encontrada: ${imageUrl}`);
                 this.src = `https://source.unsplash.com/random/400x300/?museum,${encodeURIComponent(item.category)}`;
                 this.alt = `${item.title} - Imagen de ejemplo`;
+                this.setAttribute('data-fallback', 'true');
             };
             
             slide.appendChild(img);
@@ -264,6 +299,8 @@ function generateMosaic() {
         if (item.images.length > 1 && isSwiperAvailable()) {
             const pagination = document.createElement('div');
             pagination.className = 'swiper-pagination';
+            pagination.setAttribute('role', 'navigation');
+            pagination.setAttribute('aria-label', 'Paginación de imágenes');
             swiperContainer.appendChild(pagination);
         }
         
@@ -272,10 +309,14 @@ function generateMosaic() {
             const nextBtn = document.createElement('div');
             nextBtn.className = 'swiper-button-next';
             nextBtn.setAttribute('aria-label', 'Siguiente imagen');
+            nextBtn.setAttribute('role', 'button');
+            nextBtn.setAttribute('tabindex', '0');
             
             const prevBtn = document.createElement('div');
             prevBtn.className = 'swiper-button-prev';
             prevBtn.setAttribute('aria-label', 'Imagen anterior');
+            prevBtn.setAttribute('role', 'button');
+            prevBtn.setAttribute('tabindex', '0');
             
             swiperContainer.appendChild(nextBtn);
             swiperContainer.appendChild(prevBtn);
@@ -284,6 +325,7 @@ function generateMosaic() {
         // Overlay con título y categoría
         const overlay = document.createElement('div');
         overlay.className = 'mosaic-overlay';
+        overlay.setAttribute('aria-hidden', 'true');
         overlay.innerHTML = `
             <div class="mosaic-title">${item.title}</div>
             <div class="mosaic-description">${item.description}</div>
@@ -305,6 +347,14 @@ function generateMosaic() {
                              e.target.closest('.swiper-pagination-bullet');
             
             if (!isControl) {
+                window.location.href = item.link;
+            }
+        });
+        
+        // Accesibilidad: tecla Enter
+        mosaicItem.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
                 window.location.href = item.link;
             }
         });
@@ -338,16 +388,19 @@ function generateMosaic() {
         // Fallback: mostrar solo primera imagen
         setupImageFallback();
     }
+    
+    // Ajustar altura después de renderizar
+    setTimeout(adjustMosaicItemsHeight, 100);
 }
 
 // Función para inicializar todos los Swipers
 function initializeSwipers() {
     console.log('🔄 Inicializando Swipers...');
     
-    const mosaicItems = document.querySelectorAll('.mosaic-item');
+    const mosaicItemsElements = document.querySelectorAll('.mosaic-item');
     let initializedCount = 0;
     
-    mosaicItems.forEach((item, index) => {
+    mosaicItemsElements.forEach((item, index) => {
         const swiperEl = item.querySelector('.mosaic-swiper');
         if (!swiperEl) {
             console.warn(`⚠️ No se encontró swiper en item ${index + 1}`);
@@ -370,9 +423,17 @@ function initializeSwipers() {
             },
             grabCursor: true,
             watchSlidesProgress: true,
-            observer: true, // Observar cambios en el DOM
-            observeParents: true, // Observar cambios en padres
-            init: false, // Inicializar manualmente
+            observer: true,
+            observeParents: true,
+            init: false,
+            a11y: {
+                enabled: true,
+                prevSlideMessage: 'Imagen anterior',
+                nextSlideMessage: 'Siguiente imagen',
+                firstSlideMessage: 'Esta es la primera imagen',
+                lastSlideMessage: 'Esta es la última imagen',
+                paginationBulletMessage: 'Ir a la imagen {{index}}',
+            },
             on: {
                 init: function() {
                     console.log(`✅ Swiper ${index + 1} inicializado`);
@@ -439,7 +500,7 @@ function initializeSwipers() {
         }
     });
     
-    console.log(`✅ ${initializedCount} Swipers inicializados de ${mosaicItems.length} items`);
+    console.log(`✅ ${initializedCount} Swipers inicializados de ${mosaicItemsElements.length} items`);
 }
 
 // Fallback para imágenes individuales
@@ -481,7 +542,7 @@ function setupImageFallback() {
     });
 }
 
-// Función para ajustar altura de los items
+// Función para ajustar altura de los items automáticamente
 function adjustMosaicItemsHeight() {
     const mosaicItems = document.querySelectorAll('.mosaic-item');
     
@@ -490,10 +551,13 @@ function adjustMosaicItemsHeight() {
         const width = firstItem.offsetWidth;
         const height = width * (2/3); // Ratio 3:2
         
-        console.log(`📐 Ajustando altura: ${width}px → ${height}px`);
-        
+        // Aplicar altura solo si es diferente a la actual
         mosaicItems.forEach(item => {
-            item.style.height = `${height}px`;
+            const currentHeight = item.offsetHeight;
+            if (Math.abs(currentHeight - height) > 5) { // Solo cambiar si hay diferencia > 5px
+                item.style.height = `${height}px`;
+                item.style.aspectRatio = '3/2';
+            }
         });
     }
 }
@@ -503,24 +567,19 @@ function debugMosaic() {
     console.log('=== 🐛 DEBUG MOSAICO ===');
     console.log('Swiper disponible:', typeof Swiper !== 'undefined' ? '✅ SÍ' : '❌ NO');
     console.log('Items mosaico:', document.querySelectorAll('.mosaic-item').length);
+    console.log('Items en array:', mosaicItems.length);
     console.log('Swipers containers:', document.querySelectorAll('.mosaic-swiper').length);
     console.log('Instancias Swiper:', swiperInstances.length);
+    console.log('Grid columns:', document.querySelector('.mosaic-grid')?.style.gridTemplateColumns || 'default');
     
-    // Verificar CSS
-    const firstSwiper = document.querySelector('.mosaic-swiper');
-    if (firstSwiper) {
-        const computedStyle = window.getComputedStyle(firstSwiper);
-        console.log('CSS Swiper:', {
-            display: computedStyle.display,
-            overflow: computedStyle.overflow,
-            position: computedStyle.position
-        });
-    }
+    // Verificar categorías únicas
+    const categories = [...new Set(mosaicItems.map(item => item.category))];
+    console.log('Categorías:', categories);
 }
 
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🚀 DOM listo, generando mosaico...');
+    console.log('🚀 DOM listo, generando mosaico flexible...');
     
     // Esperar a que jQuery esté listo si es necesario
     if (typeof jQuery !== 'undefined') {
@@ -531,8 +590,8 @@ document.addEventListener('DOMContentLoaded', () => {
         generateMosaic();
     }
     
-    // Ajustar altura después de generar
-    setTimeout(adjustMosaicItemsHeight, 500);
+    // Ajustar altura después de un delay
+    setTimeout(adjustMosaicItemsHeight, 800);
     
     // Ajustar al redimensionar
     let resizeTimeout;
@@ -547,7 +606,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     try {
                         swiper.update();
                         swiper.updateSlides();
-                        console.log(`🔄 Swiper ${index + 1} actualizado por resize`);
                     } catch (error) {
                         console.error(`❌ Error actualizando Swiper ${index + 1}:`, error);
                     }
@@ -566,12 +624,19 @@ window.addEventListener('load', () => {
         debugMosaic();
         
         const items = document.querySelectorAll('.mosaic-item');
-        console.log(`📊 Grid final: ${items.length} elementos`);
+        const gridElement = document.querySelector('.mosaic-grid');
+        const computedStyle = window.getComputedStyle(gridElement);
         
-        if (items.length === 18) {
-            console.log('🎯 Perfecto: 3 columnas × 6 filas = 18 elementos');
-        }
-    }, 1000);
+        console.log(`📊 Grid final: ${items.length} elementos`);
+        console.log('🎯 Columnas CSS:', computedStyle.gridTemplateColumns);
+        
+        // Verificar que todas las imágenes tienen enlace
+        mosaicItems.forEach((item, index) => {
+            if (!item.link || item.link === '#') {
+                console.warn(`⚠️ Item ${index + 1} (${item.title}) no tiene enlace válido`);
+            }
+        });
+    }, 1500);
 });
 
 // Manejar errores no capturados
@@ -581,3 +646,13 @@ window.addEventListener('error', function(e) {
         setupImageFallback();
     }
 });
+
+// Exportar para posibles extensiones
+if (typeof window !== 'undefined') {
+    window.mosaicItems = mosaicItems;
+    window.updateMosaic = generateMosaic;
+    window.addMosaicItem = function(newItem) {
+        mosaicItems.push(newItem);
+        generateMosaic();
+    };
+}
