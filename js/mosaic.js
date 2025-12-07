@@ -57,7 +57,7 @@ const mosaicItems = [
         id: 7,
         title: "Tonalámatl",
         description: "Códice y saqueos históricos (Aaron)",
-        images: ["img/tonalamatl.jpg", "img/tonalamatl_2.jpg", "https://source.unsplash.com/random/400x400/?codex"],
+        images: ["img/tona1.jpg", "img/tona2.jpg", "img/tona3.jpg"],
         link: "content/tonalamatl.html",
         category: "Cultura en disputa"
     },

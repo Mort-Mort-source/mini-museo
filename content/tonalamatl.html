@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carroza de Carlota • Contramuseo</title>
+    <title>El Tonalámatl de Aubin una historia de Poder y Patrimonio</title>
 
-    <!-- ESTILOS DEL PROYECTO -->
+    <!-- ESTILOS PRINCIPALES -->
     <link rel="stylesheet" href="../css/estilos.css">
 
     <!-- FUENTES -->
@@ -14,12 +14,14 @@
     <!-- ICONOS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- SIMPLELIGHTBOX (CSS) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplelightbox@2.14.3/dist/simple-lightbox.min.css">
+    <!-- SWIPER CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- GLIGHTBOX CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 </head>
 
 <body>
-
     <!-- SIDEBAR -->
     <div id="sidebar"></div>
 
@@ -27,19 +29,20 @@
     <main class="contenido">
         <section class="epoca">
 
-            <h1>Tonalámatl</h1>
+            <!-- ENCABEZADO -->
+            <h1>El Tonalámatl de Aubin una historia de Poder y Patrimonio</h1>
            
             <p class="intro">
             La historia del Tonalámatl de Aubin no es sólo la travesía de un códice, es un espejo incómodo de colonialismo,
              tráfico cultural y paradojas diplomáticas. Desde su salida irregular de México en el siglo XIX hasta el robo que 
-             lo trajo de vuelta en 1982, su trayectoria expone las tensiones entre Estados, académicos y los propios pueblos originarios
+             lo trajo de vuelta en 1982, su trayectoria expone las tensiones entre Estados, académicos y los propios pueblos originarios.
             </p>
              <p class="autor"><em>Aaron Rodrigo Ramos Reyes</em></p>
 
-            <!-- AUDIO -->
+            <!-- AUDIO DESCRIPTIVO -->
             <div class="audio-container" style="margin-top: 2rem;">
                 <h2>Para saber más</h2>
-              
+               
 
                 <div class="audio-player">
                     <div class="audio-info">
@@ -53,7 +56,7 @@
                     <div class="audio-controls">
                         <button class="control-btn play-pause" aria-label="Reproducir o pausar audio">
                             <i class="fas fa-play play-icon"></i>
-                            <i class="fas fa-pause pause-icon" style="display:none;"></i>
+                            <i class="fas fa-pause pause-icon" style="display: none;"></i>
                         </button>
 
                         <div class="progress-container">
@@ -66,7 +69,7 @@
                         <div class="volume-controls">
                             <button class="control-btn volume-btn" aria-label="Control de volumen">
                                 <i class="fas fa-volume-up volume-high"></i>
-                                <i class="fas fa-volume-mute volume-mute" style="display:none;"></i>
+                                <i class="fas fa-volume-mute volume-mute" style="display: none;"></i>
                             </button>
 
                             <div class="volume-slider-container">
@@ -79,32 +82,197 @@
                     </div>
 
                     <audio id="audio-player">
-                        <source src="../audio/(Carroza de Carlota y Maximiliano).mp3" type="audio/mpeg">
-                        <source src="../audio/(Carroza de Carlota y Maximiliano).mp3" type="audio/ogg">
+                        <source src="../audio/tonalamatl.mp3" type="audio/mpeg">
+                        <source src="../audio/tonalamatl.mp3" type="audio/ogg">
                         Tu navegador no soporta el elemento de audio.
                     </audio>
                 </div>
             </div>
 
-            <!-- GALERÍA CON ZOOM -->
+            <!-- GALERÍA SWIPER -->
             <div class="contenedor-marco" style="margin-top: 3rem;">
                 
 
-                <div class="galeria gallery-grid">
-                    <a href="../img/La_carroza_de_carlota.jpg" class="gallery-item">
-                        <img src="../img/La_carroza_de_carlota.jpg" alt="carroza de Carlota">
-                    </a>
+                <!-- SWIPER: Imagen principal -->
+                <div class="swiper gallery-top">
+                    <div class="swiper-wrapper">
 
-                    <a href="../img/La carroza de Carlota- foto 1_.jpg" class="gallery-item">
-                        <img src="../img/La carroza de Carlota- foto 1_.jpg" alt="carroza de Carlota">
-                    </a>
+                        <div class="swiper-slide">
+                            <a href="../img/tona1.jpg" class="glightbox">
+                                <img src="../img/tona1.jpg" alt="Tonalámatl de Aubin">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/tona2.jpg" class="glightbox">
+                                <img src="../img/tona2.jpg" alt="Tonalámatl de Aubin">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/tona3.jpg" class="glightbox">
+                                <img src="../img/tona3.jpg" alt="Tonalámatl de Aubin">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/tona4.jpg" class="glightbox">
+                                <img src="../img/tona4.jpg" alt="Tonalámatl de Aubin">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/tona5.jpg" class="glightbox">
+                                <img src="../img/tona5.jpg" alt="Tonalámatl de Aubin">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/tona6.jpg" class="glightbox">
+                                <img src="../img/tona6.jpg" alt="Tonalámatl de Aubin">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">  
+                            <a href="../img/tona7.jpg" class="glightbox">
+                                <img src="../img/tona7.jpg" alt="Tonalámatl de Aubin">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/tona8.jpg" class="glightbox">
+                                <img src="../img/tona8.jpg" alt="Tonalámatl de Aubin">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/tona9.jpg" class="glightbox">
+                                <img src="../img/tona9.jpg" alt="Tonalámatl de Aubin">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/tona10.jpg" class="glightbox">
+                                <img src="../img/tona10.jpg" alt="Tonalámatl de Aubin">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/tona11.jpg" class="glightbox">
+                                <img src="../img/tona11.jpg" alt="Tonalámatl de Aubin">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/tona12.jpg" class="glightbox">
+                                <img src="../img/tona12.jpg" alt="Tonalámatl de Aubin">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/tona13.jpg" class="glightbox">
+                                <img src="../img/tona13.jpg" alt="Tonalámatl de Aubin">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/tona14.jpg" class="glightbox">
+                                <img src="../img/tona14.jpg" alt="Tonalámatl de Aubin">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/tona15.jpg" class="glightbox">
+                                <img src="../img/tona15.jpg" alt="Tonalámatl de Aubin">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/tona16.jpg" class="glightbox">
+                                <img src="../img/tona16.jpg" alt="Tonalámatl de Aubin">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/tona17.jpg" class="glightbox">
+                                <img src="../img/tona17.jpg" alt="Tonalámatl de Aubin">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/tona18.jpg" class="glightbox">
+                                <img src="../img/tona18.jpg" alt="Tonalámatl de Aubin">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="../img/tona19.jpg" class="glightbox">
+                                <img src="../img/tona19.jpg" alt="Tonalámatl de Aubin">
+                            </a>
+                        </div>
+                    
+                    
 
-                    <a href="../img/La_carroza_de_carlota(1).jpg" class="gallery-item">
-                        <img src="../img/La_carroza_de_carlota(1).jpg" alt="carroza de Carlota">
-                    </a>
-                    <a href="../img/La_carroza_de_carlota(2).jpg" class="gallery-item">
-                        <img src="../img/La_carroza_de_carlota(2).jpg" alt="carroza de Carlota">
-                    </a>
+                        
+
+                    </div>
+
+                    <!-- Navegación -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+
+                <!-- SWIPER: Miniaturas -->
+                <div class="swiper gallery-thumbs">
+                    <div class="swiper-wrapper">
+
+                        <div class="swiper-slide">
+                            <img src="../img/tona1.jpg" alt="Miniatura 1">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/tona2.jpg" alt="Miniatura 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/tona3.jpg" alt="Miniatura 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/tona4.jpg" alt="Miniatura 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/tona5.jpg" alt="Miniatura 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/tona6.jpg" alt="Miniatura 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/tona7.jpg" alt="Miniatura 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/tona8.jpg" alt="Miniatura 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/tona9.jpg" alt="Miniatura 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/tona10.jpg" alt="Miniatura 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/tona11.jpg" alt="Miniatura 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/tona12.jpg" alt="Miniatura 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/tona13.jpg" alt="Miniatura 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/tona2.jpg" alt="Miniatura 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/tona14.jpg" alt="Miniatura 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/tona15.jpg" alt="Miniatura 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/tona16.jpg" alt="Miniatura 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/tona17.jpg" alt="Miniatura 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/tona18.jpg" alt="Miniatura 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/tona19.jpg" alt="Miniatura 2">
+                        </div>
+                        
+
+                       
+
+                    </div>
                 </div>
             </div>
 
@@ -113,23 +281,17 @@
 
     <!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <script src="../js/sidebarLoader.js"></script>
     <script src="../js/audioPlayer.js"></script>
 
-    <!-- SIMPLELIGHTBOX (JS) -->
-    <script src="https://cdn.jsdelivr.net/npm/simplelightbox@2.14.3/dist/simple-lightbox.jquery.min.js"></script>
+    <!-- SWIPER JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-    <script>
-        // Activar zoom SimpleLightbox
-        $(function(){
-            $('.gallery-grid a').simpleLightbox({
-                captions: true,
-                captionsData: "alt",
-                captionDelay: 250
-            });
-        });
-    </script>
+    <!-- GLIGHTBOX JS -->
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+    <!-- Inicialización del carrusel Swiper -->
+    <script src="../js/carousel-swiper.js"></script>
 
 </body>
 </html>
