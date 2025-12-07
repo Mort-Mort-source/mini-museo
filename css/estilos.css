@@ -1398,3 +1398,33 @@ body {
   transform: scale(1.1);
 }
 
+.intro-principal {
+  font-size: 0.9rem;        /* Más pequeño pero legible */
+  line-height: 1.45;        /* Compacto sin sentirse apretado */
+  color: #444;
+  max-width: 850px;         /* Evita líneas demasiado largas */
+  margin: 0 auto 2rem auto; /* Centrado y con buen espaciado */
+  text-align: justify;      /* Apariencia más profesional */
+  padding: 0 10px;          /* Un pequeño margen lateral */
+}
+
+.intro-principal h3 {
+  font-size: 1.1rem;
+  margin-top: 1.8rem;
+}
+
+.intro-principal p {
+  margin-bottom: 1rem;      /* Espaciado entre párrafos */
+}
+.correo {
+  color: inherit;       /* Usa el mismo color del texto */
+  text-decoration: none; /* Quita el subrayado */
+  font-style: inherit;   /* Respeta la cursiva del <em> */
+}
+
+.correo:hover {
+  text-decoration: underline; /* Opcional: subrayado al pasar el mouse */
+}
+
+
+
