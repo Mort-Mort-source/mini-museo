@@ -63,7 +63,6 @@
 
 
 craneo no tiene ni audio ni intro
-individuo no tiene audio ni intro
 pintura de castas no tiene audio ni intro
 xochipili no tiene intro ni audio
 
@@ -81,6 +80,7 @@ tumba ya esta al 100%
 cuauhtemoc ya esta al 100%
 luchadores ya esta al 100%
 señor del veneno ya esta al 100%
+individuo ya esta al 100%
 
 
 
