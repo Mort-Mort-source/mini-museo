@@ -1,8 +1,7 @@
 (function() {
     'use strict';
     
-    let sidebarVisible = true;
-    const animationSpeed = 300;
+    let sidebarVisible = false;
     let sidebarLoaded = false;
 
     // Función para activar submenús
@@ -28,8 +27,7 @@
             // Estado inicial cerrado
             $submenu.css({
                 'max-height': '0',
-                'overflow': 'hidden',
-                'transition': 'max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+                'overflow': 'hidden'
             });
 
             // Asegurar que tenga el icono correcto
@@ -76,60 +74,86 @@
         console.log('✅ Submenús activados:', $padres.length, 'secciones');
     }
 
-    // Crear botón toggle
-    function crearToggleButton() {
-        $('#sidebarToggle').remove();
+    // Función para alternar sidebar (CORREGIDA)
+    function toggleSidebar() {
+        const $sidebar = $('#sidebar .sidebar');
+        const $toggleIcon = $('#sidebarToggle i');
+        const $overlay = $('.sidebar-overlay');
+        const $body = $('body');
         
-        const $toggleBtn = $(`
-            <button id="sidebarToggle" class="sidebar-toggle" aria-label="Alternar menú lateral" aria-expanded="true">
-                <i class="fas fa-bars"></i>
-            </button>
-        `);
+        console.log('toggleSidebar llamado');
+        console.log('Elementos encontrados:', {
+            sidebar: $sidebar.length,
+            toggleIcon: $toggleIcon.length,
+            overlay: $overlay.length
+        });
         
-        $('body').prepend($toggleBtn);
+        if (!$sidebar.length) {
+            console.error('Elemento .sidebar no encontrado dentro de #sidebar');
+            return;
+        }
+
+        if (sidebarVisible) {
+            // Cerrar sidebar
+            $sidebar.removeClass('mostrado');
+            $overlay.removeClass('active');
+            $toggleIcon.removeClass('fa-times').addClass('fa-bars');
+            $('#sidebarToggle').attr('aria-expanded', 'false');
+            $body.removeClass('sidebar-open');
+            sidebarVisible = false;
+            console.log('Sidebar cerrado');
+        } else {
+            // Abrir sidebar
+            $sidebar.addClass('mostrado');
+            $overlay.addClass('active');
+            $toggleIcon.removeClass('fa-bars').addClass('fa-times');
+            $('#sidebarToggle').attr('aria-expanded', 'true');
+            $body.addClass('sidebar-open');
+            sidebarVisible = true;
+            console.log('Sidebar abierto');
+        }
+    }
+
+    // Configurar eventos del botón toggle
+    function configurarToggleButton() {
+        const $toggleBtn = $('#sidebarToggle');
+        const $overlay = $('.sidebar-overlay');
         
-        $toggleBtn.on('click', function(e) {
+        console.log('Configurando botón toggle...');
+        
+        if ($toggleBtn.length === 0) {
+            console.error('Botón sidebarToggle no encontrado');
+            return;
+        }
+
+        // Evento para el botón toggle
+        $toggleBtn.off('click').on('click', function(e) {
+            e.preventDefault();
             e.stopPropagation();
+            console.log('Botón toggle clickeado');
             toggleSidebar();
         });
         
-        // Cerrar sidebar al hacer clic fuera (solo móvil)
-        $(document).on('click', function(e) {
-            if ($(window).width() <= 1 && 
-                sidebarVisible && 
-                !$(e.target).closest('#sidebar, #sidebarToggle').length) {
-                toggleSidebar();
+        // Evento para cerrar al hacer clic en el overlay
+        if ($overlay.length) {
+            $overlay.off('click').on('click', function() {
+                console.log('Overlay clickeado');
+                if (sidebarVisible) {
+                    toggleSidebar();
+                }
+            });
+        }
+        
+        // Evento para cerrar al hacer clic en un enlace del sidebar (solo móvil)
+        $(document).on('click', '#sidebar a', function() {
+            if ($(window).width() <= 768) {
+                setTimeout(() => {
+                    if (sidebarVisible) toggleSidebar();
+                }, 300);
             }
         });
         
-        console.log('✅ Botón toggle creado');
-    }
-
-    // Función para alternar sidebar
-    function toggleSidebar() {
-        const $sidebar = $('#sidebar');
-        const $toggleIcon = $('#sidebarToggle i');
-        const $mainContent = $('.contenido');
-        
-        if (sidebarVisible) {
-            $sidebar.stop().slideUp(animationSpeed, function() {
-                $(this).addClass('sidebar-oculto');
-                $(this).attr('aria-hidden', 'true');
-            });
-            $toggleIcon.removeClass('fa-bars').addClass('fa-times');
-            $('#sidebarToggle').attr('aria-expanded', 'false');
-            $mainContent.addClass('sidebar-oculto');
-            sidebarVisible = false;
-        } else {
-            $sidebar.stop().slideDown(animationSpeed, function() {
-                $(this).removeClass('sidebar-oculto');
-                $(this).attr('aria-hidden', 'false');
-            });
-            $toggleIcon.removeClass('fa-times').addClass('fa-bars');
-            $('#sidebarToggle').attr('aria-expanded', 'true');
-            $mainContent.removeClass('sidebar-oculto');
-            sidebarVisible = true;
-        }
+        console.log('✅ Botón toggle configurado');
     }
 
     // Corregir rutas
@@ -176,11 +200,14 @@
             return;
         }
         
+        // Determinar la ruta correcta
         const estaEnContent = window.location.pathname.includes('/content/');
         const basePath = estaEnContent ? '..' : '.';
         const rutaSidebar = `${basePath}/sidebar.html`;
         
         console.log('📂 Cargando sidebar desde:', rutaSidebar);
+        console.log('Estamos en content:', estaEnContent);
+        console.log('Base path:', basePath);
         
         $.ajax({
             url: rutaSidebar,
@@ -188,36 +215,51 @@
             dataType: 'html',
             timeout: 10000,
             beforeSend: function() {
-                $cont.html('<div class="sidebar-loading" style="padding: 2rem; text-align: center; color: #5a2a27;"><i class="fas fa-spinner fa-spin"></i> Cargando menú...</div>');
+                $cont.html('<div class="sidebar-loading" style="padding: 2rem; text-align: center; color: var(--muted);"><i class="fas fa-spinner fa-spin"></i> Cargando menú...</div>');
             },
             success: function(html) {
                 if (!html || html.trim().length === 0) {
                     throw new Error('HTML del sidebar vacío');
                 }
                 
+                console.log('✅ HTML del sidebar recibido, longitud:', html.length);
                 $cont.html(html);
                 corregirRutasSidebar($cont);
                 activarSubmenus();
-                crearToggleButton();
+                configurarToggleButton();
                 sidebarLoaded = true;
                 
-                // Ocultar automáticamente en móvil
-                if ($(window).width() <= 768) {
-                    $('#sidebar').hide().addClass('sidebar-oculto');
-                    $('#sidebarToggle i').removeClass('fa-times').addClass('fa-bars');
+                // Estado inicial basado en el tamaño de pantalla
+                const isMobile = $(window).width() <= 768;
+                const $sidebarElement = $('#sidebar .sidebar');
+                const $toggleBtn = $('#sidebarToggle');
+                
+                console.log('Estado inicial - Móvil:', isMobile);
+                console.log('Elemento sidebar encontrado:', $sidebarElement.length);
+                
+                if (isMobile) {
+                    // En móvil: sidebar oculto inicialmente
+                    $sidebarElement.removeClass('mostrado');
+                    $toggleBtn.find('i').removeClass('fa-times').addClass('fa-bars');
+                    $toggleBtn.attr('aria-expanded', 'false');
+                    $('.sidebar-overlay').removeClass('active');
+                    $('body').removeClass('sidebar-open');
                     sidebarVisible = false;
-                    $('.contenido').addClass('sidebar-oculto');
-                    $('#sidebarToggle').attr('aria-expanded', 'false');
+                    $toggleBtn.show();
                 } else {
-                    $('#sidebar').show().removeClass('sidebar-oculto');
-                    $('#sidebarToggle').attr('aria-expanded', 'true');
+                    // En escritorio: sidebar visible
+                    $sidebarElement.addClass('mostrado');
+                    $toggleBtn.attr('aria-expanded', 'true');
+                    $toggleBtn.hide();
+                    sidebarVisible = true;
                 }
                 
                 console.log('✅ Sidebar cargado correctamente');
-                console.log('📊 Estructura: 11 secciones totales (9 con submenús)');
+                console.log('Sidebar visible inicial:', sidebarVisible);
             },
             error: function(xhr, status, error) {
                 console.error('Error cargando sidebar:', status, error);
+                console.log('URL intentada:', rutaSidebar);
                 crearSidebarFallback();
             }
         });
@@ -229,25 +271,46 @@
         const estaEnContent = window.location.pathname.includes('/content/');
         const basePath = estaEnContent ? '..' : '.';
         
+        console.log('🔄 Creando sidebar de fallback...');
+        
         const fallbackHTML = `
             <aside class="sidebar" aria-label="Menú principal">
                 <h2>Contramuseo</h2>
                 <nav>
                     <ul>
-                        <li><a href="${basePath}/index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                        <li><a href="${basePath}/index.html">Inicio</a></li>
                         <li class="menu-padre">
                             <a href="#" class="toggle">
-                                <i class="fas fa-bone"></i> Restos humanos
+                                Colecciones Oseas
                                 <i class="fas fa-chevron-down toggle-icon"></i>
                             </a>
                             <ul class="submenu">
-                                <li><a href="${basePath}/content/coleccionesOseas.html">Colecciones óseas</a></li>
-                                <li><a href="${basePath}/content/individuo150.html">El individuo 150 (Vanessa)</a></li>
-                                <li><a href="${basePath}/content/Omichicahuaztli.html">Omichicahuaztli (Alex)</a></li>
+                                <li><a href="${basePath}/content/individuo150.html">El individuo 150 de la línea 8 del metro: Memoria en resistencia bajo la ciudad</a></li>
+                                <li><a href="${basePath}/content/Omichicahuaztli.html">Omichicahuaztli</a></li>
                             </ul>
                         </li>
-                        <!-- Continuar con las demás secciones... -->
-                        <li><a href="${basePath}/contacto.html"><i class="fas fa-envelope"></i> Contacto</a></li>
+                        <li class="menu-padre">
+                            <a href="#" class="toggle">
+                                Falsos y réplicas/restauraciones
+                                <i class="fas fa-chevron-down toggle-icon"></i>
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="${basePath}/content/tumba_pakal.html">La tumba de Pakal</a></li>
+                                <li><a href="${basePath}/content/Falsos.html">Falsos</a></li>
+                                <li><a href="${basePath}/content/maqueta_templo_mayor.html">Maqueta del Templo Mayor</a></li>
+                                <li><a href="${basePath}/content/señor_del_veneno.html">El señor del Veneno</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-padre">
+                            <a href="#" class="toggle">
+                                Cultura en disputa
+                                <i class="fas fa-chevron-down toggle-icon"></i>
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="${basePath}/content/tonalamatl.html">Tonalámatl</a></li>
+                                <li><a href="${basePath}/content/craneo_mixteco.html">Cráneo mixteco</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
             </aside>
@@ -255,8 +318,23 @@
         
         $cont.html(fallbackHTML);
         activarSubmenus();
-        crearToggleButton();
+        configurarToggleButton();
         sidebarLoaded = true;
+        
+        // Configurar estado inicial
+        const isMobile = $(window).width() <= 768;
+        const $sidebarElement = $('#sidebar .sidebar');
+        const $toggleBtn = $('#sidebarToggle');
+        
+        if (isMobile) {
+            $sidebarElement.removeClass('mostrado');
+            $toggleBtn.show();
+            sidebarVisible = false;
+        } else {
+            $sidebarElement.addClass('mostrado');
+            $toggleBtn.hide();
+            sidebarVisible = true;
+        }
         
         console.log('✅ Sidebar de fallback cargado');
     }
@@ -268,6 +346,13 @@
             return;
         }
         
+        console.log('🚀 Inicializando sidebar...');
+        console.log('Path actual:', window.location.pathname);
+        
+        // Primero configurar el botón toggle (ya existe en el HTML)
+        configurarToggleButton();
+        
+        // Luego cargar el sidebar
         cargarSidebar();
         
         // Manejar redimensionamiento
@@ -275,12 +360,29 @@
         $(window).on('resize', function() {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(function() {
-                if ($(window).width() > 768 && !sidebarVisible) {
-                    $('#sidebar').show().removeClass('sidebar-oculto');
-                    $('#sidebarToggle i').removeClass('fa-times').addClass('fa-bars');
+                const isMobile = $(window).width() <= 768;
+                const $sidebarElement = $('#sidebar .sidebar');
+                const $toggleBtn = $('#sidebarToggle');
+                
+                console.log('🔄 Redimensionamiento - Móvil:', isMobile);
+                
+                if (!isMobile) {
+                    // En escritorio: mostrar sidebar y ocultar botón toggle
+                    $sidebarElement.addClass('mostrado');
+                    $('.sidebar-overlay').removeClass('active');
+                    $toggleBtn.hide();
+                    $('body').removeClass('sidebar-open');
                     sidebarVisible = true;
-                    $('.contenido').removeClass('sidebar-oculto');
-                    $('#sidebarToggle').attr('aria-expanded', 'true');
+                } else {
+                    // En móvil: mostrar botón toggle
+                    $toggleBtn.show();
+                    
+                    // Si el sidebar estaba abierto, mantenerlo abierto
+                    if (!sidebarVisible) {
+                        $sidebarElement.removeClass('mostrado');
+                        $('.sidebar-overlay').removeClass('active');
+                        $('body').removeClass('sidebar-open');
+                    }
                 }
                 
                 // Recalcular altura de submenús abiertos
@@ -290,19 +392,25 @@
             }, 250);
         });
         
-        // Keyboard accessibility
+        // Keyboard accessibility - cerrar con ESC
         $(document).on('keydown', function(e) {
             if (e.key === 'Escape' && $(window).width() <= 768 && sidebarVisible) {
+                console.log('ESC presionado, cerrando sidebar');
                 toggleSidebar();
             }
         });
+        
+        // Depuración: exponer función toggle globalmente
+        window.debugToggleSidebar = toggleSidebar;
     });
 
     // Manejar errores
     window.addEventListener('error', function(e) {
-        if (e.message.includes('sidebar') || e.filename && e.filename.includes('sidebarLoader')) {
+        if (e.message.includes('sidebar') || (e.filename && e.filename.includes('sidebarLoader'))) {
             console.error('Error en sidebarLoader:', e);
-            crearSidebarFallback();
+            if (!sidebarLoaded) {
+                crearSidebarFallback();
+            }
         }
     });
 

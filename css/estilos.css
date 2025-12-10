@@ -18,10 +18,8 @@ Organización:
 13. ANIMACIONES
 14. RESPONSIVE DESIGN
 15. ACCESIBILIDAD Y ESTADOS ESPECIALES
-16. ID ESPECÍFICO
 ================================================================================
 */
-
 
 /* ==========================================================================
    1. RESET Y VARIABLES GLOBALES
@@ -39,7 +37,7 @@ Organización:
   --sidebar-bg: #ffffff;
   --sidebar-text: #1a1a1a;
   --sidebar-hover: rgba(74, 111, 165, 0.05);
-  
+
   /* Degradados sutiles */
   --gradient-primary: linear-gradient(135deg, #4a6fa5 0%, #5a86c5 100%);
   --gradient-subtle: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -57,7 +55,7 @@ Organización:
    2. ESTRUCTURA BASE Y TIPOGRAFÍA
    ========================================================================== */
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   background-color: var(--bg);
   color: var(--primary);
   display: flex;
@@ -82,28 +80,59 @@ body {
   z-index: 1000;
   border-right: 1px solid var(--border);
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
+  left: 0;
+  top: 0;
 }
 
+/* Botón de menú hamburguesa */
 .sidebar-toggle {
   display: none;
   position: fixed;
   top: 20px;
   left: 20px;
   z-index: 1100;
-  background: var(--primary);
+  background: var(--gradient-primary);
   border: none;
-  border-radius: 4px;
+  border-radius: 50%;
   width: 50px;
   height: 50px;
   font-size: 1.2rem;
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  align-items: center;
+  justify-content: center;
 }
 
 .sidebar-toggle:hover {
-  background: #333333;
+  background: var(--gradient-accent);
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(74, 111, 165, 0.3);
+}
+
+.sidebar-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Overlay para cerrar sidebar en móviles */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 995;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.active {
+  display: block;
+  opacity: 1;
 }
 
 .sidebar h2 {
@@ -164,7 +193,7 @@ body {
 }
 
 .menu-padre::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -307,7 +336,7 @@ body {
 }
 
 .mosaic-item::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -390,7 +419,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
   color: white;
   padding: 20px 15px 15px;
   transition: all 0.3s ease;
@@ -484,7 +513,7 @@ body {
   opacity: 0;
   transition: all 0.3s ease;
   z-index: 2;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .mosaic-item:hover .mosaic-counter {
@@ -528,7 +557,7 @@ body {
 }
 
 .epoca h1::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -8px;
   left: 0;
@@ -569,7 +598,7 @@ body {
 }
 
 .epoca h2::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -642,10 +671,10 @@ body {
   color: var(--muted);
   font-size: 0.9rem;
   font-weight: 400;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
 }
 
-/* Contenedor principal de controles - IMPORTANTE */
+/* Contenedor principal de controles */
 .audio-controls {
   display: flex;
   align-items: center;
@@ -742,7 +771,7 @@ body {
   top: 50%;
   transform: translate(-50%, -50%) scale(0);
   transition: all 0.2s ease;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   border: 2px solid var(--accent);
   z-index: 2;
 }
@@ -840,7 +869,7 @@ body {
   left: 50%;
   transform: translateX(-50%) scale(0);
   transition: all 0.2s ease;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   border: 2px solid var(--accent);
   z-index: 2;
 }
@@ -970,13 +999,14 @@ body {
   box-shadow: 0 6px 18px var(--shadow);
 }
 
-.swiper-button-next, .swiper-button-prev {
+.swiper-button-next,
+.swiper-button-prev {
   color: white;
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(0,0,0,0.45), rgba(0,0,0,0.25));
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.25));
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
   --swiper-navigation-size: 44px;
 }
 
@@ -995,7 +1025,7 @@ body {
   z-index: 2000;
   align-items: center;
   justify-content: center;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0, 0, 0, 0.85);
   padding: 24px;
   gap: 20px;
 }
@@ -1019,7 +1049,7 @@ body {
   max-height: 100%;
   object-fit: contain;
   border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
   background: #111;
 }
 
@@ -1033,7 +1063,7 @@ body {
 .lightbox-close,
 .lightbox-prev,
 .lightbox-next {
-  background: rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.06);
   color: #fff;
   border: none;
   width: 44px;
@@ -1079,7 +1109,7 @@ body {
 .lightbox-prev:hover,
 .lightbox-next:hover {
   transform: translateY(-2px) scale(1.02);
-  background: rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 /* ==========================================================================
@@ -1133,7 +1163,7 @@ body {
 }
 
 .info-adicional h3::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 50%;
@@ -1308,13 +1338,13 @@ body {
   .sidebar {
     width: 300px;
   }
-  
+
   .contenido {
     margin-left: 300px;
     padding-left: 320px;
     max-width: 1200px;
   }
-  
+
   .mosaic-grid {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     max-width: 1100px;
@@ -1326,11 +1356,11 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     max-width: 1000px;
   }
-  
+
   .mosaic-item {
     min-height: 200px;
   }
-  
+
   .sidebar h2 {
     font-size: 1.6rem;
   }
@@ -1342,7 +1372,7 @@ body {
     gap: 20px;
     max-width: 900px;
   }
-  
+
   .contenido {
     padding-left: 300px;
     padding-right: 2rem;
@@ -1354,27 +1384,27 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     max-width: 700px;
   }
-  
+
   .mosaic-item {
     min-height: 180px;
   }
-  
+
   .mosaic-overlay {
     padding: 15px 12px 12px;
   }
-  
+
   .mosaic-title {
     font-size: 1rem;
   }
-  
+
   .mosaic-description {
     font-size: 0.8rem;
   }
-  
+
   .swiper.gallery-thumbs {
     height: 84px;
   }
-  
+
   .swiper.gallery-thumbs .swiper-slide {
     width: 84px;
     height: 64px;
@@ -1383,111 +1413,115 @@ body {
 
 /* Tablet */
 @media (max-width: 768px) {
+  /* Sidebar - CORREGIDO */
   .sidebar {
     transform: translateX(-100%);
-    transition: transform 0.3s ease;
     width: 280px;
     border-right: none;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   .sidebar.mostrado {
     transform: translateX(0);
   }
-  
+
+  /* Mostrar botón toggle en móviles */
   .sidebar-toggle {
-    display: block;
+    display: flex !important;
   }
-  
+
   .contenido {
     margin-left: 0;
     padding: 1.5rem;
-    padding-top: 80px;
+    padding-top: 90px; /* Espacio para el botón de menú */
     padding-left: 1.5rem;
     max-width: 100%;
+    width: 100%;
   }
-  
+
   .mosaic-grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 15px;
     max-width: 100%;
   }
-  
+
   .mosaic-item {
     aspect-ratio: 3/2;
     min-height: 160px;
   }
-  
+
   .epoca {
     padding: 0;
   }
-  
+
   .epoca h1 {
     font-size: 2.2rem;
   }
-  
+
   .epoca h2 {
     font-size: 1.5rem;
   }
-  
+
   .section-highlight {
     padding: 1.5rem;
   }
-  
+
   .gradient-card {
     padding: 1.5rem;
   }
-  
+
   .galeria {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   /* Reproductor de audio en móvil */
   .audio-controls {
     gap: 1rem;
     flex-wrap: wrap;
   }
-  
+
   .progress-container {
     order: 3;
     flex-basis: 100%;
     margin-top: 1rem;
   }
-  
+
   .audio-container {
     padding: 1.5rem;
   }
-  
+
   .control-btn {
     width: 45px;
     height: 45px;
   }
-  
+
   .volume-btn {
     width: 35px;
     height: 35px;
   }
-  
+
   /* Lightbox en móvil */
-  .lightbox-prev, .lightbox-next {
+  .lightbox-prev,
+  .lightbox-next {
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
     left: 8px;
     right: 8px;
   }
-  
+
   .lightbox-close {
     top: 12px;
     right: 12px;
     width: 40px;
     height: 40px;
   }
-  
+
   .lightbox-stage {
     max-height: calc(100vh - 120px);
   }
-  
+
   /* Mosaico en móvil */
   .mosaic-counter {
     width: 24px;
@@ -1496,18 +1530,33 @@ body {
     top: 8px;
     right: 8px;
   }
-  
+
   .mosaic-overlay {
     padding: 12px 10px 10px;
     opacity: 0.9;
   }
-  
+
   .mosaic-title {
     font-size: 0.95rem;
   }
-  
+
   .mosaic-description {
     font-size: 0.75rem;
+  }
+}
+
+/* En escritorio, ocultar botón toggle */
+@media (min-width: 769px) {
+  .sidebar-toggle {
+    display: none !important;
+  }
+
+  .sidebar-overlay {
+    display: none !important;
+  }
+
+  .sidebar {
+    transform: translateX(0) !important;
   }
 }
 
@@ -1517,29 +1566,29 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 12px;
   }
-  
+
   .mosaic-item {
     min-height: 140px;
   }
-  
+
   .audio-info {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
-  
+
   .audio-time {
     align-self: flex-end;
   }
-  
+
   .progress-container {
     margin: 0 1rem;
   }
-  
+
   .galeria {
     grid-template-columns: 1fr;
   }
-  
+
   .intro-principal {
     text-align: left;
     font-size: 0.85rem;
@@ -1552,37 +1601,49 @@ body {
     align-items: stretch;
     gap: 1rem;
   }
-  
+
   .progress-container {
     order: 2;
     margin-top: 0;
   }
-  
+
   .play-pause {
     align-self: center;
   }
-  
+
   .volume-controls {
     align-self: flex-end;
   }
-  
+
   .mosaic-grid {
     grid-template-columns: 1fr;
     max-width: 400px;
     margin: 0 auto;
   }
-  
+
   .mosaic-item {
     min-height: 200px;
     max-width: 100%;
   }
-  
+
   .mosaic-title {
     font-size: 1rem;
   }
-  
+
   .mosaic-description {
     font-size: 0.85rem;
+  }
+
+  .sidebar-toggle {
+    top: 15px;
+    left: 15px;
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+
+  .contenido {
+    padding-top: 80px;
   }
 }
 
@@ -1591,11 +1652,11 @@ body {
     grid-template-columns: 1fr;
     gap: 10px;
   }
-  
+
   .mosaic-item {
     min-height: 180px;
   }
-  
+
   .contenido {
     padding: 1rem;
     padding-top: 70px;
@@ -1615,7 +1676,7 @@ body {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
   }
-  
+
   .audio-player.playing .control-btn.play-pause {
     animation: none;
   }
@@ -1636,12 +1697,409 @@ body {
 
 /* Mejor contraste para texto */
 .mosaic-overlay {
-  background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.6), transparent);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.6),
+    transparent
+  );
 }
 
 /* ==========================================================================
-   16. ID ESPECÍFICO
+   MEJORAS ESPECÍFICAS PARA MÓVILES - REPRODUCTOR DE AUDIO
    ========================================================================== */
-#sidebarToggle {
-  display: none !important;
+@media (max-width: 768px) {
+  .audio-container {
+    padding: 1.2rem;
+    margin: 2rem 0;
+  }
+
+  .audio-controls {
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  .control-btn {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+  }
+
+  .play-pause {
+    order: 1;
+  }
+
+  .progress-container {
+    order: 3;
+    flex: 0 0 100%;
+    margin: 0.8rem 0 0 0;
+  }
+
+  .progress-bar {
+    height: 6px;
+  }
+
+  .progress-handle {
+    width: 20px;
+    height: 20px;
+  }
+
+  .volume-controls {
+    order: 2;
+    position: relative;
+  }
+
+  .volume-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Mejorar el slider de volumen para móviles */
+  .volume-slider-container {
+    position: fixed;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 20px 15px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .volume-slider-container.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .volume-slider {
+    height: 120px;
+  }
+
+  .volume-handle {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Asegurar que los botones sean táctiles */
+  button {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    touch-action: manipulation;
+  }
+
+  .control-btn:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Pantallas muy pequeñas */
+@media (max-width: 480px) {
+  .audio-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .play-pause {
+    align-self: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .volume-controls {
+    align-self: flex-end;
+    margin-top: 0.5rem;
+  }
+
+  .progress-container {
+    margin-top: 0.5rem;
+  }
+
+  .audio-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+
+  .audio-time {
+    align-self: flex-end;
+  }
+}
+
+/* ==========================================================================
+   MEJORAS ESPECÍFICAS PARA EL REPRODUCTOR EN MÓVILES
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .audio-container {
+    padding: 1rem !important;
+    margin: 1.5rem 0 !important;
+    border-radius: 12px !important;
+    background: var(--card) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  .audio-player {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .audio-info {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 1rem !important;
+    padding-bottom: 0.8rem !important;
+    border-bottom: 1px solid var(--border) !important;
+  }
+
+  .audio-time {
+    font-size: 0.8rem !important;
+    font-weight: 500 !important;
+    color: var(--muted) !important;
+  }
+
+  /* CONTROLES PRINCIPALES */
+  .audio-controls {
+    display: grid !important;
+    grid-template-columns: auto 1fr auto !important;
+    grid-template-rows: auto !important;
+    gap: 0.8rem !important;
+    align-items: center !important;
+    padding: 0.5rem 0 !important;
+    width: 100% !important;
+  }
+
+  .play-pause {
+    grid-column: 1 / 2 !important;
+    grid-row: 1 / 2 !important;
+    justify-self: start !important;
+    width: 50px !important;
+    height: 50px !important;
+    min-width: 50px !important;
+    min-height: 50px !important;
+  }
+
+  .progress-container {
+    grid-column: 2 / 3 !important;
+    grid-row: 1 / 2 !important;
+    height: 25px !important;
+    margin: 0 !important;
+    padding: 0 0.5rem !important;
+    align-self: center !important;
+  }
+
+  .progress-bar {
+    height: 6px !important;
+    border-radius: 3px !important;
+  }
+
+  .progress-handle {
+    width: 20px !important;
+    height: 20px !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    border: 2px solid var(--accent) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  .progress-bar:hover .progress-handle,
+  .progress-bar.dragging .progress-handle {
+    transform: translate(-50%, -50%) scale(1.2) !important;
+  }
+
+  .volume-controls {
+    grid-column: 3 / 4 !important;
+    grid-row: 1 / 2 !important;
+    justify-self: end !important;
+    position: relative !important;
+  }
+
+  .volume-btn {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    background: rgba(74, 111, 165, 0.1) !important;
+    color: var(--accent) !important;
+  }
+
+  .volume-btn:hover {
+    background: rgba(74, 111, 165, 0.2) !important;
+  }
+
+  /* SLIDER DE VOLUMEN MEJORADO PARA MÓVILES */
+  .volume-slider-container {
+    position: absolute !important;
+    bottom: 50px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 12px !important;
+    padding: 15px !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    z-index: 1000 !important;
+  }
+
+  .volume-slider-container.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateX(-50%) translateY(-5px) !important;
+  }
+
+  .volume-slider {
+    width: 6px !important;
+    height: 80px !important;
+    background: rgba(0, 0, 0, 0.1) !important;
+    border-radius: 3px !important;
+  }
+
+  .volume-level {
+    background: var(--gradient-primary) !important;
+    border-radius: 3px !important;
+  }
+
+  .volume-handle {
+    width: 20px !important;
+    height: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    border: 2px solid var(--accent) !important;
+    background: white !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  .volume-slider:hover .volume-handle,
+  .volume-slider.dragging .volume-handle {
+    transform: translateX(-50%) scale(1.2) !important;
+  }
+
+  /* MEJORAR TAMAÑO DE ICONOS */
+  .control-btn i {
+    font-size: 1.1rem !important;
+  }
+
+  .play-pause i {
+    font-size: 1.3rem !important;
+  }
+}
+
+/* PANTALLAS MUY PEQUEÑAS (menos de 480px) */
+@media (max-width: 480px) {
+  .audio-container {
+    padding: 0.8rem !important;
+  }
+
+  .audio-container h2 {
+    font-size: 1.3rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .audio-controls {
+    grid-template-columns: 50px 1fr 40px !important;
+    gap: 0.5rem !important;
+  }
+
+  .play-pause {
+    width: 45px !important;
+    height: 45px !important;
+    min-width: 45px !important;
+    min-height: 45px !important;
+  }
+
+  .play-pause i {
+    font-size: 1.2rem !important;
+  }
+
+  .progress-container {
+    height: 20px !important;
+  }
+
+  .progress-bar {
+    height: 5px !important;
+  }
+
+  .progress-handle {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .volume-btn {
+    width: 35px !important;
+    height: 35px !important;
+    min-width: 35px !important;
+    min-height: 35px !important;
+  }
+
+  .volume-slider-container {
+    padding: 12px !important;
+    bottom: 45px !important;
+  }
+
+  .volume-slider {
+    height: 70px !important;
+  }
+
+  .audio-time {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* PANTALLAS EXTRA PEQUEÑAS (menos de 360px) */
+@media (max-width: 360px) {
+  .audio-controls {
+    grid-template-columns: 45px 1fr 35px !important;
+  }
+
+  .play-pause {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  .volume-btn {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .control-btn i {
+    font-size: 1rem !important;
+  }
+}
+
+/* MEJORAS PARA TÁCTIL */
+@media (hover: none) and (pointer: coarse) {
+  .control-btn {
+    -webkit-tap-highlight-color: rgba(74, 111, 165, 0.3) !important;
+  }
+
+  .progress-bar,
+  .volume-slider {
+    touch-action: none !important;
+  }
+
+  .progress-handle,
+  .volume-handle {
+    touch-action: pan-y !important;
+  }
+}
+
+/* ESTADOS DE FOCO MEJORADOS PARA TÁCTIL */
+.control-btn:active {
+  transform: scale(0.95) !important;
+  transition: transform 0.1s ease !important;
+}
+
+.progress-bar:active .progress-handle {
+  transform: translate(-50%, -50%) scale(1.3) !important;
 }
