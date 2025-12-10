@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,25 +29,26 @@
         <section class="epoca">
 
             <h1>Una cabina telefonica</h1>
-      
-            <p class="intro">
-                Solemos estar acostumbrados a ver a los objetos aunque pocas veces nos percatamos de que ellos también nos ven.
-                 ¿Qué pasaría si dejáramos de percibir a los objetos como algo pasivo? ¿Qué crees que nos contarían?
-                  ¿Qué nos contaría, por ejemplo,  una cabina telefónica de antaño? La cabina telefónica de Telmex representa un 
-                  momento en la evolución de la comunicación y tecnología –  la cual ahora debido a los teléfonos celulares cabe en 
-                  nuestros bolsillos. Al mismo tiempo,  al estar en un museo, y no en cualquiera sino en el Soumaya, la cabina Telmex 
-                  cuenta a la vez el origen de un monopolio.
-            </p>
-                  <p class="autor"><em> Aranza Verónica Plata Miranda </em></p>
 
-            <!-- AUDIO -->
+            <p class="intro">
+                Solemos estar acostumbrados a ver a los objetos aunque pocas veces nos percatamos de que ellos también
+                nos ven.
+                ¿Qué pasaría si dejáramos de percibir a los objetos como algo pasivo? ¿Qué crees que nos contarían?
+                ¿Qué nos contaría, por ejemplo, una cabina telefónica de antaño? La cabina telefónica de Telmex
+                representa un
+                momento en la evolución de la comunicación y tecnología – la cual ahora debido a los teléfonos celulares
+                cabe en
+                nuestros bolsillos. Al mismo tiempo, al estar en un museo, y no en cualquiera sino en el Soumaya, la
+                cabina Telmex
+                cuenta a la vez el origen de un monopolio.
+            </p>
+            <p class="autor"><em> Aranza Verónica Plata Miranda </em></p>
+
             <div class="audio-container" style="margin-top: 2rem;">
                 <h2>Para saber más</h2>
-              
 
                 <div class="audio-player">
                     <div class="audio-info">
-                        
                         <div class="audio-time">
                             <span class="current-time">0:00</span> /
                             <span class="duration">0:00</span>
@@ -54,11 +56,13 @@
                     </div>
 
                     <div class="audio-controls">
+                        <!-- Botón play/pause -->
                         <button class="control-btn play-pause" aria-label="Reproducir o pausar audio">
                             <i class="fas fa-play play-icon"></i>
-                            <i class="fas fa-pause pause-icon" style="display:none;"></i>
+                            <i class="fas fa-pause pause-icon" style="display: none;"></i>
                         </button>
 
+                        <!-- Barra de progreso -->
                         <div class="progress-container">
                             <div class="progress-bar">
                                 <div class="progress"></div>
@@ -66,10 +70,11 @@
                             </div>
                         </div>
 
+                        <!-- Control de volumen -->
                         <div class="volume-controls">
                             <button class="control-btn volume-btn" aria-label="Control de volumen">
                                 <i class="fas fa-volume-up volume-high"></i>
-                                <i class="fas fa-volume-mute volume-mute" style="display:none;"></i>
+                                <i class="fas fa-volume-mute volume-mute" style="display: none;"></i>
                             </button>
 
                             <div class="volume-slider-container">
@@ -83,7 +88,6 @@
 
                     <audio id="audio-player">
                         <source src="../audio/cabina_telefonica.mp3" type="audio/mpeg">
-                        <source src="../audio/cabina_telefonica.mp3" type="audio/ogg">
                         Tu navegador no soporta el elemento de audio.
                     </audio>
                 </div>
@@ -91,7 +95,7 @@
 
             <!-- GALERÍA CON ZOOM -->
             <div class="contenedor-marco" style="margin-top: 3rem;">
-            
+
 
                 <div class="galeria gallery-grid">
                     <a href="../img/cabina_telefonica2.jpg" class="gallery-item">
@@ -118,7 +122,7 @@
 
     <script>
         // Activar zoom SimpleLightbox
-        $(function(){
+        $(function () {
             $('.gallery-grid a').simpleLightbox({
                 captions: true,
                 captionsData: "alt",
@@ -128,4 +132,5 @@
     </script>
 
 </body>
+
 </html>

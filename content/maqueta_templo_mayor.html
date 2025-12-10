@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,25 +32,23 @@
 
             <!-- ENCABEZADO -->
             <h1>Maqueta del Templo Mayor</h1>
-            
+
             <p class="intro">
-              La maqueta del Templo Mayor nos invita a recorrer, en escala reducida, el centro simbólico
-              de la gran red tributaria del Imperio Mexica. No es solo una representación arquitectónica:
-              es un dispositivo que condensa narrativas de poder, memoria y pedagogía. Frente a ella, el
-              visitante descubre cómo el pasado mexica ha sido traducido en formas museográficas que
-              ordenan y simplifican, pero también provocan preguntas. Este objeto abre la puerta a un
-              diálogo crítico sobre historia, nación y universalidad
+                La maqueta del Templo Mayor nos invita a recorrer, en escala reducida, el centro simbólico
+                de la gran red tributaria del Imperio Mexica. No es solo una representación arquitectónica:
+                es un dispositivo que condensa narrativas de poder, memoria y pedagogía. Frente a ella, el
+                visitante descubre cómo el pasado mexica ha sido traducido en formas museográficas que
+                ordenan y simplifican, pero también provocan preguntas. Este objeto abre la puerta a un
+                diálogo crítico sobre historia, nación y universalidad
             </p>
             <p class="autor"><em>Samanta Garduño Guadarrama</em></p>
 
             <!-- AUDIO DESCRIPTIVO -->
             <div class="audio-container" style="margin-top: 2rem;">
                 <h2>Para saber más</h2>
-               
 
                 <div class="audio-player">
                     <div class="audio-info">
-                        
                         <div class="audio-time">
                             <span class="current-time">0:00</span> /
                             <span class="duration">0:00</span>
@@ -57,11 +56,13 @@
                     </div>
 
                     <div class="audio-controls">
+                        <!-- Botón play/pause -->
                         <button class="control-btn play-pause" aria-label="Reproducir o pausar audio">
                             <i class="fas fa-play play-icon"></i>
                             <i class="fas fa-pause pause-icon" style="display: none;"></i>
                         </button>
 
+                        <!-- Barra de progreso -->
                         <div class="progress-container">
                             <div class="progress-bar">
                                 <div class="progress"></div>
@@ -69,6 +70,7 @@
                             </div>
                         </div>
 
+                        <!-- Control de volumen -->
                         <div class="volume-controls">
                             <button class="control-btn volume-btn" aria-label="Control de volumen">
                                 <i class="fas fa-volume-up volume-high"></i>
@@ -86,7 +88,6 @@
 
                     <audio id="audio-player">
                         <source src="../audio/maqueta_templo_mayor.output.mp3" type="audio/mpeg">
-                        <source src="../audio/maqueta_templo_mayor.output.mp3" type="audio/ogg">
                         Tu navegador no soporta el elemento de audio.
                     </audio>
                 </div>
@@ -94,7 +95,7 @@
 
             <!-- GALERÍA SWIPER -->
             <div class="contenedor-marco" style="margin-top: 3rem;">
-                
+
 
                 <!-- SWIPER: Imagen principal -->
                 <div class="swiper gallery-top">
@@ -179,4 +180,5 @@
     <script src="../js/carousel-swiper.js"></script>
 
 </body>
+
 </html>

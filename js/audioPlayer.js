@@ -1,4 +1,4 @@
-// Reproductor de audio minimalista - Contramuseo
+// Reproductor de audio corregido
 class AudioPlayer {
     constructor() {
         this.audio = document.getElementById('audio-player');
@@ -8,10 +8,11 @@ class AudioPlayer {
             return;
         }
         
+        this.playerElement = document.querySelector('.audio-player');
         this.playPauseBtn = document.querySelector('.play-pause');
         this.progressBar = document.querySelector('.progress');
         this.progressHandle = document.querySelector('.progress-handle');
-        this.progressContainer = document.querySelector('.progress-container');
+        this.progressContainer = document.querySelector('.progress-bar');
         this.currentTimeEl = document.querySelector('.current-time');
         this.durationEl = document.querySelector('.duration');
         this.volumeBtn = document.querySelector('.volume-btn');
@@ -21,109 +22,104 @@ class AudioPlayer {
         
         this.isDragging = false;
         this.isVolumeDragging = false;
-        this.wasPlaying = false;
         
         this.init();
     }
     
     init() {
-        // Verificar elementos requeridos
         if (!this.playPauseBtn || !this.progressContainer) {
             console.warn('Elementos del reproductor no encontrados');
             return;
         }
         
-        // Configurar iconos FontAwesome si no existen
-        this.setupIcons();
+        // Event listeners
+        this.playPauseBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            this.togglePlay();
+        });
         
-        // Event listeners básicos
-        this.playPauseBtn.addEventListener('click', () => this.togglePlay());
+        // Prevenir el comportamiento por defecto del botón
+        this.playPauseBtn.addEventListener('mousedown', (e) => e.preventDefault());
+        this.playPauseBtn.addEventListener('touchstart', (e) => e.preventDefault());
+        
         this.progressContainer.addEventListener('click', (e) => this.setProgress(e));
         this.volumeBtn?.addEventListener('click', () => this.toggleMute());
         this.volumeSlider?.addEventListener('click', (e) => this.setVolume(e));
         
-        // Event listeners para arrastre
+        // Drag events
         this.progressHandle?.addEventListener('mousedown', (e) => {
             e.preventDefault();
-            this.startDragging();
+            this.startDragging('progress');
         });
         
         this.volumeHandle?.addEventListener('mousedown', (e) => {
             e.preventDefault();
-            this.startVolumeDragging();
+            this.startDragging('volume');
         });
         
-        // Event listeners globales
-        document.addEventListener('mousemove', (e) => {
-            if (this.isDragging) this.dragProgress(e);
-            if (this.isVolumeDragging) this.dragVolume(e);
-        });
+        // Global mouse events
+        document.addEventListener('mousemove', (e) => this.handleDrag(e));
+        document.addEventListener('mouseup', () => this.stopDragging());
         
-        document.addEventListener('mouseup', () => {
-            if (this.isDragging || this.isVolumeDragging) {
-                this.stopDragging();
-            }
-        });
+        // Touch events
+        this.progressContainer.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            this.startDragging('progress');
+        }, { passive: false });
         
-        // Event listeners del audio
+        this.progressContainer.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            this.handleDrag(e.touches[0]);
+        }, { passive: false });
+        
+        document.addEventListener('touchend', () => this.stopDragging());
+        
+        // Audio events
         this.audio.addEventListener('loadedmetadata', () => this.updateDuration());
         this.audio.addEventListener('timeupdate', () => this.updateProgress());
         this.audio.addEventListener('ended', () => this.resetPlayer());
         this.audio.addEventListener('volumechange', () => this.updateVolumeDisplay());
-        this.audio.addEventListener('play', () => this.updatePlayState(true));
-        this.audio.addEventListener('pause', () => this.updatePlayState(false));
         
-        // Inicializar volumen
+        // Añadir eventos para play y pause
+        this.audio.addEventListener('play', () => {
+            this.playerElement?.classList.add('playing');
+            console.log('Audio playing');
+        });
+        
+        this.audio.addEventListener('pause', () => {
+            this.playerElement?.classList.remove('playing');
+            console.log('Audio paused');
+        });
+        
+        // Inicializar
         this.audio.volume = 0.7;
-        this.audio.muted = false;
+        this.updateDuration();
         this.updateVolumeDisplay();
-        
-        // Actualizar duración si ya está cargada
-        if (this.audio.readyState >= 1) {
-            this.updateDuration();
-        }
         
         console.log('Reproductor de audio inicializado');
     }
     
-    setupIcons() {
-        // Reemplazar SVGs por FontAwesome si es necesario
-        const playIcon = this.playPauseBtn?.querySelector('.play-icon');
-        const pauseIcon = this.playPauseBtn?.querySelector('.pause-icon');
-        
-        if (playIcon && playIcon.tagName === 'svg') {
-            playIcon.outerHTML = '<i class="fas fa-play play-icon"></i>';
-        }
-        if (pauseIcon && pauseIcon.tagName === 'svg') {
-            pauseIcon.outerHTML = '<i class="fas fa-pause pause-icon" style="display: none;"></i>';
-        }
-        
-        // Configurar iconos de volumen
-        const volumeHigh = this.volumeBtn?.querySelector('.volume-high');
-        const volumeMute = this.volumeBtn?.querySelector('.volume-mute');
-        
-        if (volumeHigh && volumeHigh.tagName === 'svg') {
-            volumeHigh.outerHTML = '<i class="fas fa-volume-up volume-high"></i>';
-        }
-        if (volumeMute && volumeMute.tagName === 'svg') {
-            volumeMute.outerHTML = '<i class="fas fa-volume-mute volume-mute" style="display: none;"></i>';
-        }
-    }
-    
     togglePlay() {
+        console.log('togglePlay called, audio paused:', this.audio.paused);
         if (this.audio.paused) {
-            this.audio.play().catch(error => {
-                console.error('Error al reproducir:', error);
-            });
+            this.audio.play()
+                .then(() => {
+                    console.log('Audio started playing');
+                })
+                .catch(error => {
+                    console.error('Error al reproducir:', error);
+                });
         } else {
             this.audio.pause();
+            console.log('Audio paused');
         }
     }
     
     toggleMute() {
         if (this.audio) {
             this.audio.muted = !this.audio.muted;
-            this.updateVolumeDisplay();
+            this.playerElement?.classList.toggle('muted', this.audio.muted);
         }
     }
     
@@ -135,14 +131,10 @@ class AudioPlayer {
         this.audio.currentTime = percent * this.audio.duration;
         
         // Efecto visual
-        if (this.progressHandle) {
-            this.progressHandle.style.transform = 'translate(-50%, -50%) scale(1.3)';
-            setTimeout(() => {
-                if (this.progressHandle) {
-                    this.progressHandle.style.transform = 'translate(-50%, -50%) scale(1)';
-                }
-            }, 200);
-        }
+        this.progressHandle.style.transform = 'translate(-50%, -50%) scale(1.3)';
+        setTimeout(() => {
+            this.progressHandle.style.transform = 'translate(-50%, -50%) scale(1)';
+        }, 200);
     }
     
     setVolume(e) {
@@ -155,23 +147,13 @@ class AudioPlayer {
         this.updateVolumeDisplay();
     }
     
-    startDragging() {
-        this.isDragging = true;
-        this.wasPlaying = !this.audio.paused;
-        if (this.wasPlaying) {
-            this.audio.pause();
-        }
-        
-        if (this.progressHandle) {
-            this.progressHandle.style.cursor = 'grabbing';
-        }
-        document.body.style.userSelect = 'none';
-    }
-    
-    startVolumeDragging() {
-        this.isVolumeDragging = true;
-        if (this.volumeHandle) {
-            this.volumeHandle.style.cursor = 'grabbing';
+    startDragging(type) {
+        if (type === 'progress') {
+            this.isDragging = true;
+            this.progressContainer.classList.add('dragging');
+        } else if (type === 'volume') {
+            this.isVolumeDragging = true;
+            this.volumeSlider.classList.add('dragging');
         }
         document.body.style.userSelect = 'none';
     }
@@ -179,37 +161,23 @@ class AudioPlayer {
     stopDragging() {
         this.isDragging = false;
         this.isVolumeDragging = false;
-        
-        if (this.wasPlaying) {
-            this.audio.play().catch(console.error);
-            this.wasPlaying = false;
-        }
-        
-        if (this.progressHandle) {
-            this.progressHandle.style.cursor = '';
-        }
-        if (this.volumeHandle) {
-            this.volumeHandle.style.cursor = '';
-        }
+        this.progressContainer?.classList.remove('dragging');
+        this.volumeSlider?.classList.remove('dragging');
         document.body.style.userSelect = '';
     }
     
-    dragProgress(e) {
-        if (!this.audio.duration) return;
-        
-        const rect = this.progressContainer.getBoundingClientRect();
-        const percent = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-        this.audio.currentTime = percent * this.audio.duration;
-    }
-    
-    dragVolume(e) {
-        if (!this.volumeSlider) return;
-        
-        const rect = this.volumeSlider.getBoundingClientRect();
-        const percent = 1 - Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height));
-        this.audio.volume = percent;
-        this.audio.muted = (percent === 0);
-        this.updateVolumeDisplay();
+    handleDrag(e) {
+        if (this.isDragging && this.audio.duration) {
+            const rect = this.progressContainer.getBoundingClientRect();
+            const percent = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+            this.audio.currentTime = percent * this.audio.duration;
+        } else if (this.isVolumeDragging && this.volumeSlider) {
+            const rect = this.volumeSlider.getBoundingClientRect();
+            const percent = 1 - Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height));
+            this.audio.volume = percent;
+            this.audio.muted = (percent === 0);
+            this.updateVolumeDisplay();
+        }
     }
     
     updateProgress() {
@@ -217,15 +185,9 @@ class AudioPlayer {
         
         const percent = (this.audio.currentTime / this.audio.duration) * 100;
         
-        if (this.progressBar) {
-            this.progressBar.style.width = percent + '%';
-        }
-        if (this.progressHandle) {
-            this.progressHandle.style.left = percent + '%';
-        }
-        if (this.currentTimeEl) {
-            this.currentTimeEl.textContent = this.formatTime(this.audio.currentTime);
-        }
+        this.progressBar.style.width = percent + '%';
+        this.progressHandle.style.left = percent + '%';
+        this.currentTimeEl.textContent = this.formatTime(this.audio.currentTime);
     }
     
     updateDuration() {
@@ -241,33 +203,12 @@ class AudioPlayer {
         this.volumeLevel.style.height = percent + '%';
         this.volumeHandle.style.bottom = percent + '%';
         
-        // Actualizar icono
-        const audioPlayer = document.querySelector('.audio-player');
-        if (audioPlayer) {
-            if (this.audio.muted || this.audio.volume === 0) {
-                audioPlayer.classList.add('muted');
-            } else {
-                audioPlayer.classList.remove('muted');
-            }
-        }
-    }
-    
-    updatePlayState(playing) {
-        const audioPlayer = document.querySelector('.audio-player');
-        if (!audioPlayer) return;
-        
-        if (playing) {
-            audioPlayer.classList.add('playing');
-        } else {
-            audioPlayer.classList.remove('playing');
-        }
+        // Actualizar estado muted
+        this.playerElement?.classList.toggle('muted', this.audio.muted || this.audio.volume === 0);
     }
     
     resetPlayer() {
-        const audioPlayer = document.querySelector('.audio-player');
-        if (audioPlayer) {
-            audioPlayer.classList.remove('playing');
-        }
+        this.playerElement?.classList.remove('playing');
         this.audio.currentTime = 0;
     }
     
@@ -280,7 +221,7 @@ class AudioPlayer {
     }
 }
 
-// Inicialización automática
+// Inicialización
 function initAudioPlayer() {
     if (document.getElementById('audio-player')) {
         try {
@@ -298,12 +239,7 @@ if (document.readyState === 'loading') {
     initAudioPlayer();
 }
 
-// Soporte para navegación SPA (si aplica)
-document.addEventListener('page:load', initAudioPlayer);
-document.addEventListener('turbolinks:load', initAudioPlayer);
-
 // Exportar para uso global
 if (typeof window !== 'undefined') {
     window.AudioPlayer = AudioPlayer;
-    window.initAudioPlayer = initAudioPlayer;
 }

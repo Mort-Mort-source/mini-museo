@@ -42,13 +42,11 @@
             <p class="autor"><em>Nicole Gutiérrez</em></p>
 
             <!-- AUDIO DESCRIPTIVO -->
-            <div class="audio-container" style="margin-top: 2rem;">
+                        <div class="audio-container" style="margin-top: 2rem;">
                 <h2>Para saber más</h2>
-               
 
                 <div class="audio-player">
                     <div class="audio-info">
-                        
                         <div class="audio-time">
                             <span class="current-time">0:00</span> /
                             <span class="duration">0:00</span>
@@ -56,11 +54,13 @@
                     </div>
 
                     <div class="audio-controls">
+                        <!-- Botón play/pause -->
                         <button class="control-btn play-pause" aria-label="Reproducir o pausar audio">
                             <i class="fas fa-play play-icon"></i>
                             <i class="fas fa-pause pause-icon" style="display: none;"></i>
                         </button>
 
+                        <!-- Barra de progreso -->
                         <div class="progress-container">
                             <div class="progress-bar">
                                 <div class="progress"></div>
@@ -68,6 +68,7 @@
                             </div>
                         </div>
 
+                        <!-- Control de volumen -->
                         <div class="volume-controls">
                             <button class="control-btn volume-btn" aria-label="Control de volumen">
                                 <i class="fas fa-volume-up volume-high"></i>
@@ -85,12 +86,10 @@
 
                     <audio id="audio-player">
                         <source src="../audio/barbie_podcast.mp3" type="audio/mpeg">
-                        <source src="../audio/barbie_podcast.mp3" type="audio/ogg">
                         Tu navegador no soporta el elemento de audio.
                     </audio>
                 </div>
             </div>
-
             <!-- GALERÍA SWIPER -->
             <div class="contenedor-marco" style="margin-top: 3rem;">
                 

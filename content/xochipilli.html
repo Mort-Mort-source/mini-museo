@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,20 +29,27 @@
         <section class="epoca">
 
             <h1>Xochipilli</h1>
-            
-            <p class="intro">
-              sinopsis pendiente de Xochipilli
-            </p>
-            <p class="autor"><em>Daniela Juárez Solís</em></p>
 
+            <p class="intro">
+            <p>Los espacios de museo deben ser marcos críticos al igual que la forma en la que nos relacionamos con el
+                llamado “patrimonio” ¿patrimonio de quién?, ¿Para quién?, incluso el preguntarnos: ¿Estamos seguros de
+                que es nuestro?, ¿Quién nos hizo creer la narrativa que es de todos?, ¿A quién le interesa que se
+                reconozcan estas como de todos y tan a la vez de nadie? Y ¿Por qué se invalidan las historias personales
+                atravesadas por las piezas? </p>
+            <p>Relaciones con los objetos que a ojos de algunos, solo deberían estar en una sala de museo, para ser
+                únicamente admirados con una ficha técnica que contenga solo su nombre o su material. Si cada pieza
+                re-planteara un historial de las relaciones personales que vivieron algo significante a través de ellxs
+                seria mucho más rico e interesante conocerlos, se volvería una pieza de archivo vivo entre el pasado, la
+                memoria y el conocimiento, más allá de lo que se sabe hoy con placa de metal a su lado.</p>
+            </p>
+
+            <p class="autor"><em>Daniela Juárez</em></p>
             <!-- AUDIO -->
-            <div class="audio-container" style="margin-top: 2rem;">
+                        <div class="audio-container" style="margin-top: 2rem;">
                 <h2>Para saber más</h2>
-              
 
                 <div class="audio-player">
                     <div class="audio-info">
-                        
                         <div class="audio-time">
                             <span class="current-time">0:00</span> /
                             <span class="duration">0:00</span>
@@ -49,11 +57,13 @@
                     </div>
 
                     <div class="audio-controls">
+                        <!-- Botón play/pause -->
                         <button class="control-btn play-pause" aria-label="Reproducir o pausar audio">
                             <i class="fas fa-play play-icon"></i>
-                            <i class="fas fa-pause pause-icon" style="display:none;"></i>
+                            <i class="fas fa-pause pause-icon" style="display: none;"></i>
                         </button>
 
+                        <!-- Barra de progreso -->
                         <div class="progress-container">
                             <div class="progress-bar">
                                 <div class="progress"></div>
@@ -61,10 +71,11 @@
                             </div>
                         </div>
 
+                        <!-- Control de volumen -->
                         <div class="volume-controls">
                             <button class="control-btn volume-btn" aria-label="Control de volumen">
                                 <i class="fas fa-volume-up volume-high"></i>
-                                <i class="fas fa-volume-mute volume-mute" style="display:none;"></i>
+                                <i class="fas fa-volume-mute volume-mute" style="display: none;"></i>
                             </button>
 
                             <div class="volume-slider-container">
@@ -77,8 +88,7 @@
                     </div>
 
                     <audio id="audio-player">
-                        <source src="../audio/tumba_de_pakal_podcast.mp3" type="audio/mpeg">
-                        <source src="../audio/tumba_de_pakal_podcast.mp3" type="audio/ogg">
+                        <source src="../audio/Xochipilli.mp3" type="audio/mpeg">
                         Tu navegador no soporta el elemento de audio.
                     </audio>
                 </div>
@@ -86,7 +96,7 @@
 
             <!-- GALERÍA CON ZOOM -->
             <div class="contenedor-marco" style="margin-top: 3rem;">
-             
+
 
                 <div class="galeria gallery-grid">
                     <a href="../img/Xochipilli_foto1.jpg" class="gallery-item">
@@ -100,6 +110,12 @@
                     </a>
                     <a href="../img/Xochipilli_foto4.jpg" class="gallery-item">
                         <img src="../img/Xochipilli_foto4.jpg" alt="Xochipilli">
+                    </a>
+                    <a href="../img/Xochipilli_foto5.jpeg" class="gallery-item">
+                        <img src="../img/Xochipilli_foto5.jpeg" alt="Xochipilli">
+                    </a>
+                    <a href="../img/Xochipilli_foto6.jpeg" class="gallery-item">
+                        <img src="../img/Xochipilli_foto6.jpeg" alt="Xochipilli">
                     </a>
                 </div>
             </div>
@@ -118,7 +134,7 @@
 
     <script>
         // Activar zoom SimpleLightbox
-        $(function(){
+        $(function () {
             $('.gallery-grid a').simpleLightbox({
                 captions: true,
                 captionsData: "alt",
@@ -128,4 +144,5 @@
     </script>
 
 </body>
+
 </html>

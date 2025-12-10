@@ -1,7 +1,33 @@
-/* ========================
-   RESET Y VARIABLES BLANCO/NEGRO/GRIS
-   ======================== */
+/*
+================================================================================
+                           ESTILOS MINI-MUSEO
+================================================================================
+Organización:
+1. RESET Y VARIABLES GLOBALES
+2. ESTRUCTURA BASE Y TIPOGRAFÍA
+3. SIDEBAR Y NAVEGACIÓN
+4. CONTENIDO PRINCIPAL Y LAYOUT
+5. MOSAICO DE IMÁGENES
+6. ENCABEZADOS Y CONTENIDO DE TEXTO
+7. REPRODUCTOR DE AUDIO - CORREGIDO
+8. GALERÍAS Y SWIPER
+9. LIGHTBOX
+10. COMPONENTES Y SECCIONES
+11. BOTONES Y ENLACES
+12. UTILIDADES
+13. ANIMACIONES
+14. RESPONSIVE DESIGN
+15. ACCESIBILIDAD Y ESTADOS ESPECIALES
+16. ID ESPECÍFICO
+================================================================================
+*/
+
+
+/* ==========================================================================
+   1. RESET Y VARIABLES GLOBALES
+   ========================================================================== */
 :root {
+  /* Paleta blanco/negro/gris */
   --bg: #ffffff;
   --primary: #1a1a1a;
   --accent: #4a6fa5;
@@ -27,6 +53,9 @@
   box-sizing: border-box;
 }
 
+/* ==========================================================================
+   2. ESTRUCTURA BASE Y TIPOGRAFÍA
+   ========================================================================== */
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: var(--bg);
@@ -39,9 +68,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ========================
-   SIDEBAR BLANCO/NEGRO CON ESTRUCTURA JERÁRQUICA
-   ======================== */
+/* ==========================================================================
+   3. SIDEBAR Y NAVEGACIÓN
+   ========================================================================== */
 .sidebar {
   width: 320px;
   background: var(--sidebar-bg);
@@ -94,7 +123,6 @@ body {
   list-style: none;
 }
 
-/* Elementos del menú */
 .sidebar nav ul li {
   margin: 0.8rem 0;
   cursor: pointer;
@@ -123,21 +151,18 @@ body {
   width: 100%;
 }
 
-/* Secciones principales (sin iconos) */
 .sidebar nav ul li:not(.menu-padre) a {
   font-weight: 600;
   color: var(--primary);
   font-size: 1.05rem;
 }
 
-/* Secciones con submenús */
 .menu-padre > a {
   font-weight: 600;
   color: var(--primary);
   position: relative;
 }
 
-/* Línea que se extiende al abrir el menú */
 .menu-padre::before {
   content: '';
   position: absolute;
@@ -153,7 +178,6 @@ body {
   background: var(--gradient-accent);
 }
 
-/* Submenús con estilo jerárquico */
 .submenu {
   max-height: 0;
   overflow: hidden;
@@ -189,7 +213,6 @@ body {
   color: var(--primary);
 }
 
-/* Indicador de sección abierta */
 .menu-padre.abierto {
   background: var(--sidebar-hover);
   border-left-color: var(--accent);
@@ -212,7 +235,6 @@ body {
   color: var(--accent);
 }
 
-/* Scrollbar personalizado para sidebar */
 .sidebar::-webkit-scrollbar {
   width: 6px;
 }
@@ -231,14 +253,14 @@ body {
   background: rgba(0, 0, 0, 0.3);
 }
 
-/* ========================
-   CONTENIDO PRINCIPAL
-   ======================== */
+/* ==========================================================================
+   4. CONTENIDO PRINCIPAL Y LAYOUT
+   ========================================================================== */
 .contenido {
   margin-left: 320px;
   padding: 2.5rem;
   flex: 1;
-  max-width: 1400px; /* Aumentado para más flexibilidad */
+  max-width: 1400px;
   margin: 0 auto;
   padding-left: 340px;
   transition: margin-left 0.3s ease;
@@ -250,9 +272,9 @@ body {
   padding-left: 2.5rem;
 }
 
-/* ========================
-   MOSAICO FLEXIBLE - AHORA ADMITE CUALQUIER NÚMERO DE ELEMENTOS
-   ======================== */
+/* ==========================================================================
+   5. MOSAICO DE IMÁGENES
+   ========================================================================== */
 .mosaic-container {
   width: 100%;
   margin: 3rem 0;
@@ -260,7 +282,7 @@ body {
 
 .mosaic-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Flexible */
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-auto-rows: 1fr;
   gap: 24px;
   padding: 0;
@@ -272,14 +294,16 @@ body {
 .mosaic-item {
   position: relative;
   width: 100%;
-  aspect-ratio: 3/2; /* Mantiene ratio fijo */
+  aspect-ratio: 3/2;
   overflow: hidden;
   cursor: pointer;
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
   transition: all 0.3s ease;
   border: 1px solid var(--border);
   border-radius: 12px;
-  min-height: 220px; /* Altura mínima */
+  min-height: 220px;
+  animation: fadeIn 0.5s ease forwards;
+  opacity: 0;
 }
 
 .mosaic-item::before {
@@ -313,32 +337,54 @@ body {
   border-color: var(--accent);
 }
 
-/* Contenedor Swiper dentro del mosaico */
 .mosaic-content .mosaic-swiper {
   width: 100%;
   height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.mosaic-content .mosaic-swiper .swiper-wrapper {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  transition-timing-function: ease-out;
 }
 
 .mosaic-content .mosaic-swiper .swiper-slide {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--card);
 }
 
-.mosaic-content .mosaic-swiper img {
+.mosaic-swiper .swiper-slide {
+  opacity: 0 !important;
+  transition: opacity 0.5s ease !important;
+}
+
+.mosaic-swiper .swiper-slide-active,
+.mosaic-swiper .swiper-slide-duplicate-active {
+  opacity: 1 !important;
+}
+
+.mosaic-swiper .swiper-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
   transition: transform 0.5s ease;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .mosaic-item:hover .mosaic-swiper img {
   transform: scale(1.03);
 }
 
-/* Overlay minimalista */
 .mosaic-content .mosaic-overlay {
   position: absolute;
   bottom: 0;
@@ -371,16 +417,34 @@ body {
   line-height: 1.4;
 }
 
-/* Controles del carrusel - solo mostrar al hover */
+.mosaic-swiper .swiper-pagination {
+  bottom: 10px !important;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.mosaic-swiper .swiper-pagination-bullet {
+  background: white;
+  opacity: 0.5;
+  width: 6px;
+  height: 6px;
+  margin: 0 3px !important;
+}
+
+.mosaic-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: var(--primary);
+}
+
 .mosaic-swiper .swiper-button-next,
 .mosaic-swiper .swiper-button-prev {
   color: white;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.5);
   width: 30px;
   height: 30px;
   border-radius: 50%;
   display: none;
-  opacity: 0.7;
   transition: all 0.3s ease;
 }
 
@@ -399,25 +463,10 @@ body {
 
 .mosaic-swiper .swiper-button-next:hover,
 .mosaic-swiper .swiper-button-prev:hover {
-  background: rgba(0, 0, 0, 0.9);
-  opacity: 1;
+  background: rgba(0, 0, 0, 0.8);
   transform: scale(1.1);
 }
 
-.mosaic-swiper .swiper-pagination-bullet {
-  background: white;
-  opacity: 0.5;
-  width: 7px;
-  height: 7px;
-}
-
-.mosaic-swiper .swiper-pagination-bullet-active {
-  opacity: 1;
-  background: var(--accent);
-  transform: scale(1.2);
-}
-
-/* Badge de categoría (minimalista) */
 .mosaic-counter {
   position: absolute;
   top: 12px;
@@ -443,9 +492,18 @@ body {
   transform: scale(1.1);
 }
 
-/* ========================
-   ENCABEZADOS Y CONTENIDO CON DEGRADADO
-   ======================== */
+.mosaic-category {
+  font-size: 0.7rem !important;
+  margin-top: 5px !important;
+  opacity: 0.8 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* ==========================================================================
+   6. ENCABEZADOS Y CONTENIDO DE TEXTO
+   ========================================================================== */
 .epoca {
   max-width: 900px;
   margin: 0 auto;
@@ -527,35 +585,274 @@ body {
   max-width: 65ch;
 }
 
-/* ========================
-   SECCIONES DESTACADAS
-   ======================== */
-.section-highlight {
-  background: var(--gradient-subtle);
-  padding: 2.5rem;
-  border-radius: 12px;
-  margin: 2.5rem 0;
-  border-left: 4px solid #4a6fa5;
+.intro-principal {
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #444;
+  max-width: 850px;
+  margin: 0 auto 2rem auto;
+  text-align: justify;
+  padding: 0 10px;
 }
 
-.gradient-card {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border: 1px solid var(--border);
+.intro-principal h3 {
+  font-size: 1.1rem;
+  margin-top: 1.8rem;
+}
+
+.intro-principal p {
+  margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   7. REPRODUCTOR DE AUDIO - CORREGIDO
+   ========================================================================== */
+.audio-container {
+  margin: 3rem 0;
+  background: var(--card);
   border-radius: 12px;
   padding: 2rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 10px var(--shadow);
+}
+
+.audio-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.audio-player {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.audio-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.audio-time {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 400;
+  font-family: 'Courier New', monospace;
+}
+
+/* Contenedor principal de controles - IMPORTANTE */
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  padding: 0.5rem 0;
+}
+
+/* Botón play/pause */
+.control-btn {
+  background: var(--gradient-primary);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: white;
+  flex-shrink: 0;
+}
+
+.control-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(74, 111, 165, 0.2);
+}
+
+.control-btn:active {
+  transform: scale(0.98);
+}
+
+/* Estados del botón play/pause */
+.play-pause .play-icon {
+  display: block;
+}
+
+.play-pause .pause-icon {
+  display: none;
+}
+
+.audio-player.playing .play-pause .play-icon {
+  display: none;
+}
+
+.audio-player.playing .play-pause .pause-icon {
+  display: block;
+}
+
+.audio-player.playing .control-btn.play-pause {
+  animation: pulse 2s infinite;
+}
+
+/* Barra de progreso */
+.progress-container {
+  flex: 1;
+  position: relative;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  margin: 0 0.5rem;
+}
+
+.progress-bar {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: height 0.2s ease;
+}
+
+.progress-bar:hover {
+  height: 6px;
+}
+
+.progress {
+  position: absolute;
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+.progress-handle {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  border: 2px solid var(--accent);
+  z-index: 2;
+}
+
+.progress-bar:hover .progress-handle,
+.progress-bar.dragging .progress-handle {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Controles de volumen */
+.volume-controls {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.volume-btn {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  color: var(--muted);
+}
+
+.volume-btn:hover {
+  background: var(--hover);
+  color: var(--primary);
+}
+
+/* Estados del botón de volumen */
+.volume-btn .volume-high {
+  display: block;
+}
+
+.volume-btn .volume-mute {
+  display: none;
+}
+
+.audio-player.muted .volume-btn .volume-high {
+  display: none;
+}
+
+.audio-player.muted .volume-btn .volume-mute {
+  display: block;
+}
+
+/* Slider de volumen */
+.volume-slider-container {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  background: white;
+  padding: 15px 10px;
+  border-radius: 25px;
+  box-shadow: 0 5px 25px var(--shadow);
+  opacity: 0;
+  visibility: hidden;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  margin-bottom: 10px;
+  z-index: 100;
+  border: 1px solid var(--border);
 }
 
-.gradient-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
-  background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+.volume-controls:hover .volume-slider-container {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }
 
-/* ========================
-   GALERÍAS CON SIMPLELIGHTBOX
-   ======================== */
+.volume-slider {
+  width: 6px;
+  height: 80px;
+  background: var(--border);
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+}
+
+.volume-level {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: var(--gradient-primary);
+  border-radius: 3px;
+  height: 60%;
+  transition: height 0.1s linear;
+}
+
+.volume-handle {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  border: 2px solid var(--accent);
+  z-index: 2;
+}
+
+.volume-slider:hover .volume-handle,
+.volume-slider.dragging .volume-handle {
+  transform: translateX(-50%) scale(1);
+}
+
+/* ==========================================================================
+   8. GALERÍAS Y SWIPER
+   ========================================================================== */
 .galeria {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -583,9 +880,10 @@ body {
   height: 200px;
   object-fit: cover;
   display: block;
+  cursor: zoom-in;
 }
 
-/* SimpleLightbox personalizado */
+/* SimpleLightbox */
 .sl-overlay {
   background: rgba(0, 0, 0, 0.95) !important;
 }
@@ -599,209 +897,217 @@ body {
   color: white !important;
 }
 
-/* ========================
-   REPRODUCTOR DE AUDIO MINIMALISTA
-   ======================== */
-.audio-container {
-  margin: 3rem 0;
-  background: var(--card);
-  border-radius: 4px;
-  padding: 2rem;
+/* Swiper galería principal */
+.galeria-carrusel {
+  max-width: 920px;
+  margin: 2.5rem auto;
+}
+
+.swiper.gallery-top {
+  width: 100%;
+  height: clamp(320px, 45vw, 520px);
+  border-radius: 12px;
+  overflow: hidden;
   border: 1px solid var(--border);
-  box-shadow: 0 2px 10px var(--shadow);
+  background: var(--card);
+  box-shadow: 0 6px 18px var(--shadow);
 }
 
-.audio-player {
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.audio-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.audio-title {
-  font-weight: 500;
-  color: var(--primary);
-  font-size: 1.1rem;
-}
-
-.audio-time {
-  color: var(--muted);
-  font-size: 0.9rem;
-  font-weight: 400;
-}
-
-.control-btn {
-  background: var(--gradient-primary);
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
+.swiper.gallery-top .swiper-slide {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  color: white;
-}
-
-.control-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(74, 111, 165, 0.2);
-}
-
-.progress-container {
-  flex: 1;
-  position: relative;
-  height: 25px;
-  display: flex;
-  align-items: center;
-  margin: 0 1.5rem;
-}
-
-.progress-bar {
-  position: relative;
-  width: 100%;
-  height: 3px;
-  background: var(--border);
-  border-radius: 1.5px;
-  cursor: pointer;
-}
-
-.progress {
-  position: absolute;
   height: 100%;
-  background: var(--gradient-primary);
-  border-radius: 1.5px;
-  width: 0%;
-  transition: width 0.1s linear;
 }
 
-.progress-handle {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  background: var(--primary);
-  border-radius: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: all 0.2s ease;
+.swiper.gallery-top img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+  cursor: zoom-in;
 }
 
-.progress-bar:hover .progress-handle {
-  opacity: 1;
+.swiper.gallery-top .swiper-slide-active img {
+  transform: scale(1.02);
 }
 
-.volume-controls {
+/* Thumbs (miniaturas) */
+.swiper.gallery-thumbs {
+  margin-top: 14px;
+  height: 96px;
+  box-sizing: border-box;
+  padding: 6px 6px;
+}
+
+.swiper.gallery-thumbs .swiper-slide {
+  width: 110px;
+  height: 84px;
+  opacity: 0.6;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.18s ease;
   display: flex;
   align-items: center;
-  position: relative;
+  justify-content: center;
+  background: var(--card);
 }
 
-.volume-btn {
-  width: 40px;
-  height: 40px;
-  background: transparent;
-  color: var(--muted);
-}
-
-.volume-btn:hover {
-  background: var(--hover);
-  color: var(--primary);
-}
-
-.volume-slider-container {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: white;
-  padding: 15px 10px;
-  border-radius: 25px;
-  box-shadow: 0 5px 20px var(--shadow);
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  margin-bottom: 10px;
-  z-index: 100;
-  border: 1px solid var(--border);
-}
-
-.volume-controls:hover .volume-slider-container {
-  opacity: 1;
-  visibility: visible;
-}
-
-.volume-slider {
-  width: 6px;
-  height: 80px;
-  background: var(--border);
-  border-radius: 3px;
-  cursor: pointer;
-  position: relative;
-}
-
-.volume-level {
-  position: absolute;
-  bottom: 0;
+.swiper.gallery-thumbs .swiper-slide img {
   width: 100%;
-  background: var(--gradient-primary);
-  border-radius: 3px;
-  height: 80%;
-  transition: height 0.1s linear;
-}
-
-/* Estados del reproductor */
-.audio-player.playing .play-icon {
-  display: none;
-}
-
-.audio-player.playing .pause-icon {
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
-.audio-player.muted .volume-high {
-  display: none;
+.swiper.gallery-thumbs .swiper-slide-thumb-active {
+  opacity: 1;
+  transform: translateY(-4px);
+  border: 2px solid var(--accent);
+  box-shadow: 0 6px 18px var(--shadow);
 }
 
-.audio-player.muted .volume-mute {
-  display: block;
-}
-
-/* ========================
-   BOTONES CON DEGRADADO
-   ======================== */
-.btn-gradient {
-  background: var(--gradient-primary);
+.swiper-button-next, .swiper-button-prev {
   color: white;
-  border: none;
-  padding: 12px 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0,0,0,0.45), rgba(0,0,0,0.25));
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  --swiper-navigation-size: 44px;
+}
+
+.swiper :focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   9. LIGHTBOX
+   ========================================================================== */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.85);
+  padding: 24px;
+  gap: 20px;
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.lightbox-stage {
+  max-width: min(1200px, 96%);
+  width: 100%;
+  max-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.lightbox-stage img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
   border-radius: 8px;
-  font-weight: 500;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  background: #111;
+}
+
+.lightbox-caption {
+  margin-top: 10px;
+  color: #fff;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  text-decoration: none;
+  justify-content: center;
+  font-size: 1.4rem;
+  transition: transform 0.12s ease, background 0.12s ease;
+  backdrop-filter: blur(4px);
 }
 
-.btn-gradient:hover {
+.lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 2010;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 1.6rem;
+}
+
+.lightbox-prev {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2010;
+}
+
+.lightbox-next {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2010;
+}
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: rgba(255,255,255,0.12);
+}
+
+/* ==========================================================================
+   10. COMPONENTES Y SECCIONES
+   ========================================================================== */
+.section-highlight {
+  background: var(--gradient-subtle);
+  padding: 2.5rem;
+  border-radius: 12px;
+  margin: 2.5rem 0;
+  border-left: 4px solid #4a6fa5;
+}
+
+.gradient-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.gradient-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(74, 111, 165, 0.2);
-  background: linear-gradient(135deg, #5a86c5 0%, #6c8bc7 100%);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+  background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
 }
 
-/* ========================
-   CONTENEDORES SIN RECUADROS
-   ======================== */
 .contenedor-marco {
   background: transparent;
   border: none;
@@ -810,9 +1116,6 @@ body {
   box-shadow: none;
 }
 
-/* ========================
-   INFORMACIÓN ADICIONAL
-   ======================== */
 .info-adicional {
   margin: 2rem 0;
   padding: 1.5rem 0;
@@ -857,9 +1160,44 @@ body {
   font-weight: 500;
 }
 
-/* ========================
-   UTILIDADES
-   ======================== */
+/* ==========================================================================
+   11. BOTONES Y ENLACES
+   ========================================================================== */
+.btn-gradient {
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.btn-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74, 111, 165, 0.2);
+  background: linear-gradient(135deg, #5a86c5 0%, #6c8bc7 100%);
+}
+
+.correo {
+  color: inherit;
+  text-decoration: none;
+  font-style: inherit;
+}
+
+.correo:hover {
+  text-decoration: underline;
+  color: var(--accent);
+}
+
+/* ==========================================================================
+   12. UTILIDADES
+   ========================================================================== */
 .text-muted {
   color: var(--muted);
 }
@@ -886,354 +1224,79 @@ body {
   margin: 2rem 0;
 }
 
-/* ========================
-   ANIMACIONES SUTILES
-   ======================== */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   13. ANIMACIONES
+   ========================================================================== */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
-.audio-player.playing .control-btn.play-pause {
-  animation: pulse 2s infinite;
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
-.mosaic-item {
-  animation: fadeIn 0.5s ease forwards;
-  opacity: 0;
-}
-
-/* Animación escalonada para los items del mosaico (ahora dinámica) */
 .mosaic-item {
   animation-delay: calc(var(--item-index, 0) * 0.05s);
 }
 
-/* ========================
-   SWIPER GALERÍA (principal + thumbs)
-   Integrado con tu paleta de variables
-   ======================== */
-
-.galeria-carrusel {
-  max-width: 920px;
-  margin: 2.5rem auto;
+.mosaic-item.loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
 }
 
-/* Imagen grande (top) */
-.swiper.gallery-top {
-  width: 100%;
-  height: clamp(320px, 45vw, 520px); /* responsivo */
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background: var(--card);
-  box-shadow: 0 6px 18px var(--shadow);
+/* ==========================================================================
+   14. RESPONSIVE DESIGN
+   ========================================================================== */
+
+/* Números impares de elementos */
+.mosaic-grid:has(.mosaic-item:only-child) {
+  grid-template-columns: 1fr;
+  max-width: 500px;
 }
 
-.swiper.gallery-top .swiper-slide {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  height:100%;
+.mosaic-grid:has(.mosaic-item:nth-child(2):last-child) {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 700px;
 }
 
-.swiper.gallery-top img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-  transition: transform .4s ease;
-  cursor: zoom-in;
-}
-
-.swiper.gallery-top .swiper-slide-active img {
-  transform: scale(1.02);
-}
-
-/* Thumbs (miniaturas) */
-.swiper.gallery-thumbs {
-  margin-top: 14px;
-  height: 96px;
-  box-sizing: border-box;
-  padding: 6px 6px;
-}
-
-.swiper.gallery-thumbs .swiper-slide {
-  width: 110px;
-  height: 84px;
-  opacity: 0.6;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  cursor: pointer;
-  transition: all 0.18s ease;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background: var(--card);
-}
-
-.swiper.gallery-thumbs .swiper-slide img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-.swiper.gallery-thumbs .swiper-slide-thumb-active {
-  opacity: 1;
-  transform: translateY(-4px);
-  border: 2px solid var(--accent);
-  box-shadow: 0 6px 18px var(--shadow);
-}
-
-/* Botones navegación personalizados (opcionales) */
-.swiper-button-next, .swiper-button-prev {
-  color: white;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, rgba(0,0,0,0.45), rgba(0,0,0,0.25));
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-  --swiper-navigation-size: 44px;
-}
-
-@media (max-width: 700px) {
-  .swiper.gallery-thumbs { height: 84px; }
-  .swiper.gallery-thumbs .swiper-slide { width: 84px; height: 64px; }
-}
-
-/* Ajustes visuales para el link dentro del slide (para GLightbox) */
-.gallery-top a { display: block; width:100%; height:100%; }
-.gallery-top a img { display:block; }
-
-/* Quitar foco feo y mejorar accesibilidad */
-.swiper :focus { outline: 2px solid var(--accent); outline-offset: 3px; }
-
-/* =========================
-   LIGHTBOX ESTILOS
-   ========================= */
-.lightbox {
-  display: none; /* oculto por defecto */
-  position: fixed;
-  inset: 0;
-  z-index: 2000;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,0,0,0.85);
-  padding: 24px;
-  gap: 20px;
-}
-
-.lightbox.open {
-  display: flex;
-}
-
-.lightbox-stage {
-  max-width: min(1200px, 96%);
-  width: 100%;
-  max-height: calc(100vh - 160px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.lightbox-stage img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-  background: #111;
-}
-
-/* Caption */
-.lightbox-caption {
-  margin-top: 10px;
-  color: #fff;
-  font-size: 0.95rem;
-  text-align: center;
-}
-
-/* Controls */
-.lightbox-close,
-.lightbox-prev,
-.lightbox-next {
-  background: rgba(255,255,255,0.06);
-  color: #fff;
-  border: none;
-  width: 44px;
-  height: 44px;
-  border-radius: 8px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
-  transition: transform .12s ease, background .12s ease;
-  backdrop-filter: blur(4px);
-}
-
-.lightbox-close { position: absolute; top: 18px; right: 18px; z-index: 2010; width:48px; height:48px; border-radius:50%; font-size:1.6rem; }
-.lightbox-prev { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); z-index:2010; }
-.lightbox-next { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); z-index:2010; }
-
-.lightbox-close:hover,
-.lightbox-prev:hover,
-.lightbox-next:hover { transform: translateY(-2px) scale(1.02); background: rgba(255,255,255,0.12); }
-
-@media (max-width: 700px) {
-  .lightbox-prev, .lightbox-next { width: 40px; height: 40px; font-size: 1.2rem; left: 8px; right:8px; }
-  .lightbox-close { top: 12px; right: 12px; width:40px; height:40px; }
-  .lightbox-stage { max-height: calc(100vh - 120px); }
-}
-
-/* Mejoras para enlaces/miniaturas */
-.galeria a { display:block; }
-.galeria img { cursor: zoom-in; }
-
-/* ========================
-   SWIPER MOSAICO - ESTILOS FALTANTES
-   ======================== */
-
-/* Contenedor Swiper dentro del mosaico */
-.mosaic-content .mosaic-swiper {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-.mosaic-content .mosaic-swiper .swiper-wrapper {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  transition-timing-function: ease-out;
-}
-
-.mosaic-content .mosaic-swiper .swiper-slide {
-  flex-shrink: 0;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Fade effect para transiciones */
-.mosaic-swiper .swiper-slide {
-  opacity: 0 !important;
-  transition: opacity 0.5s ease !important;
-}
-
-.mosaic-swiper .swiper-slide-active,
-.mosaic-swiper .swiper-slide-duplicate-active {
-  opacity: 1 !important;
-}
-
-/* Asegurar que las imágenes llenen el slide */
-.mosaic-swiper .swiper-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Paginación para mosaico */
-.mosaic-swiper .swiper-pagination {
-  bottom: 10px !important;
-  left: 0;
-  width: 100%;
-  z-index: 10;
-}
-
-.mosaic-swiper .swiper-pagination-bullet {
-  background: white;
-  opacity: 0.5;
-  width: 6px;
-  height: 6px;
-  margin: 0 3px !important;
-}
-
-.mosaic-swiper .swiper-pagination-bullet-active {
-  opacity: 1;
-  background: var(--primary);
-}
-
-/* Navegación para mosaico - solo mostrar al hover */
-.mosaic-swiper .swiper-button-next,
-.mosaic-swiper .swiper-button-prev {
-  color: white;
-  background: rgba(0, 0, 0, 0.5);
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: none;
-  transition: all 0.3s ease;
-}
-
-.mosaic-swiper .swiper-button-next:after,
-.mosaic-swiper .swiper-button-prev:after {
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.mosaic-swiper:hover .swiper-button-next,
-.mosaic-swiper:hover .swiper-button-prev {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.mosaic-swiper .swiper-button-next:hover,
-.mosaic-swiper .swiper-button-prev:hover {
-  background: rgba(0, 0, 0, 0.8);
-  transform: scale(1.1);
-}
-
-/* ========================
-   ESTILOS ESPECÍFICOS PARA INTRO Y CORREOS
-   ======================== */
-.intro-principal {
-  font-size: 0.9rem;
-  line-height: 1.45;
-  color: #444;
-  max-width: 850px;
-  margin: 0 auto 2rem auto;
-  text-align: justify;
-  padding: 0 10px;
-}
-
-.intro-principal h3 {
-  font-size: 1.1rem;
-  margin-top: 1.8rem;
-}
-
-.intro-principal p {
-  margin-bottom: 1rem;
-}
-
-.correo {
-  color: inherit;
-  text-decoration: none;
-  font-style: inherit;
-}
-
-.correo:hover {
-  text-decoration: underline;
-  color: var(--accent);
-}
-
-/* ========================
-   RESPONSIVE DESIGN FLEXIBLE
-   ======================== */
+/* Pantallas grandes */
 @media (max-width: 1600px) {
   .mosaic-grid {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -1307,8 +1370,18 @@ body {
   .mosaic-description {
     font-size: 0.8rem;
   }
+  
+  .swiper.gallery-thumbs {
+    height: 84px;
+  }
+  
+  .swiper.gallery-thumbs .swiper-slide {
+    width: 84px;
+    height: 64px;
+  }
 }
 
+/* Tablet */
 @media (max-width: 768px) {
   .sidebar {
     transform: translateX(-100%);
@@ -1369,84 +1442,20 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
   
-  /* Ajustes específicos para móvil */
-  .mosaic-counter {
-    width: 24px;
-    height: 24px;
-    font-size: 0.7rem;
-    top: 8px;
-    right: 8px;
+  /* Reproductor de audio en móvil */
+  .audio-controls {
+    gap: 1rem;
+    flex-wrap: wrap;
   }
   
-  .mosaic-overlay {
-    padding: 12px 10px 10px;
-    opacity: 0.9; /* Más visible en móvil */
-  }
-  
-  .mosaic-title {
-    font-size: 0.95rem;
-  }
-  
-  .mosaic-description {
-    font-size: 0.75rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .mosaic-grid {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 12px;
-  }
-  
-  .mosaic-item {
-    min-height: 140px;
+  .progress-container {
+    order: 3;
+    flex-basis: 100%;
+    margin-top: 1rem;
   }
   
   .audio-container {
     padding: 1.5rem;
-  }
-  
-  .audio-info {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-  
-  .audio-time {
-    align-self: flex-end;
-  }
-  
-  .epoca h1 {
-    font-size: 1.8rem;
-  }
-  
-  .progress-container {
-    margin: 0 1rem;
-  }
-  
-  .galeria {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .mosaic-grid {
-    grid-template-columns: 1fr;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  
-  .mosaic-item {
-    min-height: 200px; /* Más alto en móvil para mejor visibilidad */
-    max-width: 100%;
-  }
-  
-  .mosaic-title {
-    font-size: 1rem;
-  }
-  
-  .mosaic-description {
-    font-size: 0.85rem;
   }
   
   .control-btn {
@@ -1459,8 +1468,120 @@ body {
     height: 35px;
   }
   
+  /* Lightbox en móvil */
+  .lightbox-prev, .lightbox-next {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    left: 8px;
+    right: 8px;
+  }
+  
+  .lightbox-close {
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .lightbox-stage {
+    max-height: calc(100vh - 120px);
+  }
+  
+  /* Mosaico en móvil */
+  .mosaic-counter {
+    width: 24px;
+    height: 24px;
+    font-size: 0.7rem;
+    top: 8px;
+    right: 8px;
+  }
+  
+  .mosaic-overlay {
+    padding: 12px 10px 10px;
+    opacity: 0.9;
+  }
+  
+  .mosaic-title {
+    font-size: 0.95rem;
+  }
+  
+  .mosaic-description {
+    font-size: 0.75rem;
+  }
+}
+
+/* Móvil pequeño */
+@media (max-width: 640px) {
+  .mosaic-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+  }
+  
+  .mosaic-item {
+    min-height: 140px;
+  }
+  
+  .audio-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .audio-time {
+    align-self: flex-end;
+  }
+  
+  .progress-container {
+    margin: 0 1rem;
+  }
+  
+  .galeria {
+    grid-template-columns: 1fr;
+  }
+  
   .intro-principal {
-    text-align: left; /* Mejor lectura en móvil */
+    text-align: left;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .audio-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .progress-container {
+    order: 2;
+    margin-top: 0;
+  }
+  
+  .play-pause {
+    align-self: center;
+  }
+  
+  .volume-controls {
+    align-self: flex-end;
+  }
+  
+  .mosaic-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .mosaic-item {
+    min-height: 200px;
+    max-width: 100%;
+  }
+  
+  .mosaic-title {
+    font-size: 1rem;
+  }
+  
+  .mosaic-description {
     font-size: 0.85rem;
   }
 }
@@ -1481,22 +1602,9 @@ body {
   }
 }
 
-/* ========================
-   AJUSTES PARA NÚMEROS IMPARES DE ELEMENTOS
-   ======================== */
-.mosaic-grid:has(.mosaic-item:only-child) {
-  grid-template-columns: 1fr;
-  max-width: 500px;
-}
-
-.mosaic-grid:has(.mosaic-item:nth-child(2):last-child) {
-  grid-template-columns: repeat(2, 1fr);
-  max-width: 700px;
-}
-
-/* ========================
-   MEJORAS DE ACCESIBILIDAD
-   ======================== */
+/* ==========================================================================
+   15. ACCESIBILIDAD Y ESTADOS ESPECIALES
+   ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   .mosaic-item,
   .control-btn,
@@ -1531,52 +1639,9 @@ body {
   background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.6), transparent);
 }
 
-/* Clase para ocultar visualmente pero mantener accesibilidad */
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* ========================
-   MEJORAS DE RENDIMIENTO
-   ======================== */
-.mosaic-swiper img {
-  will-change: transform;
-  backface-visibility: hidden;
-}
-
-/* ========================
-   ESTADOS DE CARGA
-   ======================== */
-.mosaic-item.loading {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-/* ========================
-   ESTILOS PARA CATEGORÍA EN OVERLAY
-   ======================== */
-.mosaic-category {
-  font-size: 0.7rem !important;
-  margin-top: 5px !important;
-  opacity: 0.8 !important;
-  color: rgba(255, 255, 255, 0.9) !important;
-  font-weight: 500;
-  letter-spacing: 0.3px;
-}
+/* ==========================================================================
+   16. ID ESPECÍFICO
+   ========================================================================== */
 #sidebarToggle {
-    display: none !important;
+  display: none !important;
 }
