@@ -95,7 +95,7 @@
         
         // Cerrar sidebar al hacer clic fuera (solo móvil)
         $(document).on('click', function(e) {
-            if ($(window).width() <= 768 && 
+            if ($(window).width() <= 1 && 
                 sidebarVisible && 
                 !$(e.target).closest('#sidebar, #sidebarToggle').length) {
                 toggleSidebar();
